@@ -287,4 +287,3 @@ add_executable(check_nodeset_compiler
                $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
 target_link_libraries(check_nodeset_compiler ${LIBS})
 add_test_valgrind(check_nodeset_compiler ${TESTS_BINARY_DIR}/check_nodeset_compiler)
-add_example(check_nodeset_compiler  check_nodeset_compiler.c)
