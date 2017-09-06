@@ -94,8 +94,11 @@ add_custom_command(OUTPUT ${PROJECT_BINARY_DIR}/src_generated/example_namespace.
                    )
 
 # needs internal methods which are not exported in the dynamic lib
-add_example(server_nodeset ${PROJECT_BINARY_DIR}/src_generated/example_namespace.c server_nodeset.c)
-target_include_directories(server_nodeset PRIVATE ${PROJECT_SOURCE_DIR}/src) # needs an internal header
+add_example(server_nodeset server_nodeset.c ${PROJECT_BINARY_DIR}/src_generated/example_namespace.c)
+if(UA_COMPILE_AS_CXX)
+	set_source_files_properties(${PROJECT_BINARY_DIR}/src_generated/example_namespace.c PROPERTIES LANGUAGE CXX)
+endif()
+#target_include_directories(server_nodeset PRIVATE ${PROJECT_SOURCE_DIR}/src) # needs an internal header
 
 
 if(UA_BUILD_SELFSIGNED_CERTIFICATE)
