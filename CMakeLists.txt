@@ -382,19 +382,19 @@ else()
 endif()
 
 add_custom_command(OUTPUT ${PROJECT_BINARY_DIR}/src_generated/ua_types_generated.c
-                   ${PROJECT_BINARY_DIR}/src_generated/ua_types_generated.h
-                   ${PROJECT_BINARY_DIR}/src_generated/ua_types_generated_handling.h
-                   ${PROJECT_BINARY_DIR}/src_generated/ua_types_generated_encoding_binary.h
+                          ${PROJECT_BINARY_DIR}/src_generated/ua_types_generated.h
+                          ${PROJECT_BINARY_DIR}/src_generated/ua_types_generated_handling.h
+                          ${PROJECT_BINARY_DIR}/src_generated/ua_types_generated_encoding_binary.h
                    PRE_BUILD
                    COMMAND ${PYTHON_EXECUTABLE} ${PROJECT_SOURCE_DIR}/tools/generate_datatypes.py
-                   --type-csv=${PROJECT_SOURCE_DIR}/tools/schema/NodeIds.csv
-                   ${SELECTED_TYPES_TMP}
-                   --type-bsd=${PROJECT_SOURCE_DIR}/tools/schema/Opc.Ua.Types.bsd
-                   ${PROJECT_BINARY_DIR}/src_generated/ua_types
+                           --type-csv=${PROJECT_SOURCE_DIR}/tools/schema/NodeIds.csv
+                           ${SELECTED_TYPES_TMP}
+                           --type-bsd=${PROJECT_SOURCE_DIR}/tools/schema/Opc.Ua.Types.bsd
+                           ${PROJECT_BINARY_DIR}/src_generated/ua_types
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/tools/generate_datatypes.py
-                   ${PROJECT_SOURCE_DIR}/tools/schema/NodeIds.csv
-                   ${PROJECT_SOURCE_DIR}/tools/schema/Opc.Ua.Types.bsd
-                   ${SELECTED_TYPES})
+                           ${PROJECT_SOURCE_DIR}/tools/schema/NodeIds.csv
+                           ${PROJECT_SOURCE_DIR}/tools/schema/Opc.Ua.Types.bsd
+                           ${SELECTED_TYPES})
 # we need a custom target to avoid that the generator is called concurrently and thus overwriting files while the other thread is compiling
 add_custom_target(open62541-generator-types DEPENDS
         ${PROJECT_BINARY_DIR}/src_generated/ua_types_generated.c
@@ -402,22 +402,23 @@ add_custom_target(open62541-generator-types DEPENDS
                   ${PROJECT_BINARY_DIR}/src_generated/ua_types_generated_handling.h
                   ${PROJECT_BINARY_DIR}/src_generated/ua_types_generated_encoding_binary.h)
 
-# transport data type
-set(UA_TYPES_OUT "ua_transport")
+# transport data types
 add_custom_command(OUTPUT ${PROJECT_BINARY_DIR}/src_generated/ua_transport_generated.c
-                   ${PROJECT_BINARY_DIR}/src_generated/ua_transport_generated.h
-                   ${PROJECT_BINARY_DIR}/src_generated/ua_transport_generated_handling.h
-                   ${PROJECT_BINARY_DIR}/src_generated/ua_transport_generated_encoding_binary.h
+                          ${PROJECT_BINARY_DIR}/src_generated/ua_transport_generated.h
+                          ${PROJECT_BINARY_DIR}/src_generated/ua_transport_generated_handling.h
+                          ${PROJECT_BINARY_DIR}/src_generated/ua_transport_generated_encoding_binary.h
                    PRE_BUILD
                    COMMAND ${PYTHON_EXECUTABLE} ${PROJECT_SOURCE_DIR}/tools/generate_datatypes.py
-                           --namespace=1 --selected-types=${PROJECT_SOURCE_DIR}/tools/schema/datatypes_transport.txt
-                           --type-bsd=${PROJECT_SOURCE_DIR}/tools/schema/Opc.Ua.Types.bsd
-                           --type-bsd=${PROJECT_SOURCE_DIR}/tools/schema/Custom.Opc.Ua.Transport.bsd--no-builtin
-                    --no-builtin       ${PROJECT_BINARY_DIR}/src_generated/ua_transport
+                   --namespace=1
+                   --selected-types=${PROJECT_SOURCE_DIR}/tools/schema/datatypes_transport.txt
+                   --type-bsd=${PROJECT_SOURCE_DIR}/tools/schema/Opc.Ua.Types.bsd
+                   --type-bsd=${PROJECT_SOURCE_DIR}/tools/schema/Custom.Opc.Ua.Transport.bsd
+                   --no-builtin
+                   --no-builtin${PROJECT_BINARY_DIR}/src_generated/ua_transport
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/tools/generate_datatypes.py
                            ${PROJECT_SOURCE_DIR}/tools/schema/datatypes_transport.txt
                            ${PROJECT_SOURCE_DIR}/tools/schema/Opc.Ua.Types.bsd
-                   ${PROJECT_SOURCE_DIR}/tools/schema/Custom.Opc.Ua.Transport.bsd)
+                           ${PROJECT_SOURCE_DIR}/tools/schema/Custom.Opc.Ua.Transport.bsd)
 # we need a custom target to avoid that the generator is called concurrently and thus overwriting files while the other thread is compiling
 add_custom_target(open62541-generator-transport DEPENDS
         ${PROJECT_BINARY_DIR}/src_generated/ua_transport_generated.c

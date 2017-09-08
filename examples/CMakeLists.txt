@@ -75,31 +75,28 @@ add_example(custom_datatype_server custom_datatype/server_types_custom.c)
 
 # generate namespace from XML file
 add_custom_command(OUTPUT ${PROJECT_BINARY_DIR}/src_generated/example_namespace.c
-                   ${PROJECT_BINARY_DIR}/src_generated/example_namespace.h
+                          ${PROJECT_BINARY_DIR}/src_generated/example_namespace.h
                    PRE_BUILD
                    COMMAND ${PYTHON_EXECUTABLE} ${PROJECT_SOURCE_DIR}/tools/nodeset_compiler/nodeset_compiler.py
-                   --types-array=UA_TYPES
-                   --existing ${UA_NAMESPACE0_XML}
-                   --xml ${PROJECT_SOURCE_DIR}/examples/server_nodeset.xml
-                   ${PROJECT_BINARY_DIR}/src_generated/example_namespace
+                           --types-array=UA_TYPES
+                           --existing ${UA_NAMESPACE0_XML}
+                           --xml ${PROJECT_SOURCE_DIR}/examples/server_nodeset.xml
+                           ${PROJECT_BINARY_DIR}/src_generated/example_namespace
                    DEPENDS ${UA_NAMESPACE0_XML}
-                   ${PROJECT_SOURCE_DIR}/tools/nodeset_compiler/nodeset_compiler.py
-                   ${PROJECT_SOURCE_DIR}/tools/nodeset_compiler/nodes.py
-                   ${PROJECT_SOURCE_DIR}/tools/nodeset_compiler/nodeset.py
-                   ${PROJECT_SOURCE_DIR}/tools/nodeset_compiler/datatypes.py
-                   ${PROJECT_SOURCE_DIR}/tools/nodeset_compiler/backend_open62541.py
-                   ${PROJECT_SOURCE_DIR}/tools/nodeset_compiler/backend_open62541_nodes.py
-                   ${PROJECT_SOURCE_DIR}/tools/nodeset_compiler/backend_open62541_datatypes.py
-                   ${PROJECT_SOURCE_DIR}/examples/server_nodeset.xml
+                           ${PROJECT_SOURCE_DIR}/tools/nodeset_compiler/nodeset_compiler.py
+                           ${PROJECT_SOURCE_DIR}/tools/nodeset_compiler/nodes.py
+                           ${PROJECT_SOURCE_DIR}/tools/nodeset_compiler/nodeset.py
+                           ${PROJECT_SOURCE_DIR}/tools/nodeset_compiler/datatypes.py
+                           ${PROJECT_SOURCE_DIR}/tools/nodeset_compiler/backend_open62541.py
+                           ${PROJECT_SOURCE_DIR}/tools/nodeset_compiler/backend_open62541_nodes.py
+                           ${PROJECT_SOURCE_DIR}/tools/nodeset_compiler/backend_open62541_datatypes.py
+                           ${PROJECT_SOURCE_DIR}/examples/server_nodeset.xml
                    )
 
-# needs internal methods which are not exported in the dynamic lib
 add_example(server_nodeset server_nodeset.c ${PROJECT_BINARY_DIR}/src_generated/example_namespace.c)
 if(UA_COMPILE_AS_CXX)
 	set_source_files_properties(${PROJECT_BINARY_DIR}/src_generated/example_namespace.c PROPERTIES LANGUAGE CXX)
 endif()
-#target_include_directories(server_nodeset PRIVATE ${PROJECT_SOURCE_DIR}/src) # needs an internal header
-
 
 if(UA_BUILD_SELFSIGNED_CERTIFICATE)
   find_package(OpenSSL REQUIRED)
