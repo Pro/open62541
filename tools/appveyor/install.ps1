@@ -2,17 +2,19 @@ $ErrorActionPreference = "Stop"
 
 $make_cmd = "& dir C:\"
 Invoke-Expression $make_cmd
-echo "Exit1 = $LASTEXITCODE"
 if ($LASTEXITCODE -ne 0) {
+	echo "Failed dir"
 	exit $LASTEXITCODE
 }
+echo "Exit1 = $LASTEXITCODE"
 
 $make_cmd = "& $env:MAKE"
 Invoke-Expression $make_cmd
-echo "Exit2 = $LASTEXITCODE"
 if ($LASTEXITCODE -ne 0) {
+	echo "Failed make"
 	exit $LASTEXITCODE
 }
+echo "Exit2 = $LASTEXITCODE"
 
 & git submodule --quiet update --init --recursive
 
