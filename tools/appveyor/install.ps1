@@ -2,18 +2,12 @@ $ErrorActionPreference = "Stop"
 
 & git submodule --quiet update --init --recursive
 
-if (-not (Test-Path "$env:CYG_ROOT")) {
-	New-Item -ItemType directory -Path "$env:CYG_ROOT"
-}
+echo "`n### Installing CMake and python ###`n"
+& cinst --no-progress cmake --installargs 'ADD_CMAKE_TO_PATH=""User""'
+& cinst --no-progress python2
 
-# Cygwin
-echo "`n### Installing Cygwin from $env:CYG_SETUP_URL to $env:CYG_ROOT/setup-x86.exe ###`n"
-& appveyor DownloadFile "$env:CYG_SETUP_URL" -FileName "$env:CYG_ROOT/setup-x86.exe"
-echo "Downloaded. Now ready to install."
-
-& "$env:CYG_ROOT/setup-x86.exe" --quiet-mode --no-shortcuts --only-site -R "$env:CYG_ROOT" -s "$env:CYG_MIRROR" -l "$env:CYG_CACHE" --packages cmake,python'
-& "$env:CYG_BASH" -lc "cygcheck -dc cygwin"'
-
+echo "`n### Installing sphinx ###`n"
+& pip install --user sphinx sphinx_rtd_theme
 
 echo "`n### Installing Miktex ###`n"
 if (-not (Test-Path "c:\miktex\texmfs\install\miktex\bin\pdflatex.exe")) {
@@ -27,9 +21,6 @@ if (-not (Test-Path "c:\miktex\texmfs\install\miktex\bin\pdflatex.exe")) {
 	Remove-Item -Path c:\miktex\texmfs\install\miktex\bin\a5toa4.exe
 }
 #& cinst --no-progress miktex.portable
-
-echo "`n### Installing sphinx ###`n"
-& pip install --user sphinx sphinx_rtd_theme
 
 echo "`n### Installing graphviz ###`n"
 & cinst --no-progress graphviz.portable
