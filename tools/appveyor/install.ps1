@@ -2,9 +2,9 @@ $ErrorActionPreference = "Stop"
 
 & git submodule --quiet update --init --recursive
 
-#if (-not (Test-Path "$env:CYG_ROOT")) {
-#	New-Item -ItemType directory -Path "$env:CYG_ROOT"
-#}
+if (-not (Test-Path "$env:CYG_ROOT")) {
+	New-Item -ItemType directory -Path "$env:CYG_ROOT"
+}
 
 # Cygwin
 echo "`n### Installing Cygwin from $env:CYG_SETUP_URL to $env:CYG_ROOT/setup-x86.exe ###`n"
@@ -25,7 +25,7 @@ echo "Downloaded. Now ready to install."
 echo "`n### Installing Miktex ###`n"
 if (-not (Test-Path "c:\miktex\texmfs\install\miktex\bin\pdflatex.exe")) {
 	& appveyor DownloadFile http://mirrors.ctan.org/systems/win32/miktex/setup/miktex-portable.exe
-	& 7z x miktex-portable.exe -oc:\miktex >NUL
+	& 7z x miktex-portable.exe -oc:\miktex -bso0 -bsp0
 
 	# Remove some big files to reduce size to be cached
 	Remove-Item -Path c:\miktex\texmfs\install\doc -Recurse
