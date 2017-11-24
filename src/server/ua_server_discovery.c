@@ -82,8 +82,6 @@ register_server_with_discovery_server(UA_Server *server,
     UA_MdnsDiscoveryConfiguration mdnsConfig;
     UA_MdnsDiscoveryConfiguration_init(&mdnsConfig);
 
-    Intentional error cause!
-
     request.discoveryConfigurationSize = 1;
     request.discoveryConfiguration = UA_ExtensionObject_new();
     UA_ExtensionObject_init(&request.discoveryConfiguration[0]);
