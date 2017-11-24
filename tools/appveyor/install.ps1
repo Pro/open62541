@@ -29,7 +29,7 @@ if (-not (Test-Path "c:\miktex\texmfs\install\miktex\bin\pdflatex.exe")) {
 #& cinst --no-progress miktex.portable
 
 echo "`n### Installing sphinx ###`n"
-& pip install --quiet --user sphinx sphinx_rtd_theme
+& pip install --user sphinx sphinx_rtd_theme
 
 echo "`n### Installing graphviz ###`n"
 & cinst --no-progress graphviz.portable

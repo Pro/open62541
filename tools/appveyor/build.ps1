@@ -11,9 +11,9 @@ Copy-Item $env:APPVEYOR_BUILD_FOLDER\README.md $env:APPVEYOR_BUILD_FOLDER\pack
 echo "`n##### Building Documentation on $env:CC_NAME #####`n"
 New-Item -ItemType directory -Path build
 cd build
-cmake -DMIKTEX_BINARY_PATH=c:\miktex\texmfs\install\miktex\bin -DCMAKE_BUILD_TYPE=Release -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -DUA_BUILD_EXAMPLES:BOOL=OFF -G"$env:CC_NAME" ..
-cmake --build . --target doc_latex
-cmake --build . --target doc_pdf
+& cmake -DMIKTEX_BINARY_PATH=c:\miktex\texmfs\install\miktex\bin -D& cmake_BUILD_TYPE=Release -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -DUA_BUILD_EXAMPLES:BOOL=OFF -G"$env:CC_NAME" ..
+& cmake --build . --target doc_latex
+& cmake --build . --target doc_pdf
 move "build\doc_latex\open62541.pdf" $env:APPVEYOR_BUILD_FOLDER\pack\
 cd ..
 Remove-Item -Path build -Recurse
@@ -21,24 +21,24 @@ Remove-Item -Path build -Recurse
 echo "`n##### Testing $env:CC_NAME #####`n"
 New-Item -ItemType directory -Path "build"
 cd build
-cmake -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -G"$env:CC_NAME" ..
-$env:MAKE
+& cmake -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -G"$env:CC_NAME" ..
+& $env:MAKE
 cd ..
 Remove-Item -Path build -Recurse
 
 echo "`n##### Testing $env:CC_NAME with full NS0 #####`n"
 New-Item -ItemType directory -Path "build"
 cd build
-cmake -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_ENABLE_FULL_NS0:BOOL=ON -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -G"$env:CC_NAME" ..
-$env:MAKE
+& cmake -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_ENABLE_FULL_NS0:BOOL=ON -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -G"$env:CC_NAME" ..
+& $env:MAKE
 cd ..
 Remove-Item -Path build -Recurse
 
 echo "`n##### Testing $env:CC_NAME with amalgamation #####`n"
 New-Item -ItemType directory -Path "build"
 cd build
-cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_ENABLE_AMALGAMATION:BOOL=ON -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -DBUILD_SHARED_LIBS:BOOL=OFF -G"$env:CC_NAME" ..
-$env:MAKE
+& cmake -D& cmake_BUILD_TYPE=RelWithDebInfo -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_ENABLE_AMALGAMATION:BOOL=ON -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -DBUILD_SHARED_LIBS:BOOL=OFF -G"$env:CC_NAME" ..
+& $env:MAKE
 md $env:APPVEYOR_BUILD_FOLDER\pack_tmp
 move "build\open62541.c" $env:APPVEYOR_BUILD_FOLDER\pack_tmp\
 move "build\open62541.h" $env:APPVEYOR_BUILD_FOLDER\pack_tmp\
@@ -56,8 +56,8 @@ Remove-Item -Path build -Recurse
 echo "`n##### Testing $env:CC_NAME with amalgamation and .dll #####`n"
 New-Item -ItemType directory -Path "build"
 cd build
-cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_ENABLE_AMALGAMATION:BOOL=ON -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -DBUILD_SHARED_LIBS:BOOL=ON -G"$env:CC_NAME" ..
-$env:MAKE
+& cmake -D& cmake_BUILD_TYPE=RelWithDebInfo -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_ENABLE_AMALGAMATION:BOOL=ON -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -DBUILD_SHARED_LIBS:BOOL=ON -G"$env:CC_NAME" ..
+& $env:MAKE
 md $env:APPVEYOR_BUILD_FOLDER\pack_tmp
 move "build\open62541.c" $env:APPVEYOR_BUILD_FOLDER\pack_tmp\
 move "build\open62541.h" $env:APPVEYOR_BUILD_FOLDER\pack_tmp\
@@ -80,9 +80,9 @@ if ($env:CC_SHORTNAME -eq "vs2015") {
 	New-Item -ItemType directory -Path "build"
 	cd build
 	echo "`n##### Testing $env:CC_NAME with unit tests #####`n"
-	cmake -DCMAKE_BUILD_TYPE=Debug -DUA_BUILD_EXAMPLES=OFF -DUA_ENABLE_DISCOVERY=ON -DUA_ENABLE_DISCOVERY_MULTICAST=ON -DUA_BUILD_UNIT_TESTS=ON -DUA_ENABLE_UNIT_TESTS_MEMCHECK=ON  -DCMAKE_LIBRARY_PATH=c:\check\lib -DCMAKE_INCLUDE_PATH=c:\check\include -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -G"$env:CC_NAME" ..
-	$env:MAKE
-	cmake --build . --target test-verbose --config debug
+	& cmake -D& cmake_BUILD_TYPE=Debug -DUA_BUILD_EXAMPLES=OFF -DUA_ENABLE_DISCOVERY=ON -DUA_ENABLE_DISCOVERY_MULTICAST=ON -DUA_BUILD_UNIT_TESTS=ON -DUA_ENABLE_UNIT_TESTS_MEMCHECK=ON  -D& cmake_LIBRARY_PATH=c:\check\lib -D& cmake_INCLUDE_PATH=c:\check\include -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -G"$env:CC_NAME" ..
+	& $env:MAKE
+	& cmake --build . --target test-verbose --config debug
 }
 
 
