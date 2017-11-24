@@ -1,4 +1,4 @@
-$ErrorActionPreference = "Stop"
+# $ErrorActionPreference = "Stop"
 
 cd $env:APPVEYOR_BUILD_FOLDER
 
@@ -16,7 +16,15 @@ New-Item -ItemType directory -Path build
 cd build
 & cmake -DMIKTEX_BINARY_PATH=c:\miktex\texmfs\install\miktex\bin -DCMAKE_BUILD_TYPE=Release -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -DUA_BUILD_EXAMPLES:BOOL=OFF -G"$env:CC_NAME" ..
 & cmake --build . --target doc_latex
+if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) {
+	echo "`n`n*** Make doc_latex. Exiting ... ***"
+	exit $LASTEXITCODE
+}
 & cmake --build . --target doc_pdf
+if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) {
+	echo "`n`n*** Make doc_pdf. Exiting ... ***"
+	exit $LASTEXITCODE
+}
 cd ..
 Move-Item -Path "build\doc_latex\open62541.pdf" -Destination pack\
 Remove-Item -Path build -Recurse
