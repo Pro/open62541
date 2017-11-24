@@ -5,10 +5,10 @@ echo "PATH=$env:PATH"
 cd $env:APPVEYOR_BUILD_FOLDER
 
 # Collect files for .zip packing
-New-Item -ItemType directory -Path $env:APPVEYOR_BUILD_FOLDER\pack
-Copy-Item $env:APPVEYOR_BUILD_FOLDER\LICENSE $env:APPVEYOR_BUILD_FOLDER\pack
-Copy-Item $env:APPVEYOR_BUILD_FOLDER\AUTHORS $env:APPVEYOR_BUILD_FOLDER\pack
-Copy-Item $env:APPVEYOR_BUILD_FOLDER\README.md $env:APPVEYOR_BUILD_FOLDER\pack
+New-Item -ItemType directory -Path pack
+Copy-Item LICENSE pack
+Copy-Item AUTHORS pack
+Copy-Item README.md pack
 
 echo "`n##### Building Documentation on $env:CC_NAME #####`n"
 New-Item -ItemType directory -Path build
@@ -16,8 +16,8 @@ cd build
 & cmake -DMIKTEX_BINARY_PATH=c:\miktex\texmfs\install\miktex\bin -DCMAKE_BUILD_TYPE=Release -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -DUA_BUILD_EXAMPLES:BOOL=OFF -G"$env:CC_NAME" ..
 & cmake --build . --target doc_latex
 & cmake --build . --target doc_pdf
-move "build\doc_latex\open62541.pdf" $env:APPVEYOR_BUILD_FOLDER\pack\
 cd ..
+move "build\doc_latex\open62541.pdf" pack\
 Remove-Item -Path build -Recurse
 
 echo "`n##### Testing $env:CC_NAME #####`n"
@@ -41,14 +41,14 @@ New-Item -ItemType directory -Path "build"
 cd build
 & cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_ENABLE_AMALGAMATION:BOOL=ON -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -DBUILD_SHARED_LIBS:BOOL=OFF -G"$env:CC_NAME" ..
 & $env:MAKE
-md $env:APPVEYOR_BUILD_FOLDER\pack_tmp
-move "build\open62541.c" $env:APPVEYOR_BUILD_FOLDER\pack_tmp\
-move "build\open62541.h" $env:APPVEYOR_BUILD_FOLDER\pack_tmp\
-move "build\$env:OUT_DIR_EXAMPLES\server.exe" $env:APPVEYOR_BUILD_FOLDER\pack_tmp\
-move "build\$env:OUT_DIR_EXAMPLES\client.exe" $env:APPVEYOR_BUILD_FOLDER\pack_tmp\
+md pack_tmp
+move "build\open62541.c" pack_tmp\
+move "build\open62541.h" pack_tmp\
+move "build\$env:OUT_DIR_EXAMPLES\server.exe" pack_tmp\
+move "build\$env:OUT_DIR_EXAMPLES\client.exe" pack_tmp\
 if ($env:CC_SHORTNAME -eq "mingw") {
-	move "build\$env:OUT_DIR_LIB\libopen62541.a" $env:APPVEYOR_BUILD_FOLDER\pack_tmp\
-	move "build\$env:OUT_DIR_LIB\open62541.lib" $env:APPVEYOR_BUILD_FOLDER\pack_tmp\
+	move "build\$env:OUT_DIR_LIB\libopen62541.a" pack_tmp\
+	move "build\$env:OUT_DIR_LIB\open62541.lib" pack_tmp\
 }
 cd ..
 7z a -tzip open62541-$env:CC_SHORTNAME-static.zip "$env:APPVEYOR_BUILD_FOLDER\pack\*" "$env:APPVEYOR_BUILD_FOLDER\pack_tmp\*"
@@ -60,17 +60,17 @@ New-Item -ItemType directory -Path "build"
 cd build
 & cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_ENABLE_AMALGAMATION:BOOL=ON -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -DBUILD_SHARED_LIBS:BOOL=ON -G"$env:CC_NAME" ..
 & $env:MAKE
-md $env:APPVEYOR_BUILD_FOLDER\pack_tmp
-move "build\open62541.c" $env:APPVEYOR_BUILD_FOLDER\pack_tmp\
-move "build\open62541.h" $env:APPVEYOR_BUILD_FOLDER\pack_tmp\
-move "build\$env:OUT_DIR_EXAMPLES\server.exe" $env:APPVEYOR_BUILD_FOLDER\pack_tmp\
-move "build\$env:OUT_DIR_EXAMPLES\client.exe" $env:APPVEYOR_BUILD_FOLDER\pack_tmp\
+md pack_tmp
+move "build\open62541.c" pack_tmp\
+move "build\open62541.h" pack_tmp\
+move "build\$env:OUT_DIR_EXAMPLES\server.exe" pack_tmp\
+move "build\$env:OUT_DIR_EXAMPLES\client.exe" pack_tmp\
 if ($env:CC_SHORTNAME -eq "mingw") {
-	move "build\$env:OUT_DIR_LIB\libopen62541.dll" $env:APPVEYOR_BUILD_FOLDER\pack_tmp\
-	move "build\$env:OUT_DIR_LIB\libopen62541.dll.a" $env:APPVEYOR_BUILD_FOLDER\pack_tmp\
+	move "build\$env:OUT_DIR_LIB\libopen62541.dll" pack_tmp\
+	move "build\$env:OUT_DIR_LIB\libopen62541.dll.a" pack_tmp\
 } else {
-	move "build\$env:OUT_DIR_LIB\open62541.dll" $env:APPVEYOR_BUILD_FOLDER\pack_tmp\
-	move "build\$env:OUT_DIR_LIB\open62541.pdb" $env:APPVEYOR_BUILD_FOLDER\pack_tmp\
+	move "build\$env:OUT_DIR_LIB\open62541.dll" pack_tmp\
+	move "build\$env:OUT_DIR_LIB\open62541.pdb" pack_tmp\
 }
 cd ..
 7z a -tzip open62541-$env:CC_SHORTNAME-dynamic.zip "$env:APPVEYOR_BUILD_FOLDER\pack\*" "$env:APPVEYOR_BUILD_FOLDER\pack_tmp\*"

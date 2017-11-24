@@ -1,11 +1,9 @@
 $ErrorActionPreference = "Stop"
-refreshenv
 
 & git submodule --quiet update --init --recursive
 
 echo "`n### Installing CMake and python ###`n"
-& cinst --no-progress cmake --installargs 'ADD_CMAKE_TO_PATH=""System""'
-& cinst --no-progress python2
+& cinst --no-progress cmake python2
 
 echo "`n### Installing sphinx ###`n"
 & pip install --user sphinx sphinx_rtd_theme
@@ -21,7 +19,6 @@ if (-not (Test-Path "c:\miktex\texmfs\install\miktex\bin\pdflatex.exe")) {
 	Remove-Item -Path c:\miktex\texmfs\install\miktex\bin\icudt58.dll
 	Remove-Item -Path c:\miktex\texmfs\install\miktex\bin\a5toa4.exe
 }
-#& cinst --no-progress miktex.portable
 
 echo "`n### Installing graphviz ###`n"
 & cinst --no-progress graphviz.portable
@@ -32,6 +29,3 @@ echo "`n### Installing libcheck ###`n"
 
 echo "`n### Installing DrMemory ###`n"
 & cinst --no-progress drmemory.portable
-
-
-echo "PATH=$env:PATH"
