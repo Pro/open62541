@@ -8,16 +8,16 @@ Copy-Item LICENSE pack
 Copy-Item AUTHORS pack
 Copy-Item README.md pack
 
-echo "`n###################################################################"
-echo "`n##### Building Documentation on $env:CC_NAME #####`n"
-New-Item -ItemType directory -Path build
-cd build
-& cmake -DMIKTEX_BINARY_PATH=c:\miktex\texmfs\install\miktex\bin -DCMAKE_BUILD_TYPE=Release -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -DUA_BUILD_EXAMPLES:BOOL=OFF -G"$env:CC_NAME" ..
-& cmake --build . --target doc_latex
-& cmake --build . --target doc_pdf
-cd ..
-move "build\doc_latex\open62541.pdf" pack\
-Remove-Item -Path build -Recurse
+#echo "`n###################################################################"
+#echo "`n##### Building Documentation on $env:CC_NAME #####`n"
+#New-Item -ItemType directory -Path build
+#cd build
+#& cmake -DMIKTEX_BINARY_PATH=c:\miktex\texmfs\install\miktex\bin -DCMAKE_BUILD_TYPE=Release -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -DUA_BUILD_EXAMPLES:BOOL=OFF -G"$env:CC_NAME" ..
+#& cmake --build . --target doc_latex
+#& cmake --build . --target doc_pdf
+#cd ..
+#move "build\doc_latex\open62541.pdf" pack\
+#Remove-Item -Path build -Recurse
 
 
 echo "`n###################################################################"
@@ -25,7 +25,7 @@ echo "`n##### Testing $env:CC_NAME #####`n"
 New-Item -ItemType directory -Path "build"
 cd build
 & cmake -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -G"$env:CC_NAME" ..
-& $env:MAKE
+cmd /c $env:MAKE
 cd ..
 Remove-Item -Path build -Recurse
 
