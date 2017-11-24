@@ -1,14 +1,14 @@
 & git submodule --quiet update --init --recursive
 
-if (-not (Test-Path "$env:CYG_ROOT")) {
-	New-Item -ItemType directory -Path "$env:CYG_ROOT"
-}
+#if (-not (Test-Path "$env:CYG_ROOT")) {
+#	New-Item -ItemType directory -Path "$env:CYG_ROOT"
+#}
 
 # Cygwin
 echo "`n### Installing Cygwin from $env:CYG_SETUP_URL to $env:CYG_ROOT/setup-x86.exe ###`n"
 & cinst --no-progress cygwin cyg-get
-& cinst cygwin -fy --installargs "-DdgP cmake"
-& cinst cygwin -fy --installargs "-DdgP python"
+& cinst cygwin -y --installargs "-DdgP cmake"
+& cinst cygwin -y --installargs "-DdgP python"
 # & cyg-get cmake python
 #& "$env:CYG_BASH" -lc "cygcheck -dc cygwin"'
 
