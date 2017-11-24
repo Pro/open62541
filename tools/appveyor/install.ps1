@@ -14,7 +14,6 @@ echo "`n### Installing Cygwin from $env:CYG_SETUP_URL to $env:CYG_ROOT/setup-x86
 # & cyg-get cmake python
 #& "$env:CYG_BASH" -lc "cygcheck -dc cygwin"'
 #choco install cyg-get -y cmake python
-echo "Installing Cygwin from $env:CYG_SETUP_URL to $env:CYG_ROOT/setup-x86.exe"
 & appveyor DownloadFile "$env:CYG_SETUP_URL" -FileName "$env:CYG_ROOT/setup-x86.exe"
 echo "Downloaded. Now ready to install."
 
@@ -29,7 +28,6 @@ if (-not (Test-Path "c:\miktex\texmfs\install\miktex\bin\pdflatex.exe")) {
 
 	# Remove some big files to reduce size to be cached
 	Remove-Item -Path c:\miktex\texmfs\install\doc -Recurse
-	Remove-Item -Path c:\miktex\texmfs\install\internal -Recurse
 	Remove-Item -Path c:\miktex\texmfs\install\miktex\bin\biber.exe
 	Remove-Item -Path c:\miktex\texmfs\install\miktex\bin\icudt58.dll
 	Remove-Item -Path c:\miktex\texmfs\install\miktex\bin\a5toa4.exe
