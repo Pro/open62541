@@ -1,9 +1,10 @@
 $ErrorActionPreference = "Stop"
+refreshenv
 
 & git submodule --quiet update --init --recursive
 
 echo "`n### Installing CMake and python ###`n"
-& cinst --no-progress cmake --installargs 'ADD_CMAKE_TO_PATH=""User""'
+& cinst --no-progress cmake --installargs 'ADD_CMAKE_TO_PATH=""System""'
 & cinst --no-progress python2
 
 echo "`n### Installing sphinx ###`n"
@@ -31,3 +32,6 @@ echo "`n### Installing libcheck ###`n"
 
 echo "`n### Installing DrMemory ###`n"
 & cinst --no-progress drmemory.portable
+
+
+echo "PATH=$env:PATH"

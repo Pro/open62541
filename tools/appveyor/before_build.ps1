@@ -1,4 +1,5 @@
 $ErrorActionPreference = "Stop"
+refreshenv
 
 # use MinGW64
 [Environment]::SetEnvironmentVariable("Path", "C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\bin;" + $env:Path, [EnvironmentVariableTarget]::Machine)
