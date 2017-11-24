@@ -2,9 +2,10 @@ $ErrorActionPreference = "Stop"
 
 & git submodule --quiet update --init --recursive
 
-& msbuild
+$MAKE_EXP = '& $env:MAKE'
 
-& $env:MAKE
+Invoke-Expression $MAKE_EXP
+
 
 echo "`n### Installing CMake and python ###`n"
 & cinst --no-progress cmake python2
