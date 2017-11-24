@@ -13,6 +13,7 @@ environment:
     matrix:
         - CC_NAME: MinGW Makefiles
           CC_SHORTNAME: mingw
+          # We need to redirect stderr to stdout otherwise powershell will fail if there is an output during amalgamation
           MAKE: mingw32-make -j 2>&1
           FORCE_CXX: OFF
           OUT_DIR_LIB: bin
@@ -35,7 +36,6 @@ environment:
           CC_SHORTNAME: vs2015
           # Do not build in parallel, project dependencies are not solved correctly and thus appveyor may randomly fail
           MAKE: msbuild /p:ContinueOnError=false /p:StopOnFirstFailure=true open62541.sln
-          #MAKE: cmake --build . --target ALL_BUILD
           FORCE_CXX: OFF
           OUT_DIR_LIB: bin\Debug
           OUT_DIR_EXAMPLES: bin\examples\Debug
