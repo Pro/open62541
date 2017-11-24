@@ -1,4 +1,4 @@
-& git submodule update --init --recursive 2>&1
+& git submodule --quiet update --init --recursive
 
 if (-not (Test-Path "$env:CYG_ROOT")) {
 	New-Item -ItemType directory -Path "$env:CYG_ROOT"
@@ -6,11 +6,9 @@ if (-not (Test-Path "$env:CYG_ROOT")) {
 
 # Cygwin
 echo "`n### Installing Cygwin from $env:CYG_SETUP_URL to $env:CYG_ROOT/setup-x86.exe ###`n"
-& appveyor DownloadFile %CYG_SETUP_URL% -FileName %CYG_ROOT%/setup-x86.exe
-echo "Downloaded. Now ready to install."
-
-& "$env:CYG_ROOT/setup-x86.exe" --quiet-mode --no-shortcuts --only-site -R "$env:CYG_ROOT" -s "$env:CYG_MIRROR" -l "$env:CYG_CACHE" --packages cmake,python'
-& "$env:CYG_BASH" -lc "cygcheck -dc cygwin"'
+& cinst --no-progress cygwin cyg-get
+& cyg-get cmake python
+#& "$env:CYG_BASH" -lc "cygcheck -dc cygwin"'
 
 
 echo "`n### Installing Miktex ###`n"

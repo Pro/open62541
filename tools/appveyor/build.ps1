@@ -1,14 +1,15 @@
-# log is loaded from cache, so we strip it here
-rd /s /q c:\miktex\texmfs\data\miktex\log
+exit 0
 
 cd c:\projects\open62541
 # Collect files for .zip packing
-md pack
-copy "%APPVEYOR_BUILD_FOLDER%\LICENSE" pack\
-copy "%APPVEYOR_BUILD_FOLDER%\AUTHORS" pack\
-copy "%APPVEYOR_BUILD_FOLDER%\README.md" pack\
+New-Item -ItemType directory -Path "pack"
+Copy-Item "$env:APPVEYOR_BUILD_FOLDER\LICENSE" pack\
+Copy-Item "$env:APPVEYOR_BUILD_FOLDER\AUTHORS" pack\
+Copy-Item ""$env:APPVEYOR_BUILD_FOLDER\README.md" pack\
+
+
 # now start build
-md build
+New-Item -ItemType directory -Path "build"
 cd build
 echo. && echo "##### Building Documentation on %CC_NAME% #####" && echo.
 cmake -DMIKTEX_BINARY_PATH=c:\miktex\texmfs\install\miktex\bin -DCMAKE_BUILD_TYPE=Release -DUA_COMPILE_AS_CXX:BOOL=%FORCE_CXX% -DUA_BUILD_EXAMPLES:BOOL=OFF -G"%CC_NAME%" ..
