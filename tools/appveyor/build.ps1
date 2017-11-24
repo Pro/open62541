@@ -2,6 +2,8 @@ $ErrorActionPreference = "Stop"
 
 cd $env:APPVEYOR_BUILD_FOLDER
 
+$make_cmd = "& $env:MAKE"
+
 # Collect files for .zip packing
 New-Item -ItemType directory -Path pack
 Copy-Item LICENSE pack
@@ -25,7 +27,11 @@ echo "`n##### Testing $env:CC_NAME #####`n"
 New-Item -ItemType directory -Path "build"
 cd build
 & cmake -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -G"$env:CC_NAME" ..
-cmd /c $env:MAKE
+Invoke-Expression $make_cmd
+if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) {
+	echo "*** Make failed. Exiting ... ***"
+	exit $LASTEXITCODE
+}
 cd ..
 Remove-Item -Path build -Recurse
 
@@ -35,7 +41,11 @@ echo "`n##### Testing $env:CC_NAME with full NS0 #####`n"
 New-Item -ItemType directory -Path "build"
 cd build
 & cmake -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_ENABLE_FULL_NS0:BOOL=ON -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -G"$env:CC_NAME" ..
-& $env:MAKE
+Invoke-Expression $make_cmd
+if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) {
+	echo "*** Make failed. Exiting ... ***"
+	exit $LASTEXITCODE
+}
 cd ..
 Remove-Item -Path build -Recurse
 
@@ -45,7 +55,11 @@ echo "`n##### Testing $env:CC_NAME with amalgamation #####`n"
 New-Item -ItemType directory -Path "build"
 cd build
 & cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_ENABLE_AMALGAMATION:BOOL=ON -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -DBUILD_SHARED_LIBS:BOOL=OFF -G"$env:CC_NAME" ..
-& $env:MAKE
+Invoke-Expression $make_cmd
+if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) {
+	echo "*** Make failed. Exiting ... ***"
+	exit $LASTEXITCODE
+}
 md pack_tmp
 move "build\open62541.c" pack_tmp\
 move "build\open62541.h" pack_tmp\
@@ -66,7 +80,11 @@ echo "`n##### Testing $env:CC_NAME with amalgamation and .dll #####`n"
 New-Item -ItemType directory -Path "build"
 cd build
 & cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_ENABLE_AMALGAMATION:BOOL=ON -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -DBUILD_SHARED_LIBS:BOOL=ON -G"$env:CC_NAME" ..
-& $env:MAKE
+Invoke-Expression $make_cmd
+if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) {
+	echo "*** Make failed. Exiting ... ***"
+	exit $LASTEXITCODE
+}
 md pack_tmp
 move "build\open62541.c" pack_tmp\
 move "build\open62541.h" pack_tmp\
@@ -91,7 +109,11 @@ if ($env:CC_SHORTNAME -eq "vs2015") {
 	echo "`n###################################################################"
 	echo "`n##### Testing $env:CC_NAME with unit tests #####`n"
 	& cmake -DCMAKE_BUILD_TYPE=Debug -DUA_BUILD_EXAMPLES=OFF -DUA_ENABLE_DISCOVERY=ON -DUA_ENABLE_DISCOVERY_MULTICAST=ON -DUA_BUILD_UNIT_TESTS=ON -DUA_ENABLE_UNIT_TESTS_MEMCHECK=ON  -DCMAKE_LIBRARY_PATH=c:\check\lib -DCMAKE_INCLUDE_PATH=c:\check\include -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -G"$env:CC_NAME" ..
-	& $env:MAKE
+	Invoke-Expression $make_cmd
+    if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) {
+    	echo "*** Make failed. Exiting ... ***"
+    	exit $LASTEXITCODE
+    }
 	& cmake --build . --target test-verbose --config debug
 }
 
