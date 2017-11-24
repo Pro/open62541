@@ -50,7 +50,7 @@ cache:
   - '%CYG_CACHE%'
   - C:\ProgramData\chocolatey\bin -> tools/appveyor/install.ps1
   - C:\ProgramData\chocolatey\lib -> tools/appveyor/install.ps1
-#  - 'c:\miktex'
+  - 'c:\miktex'
 
 init:
   - git config --global core.autocrlf input # Attempt to ensure we don't try to convert line endings to Win32 CRLF as this will cause build to fail
