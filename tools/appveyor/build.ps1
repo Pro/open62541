@@ -1,5 +1,7 @@
 $ErrorActionPreference = "Stop"
 
+echo "PATH=$env:PATH"
+
 cd $env:APPVEYOR_BUILD_FOLDER
 
 # Collect files for .zip packing
