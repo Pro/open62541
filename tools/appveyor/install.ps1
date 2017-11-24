@@ -6,11 +6,12 @@
 
 # Cygwin
 echo "`n### Installing Cygwin from $env:CYG_SETUP_URL to $env:CYG_ROOT/setup-x86.exe ###`n"
-& cinst --no-progress cygwin cyg-get
-& cinst cygwin -y --installargs "-DdgP cmake"
-& cinst cygwin -y --installargs "-DdgP python"
+#& cinst --no-progress cygwin cyg-get
+#& cinst cygwin -y --installargs "-DdgP cmake"
+#& cinst cygwin -y --installargs "-DdgP python"
 # & cyg-get cmake python
 #& "$env:CYG_BASH" -lc "cygcheck -dc cygwin"'
+choco install cyg-get -y cmake python
 
 
 echo "`n### Installing Miktex ###`n"
