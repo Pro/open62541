@@ -1,4 +1,4 @@
-# $ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Stop"
 
 cd $env:APPVEYOR_BUILD_FOLDER
 

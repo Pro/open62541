@@ -13,7 +13,7 @@ environment:
     matrix:
         - CC_NAME: MinGW Makefiles
           CC_SHORTNAME: mingw
-          MAKE: mingw32-make -j
+          MAKE: mingw32-make -j 2>&1
           FORCE_CXX: OFF
           OUT_DIR_LIB: bin
           OUT_DIR_EXAMPLES: bin\examples
