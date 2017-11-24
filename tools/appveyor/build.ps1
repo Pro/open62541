@@ -1,11 +1,12 @@
 $ErrorActionPreference = "Stop"
 
-cd c:\projects\open62541
+cd $env:APPVEYOR_BUILD_FOLDER
+
 # Collect files for .zip packing
 New-Item -ItemType directory -Path $env:APPVEYOR_BUILD_FOLDER\pack
-Copy-Item "$env:APPVEYOR_BUILD_FOLDER\LICENSE" $env:APPVEYOR_BUILD_FOLDER\pack
-Copy-Item "$env:APPVEYOR_BUILD_FOLDER\AUTHORS" $env:APPVEYOR_BUILD_FOLDER\pack
-Copy-Item ""$env:APPVEYOR_BUILD_FOLDER\README.md" $env:APPVEYOR_BUILD_FOLDER\pack
+Copy-Item $env:APPVEYOR_BUILD_FOLDER\LICENSE $env:APPVEYOR_BUILD_FOLDER\pack
+Copy-Item $env:APPVEYOR_BUILD_FOLDER\AUTHORS $env:APPVEYOR_BUILD_FOLDER\pack
+Copy-Item $env:APPVEYOR_BUILD_FOLDER\README.md $env:APPVEYOR_BUILD_FOLDER\pack
 
 echo "`n##### Building Documentation on $env:CC_NAME #####`n"
 New-Item -ItemType directory -Path build
