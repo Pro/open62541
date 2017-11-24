@@ -7,7 +7,9 @@ if (-not (Test-Path "$env:CYG_ROOT")) {
 # Cygwin
 echo "`n### Installing Cygwin from $env:CYG_SETUP_URL to $env:CYG_ROOT/setup-x86.exe ###`n"
 & cinst --no-progress cygwin cyg-get
-& cyg-get cmake python
+& cinst cygwin -fy --installargs "-DdgP cmake"
+& cinst cygwin -fy --installargs "-DdgP python"
+# & cyg-get cmake python
 #& "$env:CYG_BASH" -lc "cygcheck -dc cygwin"'
 
 
