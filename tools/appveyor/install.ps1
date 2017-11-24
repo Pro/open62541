@@ -11,8 +11,8 @@ echo "`n### Installing sphinx ###`n"
 
 echo "`n### Installing Miktex ###`n"
 if (-not (Test-Path "c:\miktex\texmfs\install\miktex\bin\pdflatex.exe")) {
-	& appveyor DownloadFile https://miktex.org/download/ctan/systems/win32/miktex/setup/miktex-portable-2.9.6521.exe
-	& 7z x miktex-portable-2.9.6521.exe -oc:\miktex -bso0 -bsp0
+	& appveyor DownloadFile https://ftp.uni-erlangen.de/mirrors/CTAN/systems/win32/miktex/setup/miktex-portable.exe
+	& 7z x miktex-portable.exe -oc:\miktex -bso0 -bsp0
 
 	# Remove some big files to reduce size to be cached
 	Remove-Item -Path c:\miktex\texmfs\install\doc -Recurse
