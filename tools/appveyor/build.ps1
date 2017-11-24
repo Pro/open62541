@@ -60,7 +60,8 @@ if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) {
 	echo "`n`n*** Make failed. Exiting ... ***"
 	exit $LASTEXITCODE
 }
-md pack_tmp
+cd ..
+New-Item -ItemType directory -Path pack_tmp
 Move-Item -Path "build\open62541.c" -Destination pack_tmp\
 Move-Item -Path "build\open62541.h" -Destination pack_tmp\
 Move-Item -Path "build\$env:OUT_DIR_EXAMPLES\server.exe" -Destination pack_tmp\
@@ -69,7 +70,6 @@ if ($env:CC_SHORTNAME -eq "mingw") {
 	Move-Item -Path "build\$env:OUT_DIR_LIB\libopen62541.a" -Destination pack_tmp\
 	Move-Item -Path "build\$env:OUT_DIR_LIB\open62541.lib" -Destination pack_tmp\
 }
-cd ..
 & 7z a -tzip open62541-$env:CC_SHORTNAME-static.zip "$env:APPVEYOR_BUILD_FOLDER\pack\*" "$env:APPVEYOR_BUILD_FOLDER\pack_tmp\*"
 Remove-Item -Path pack_tmp -Recurse
 Remove-Item -Path build -Recurse
@@ -85,7 +85,8 @@ if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) {
 	echo "`n`n*** Make failed. Exiting ... ***"
 	exit $LASTEXITCODE
 }
-md pack_tmp
+cd ..
+New-Item -ItemType directory -Path pack_tmp
 Move-Item -Path "build\open62541.c" -Destination pack_tmp\
 Move-Item -Path "build\open62541.h" -Destination pack_tmp\
 Move-Item -Path "build\$env:OUT_DIR_EXAMPLES\server.exe" -Destination pack_tmp\
@@ -97,7 +98,6 @@ if ($env:CC_SHORTNAME -eq "mingw") {
 	Move-Item -Path "build\$env:OUT_DIR_LIB\open62541.dll" -Destination pack_tmp\
 	Move-Item -Path "build\$env:OUT_DIR_LIB\open62541.pdb" -Destination pack_tmp\
 }
-cd ..
 & 7z a -tzip open62541-$env:CC_SHORTNAME-dynamic.zip "$env:APPVEYOR_BUILD_FOLDER\pack\*" "$env:APPVEYOR_BUILD_FOLDER\pack_tmp\*"
 Remove-Item -Path pack_tmp -Recurse
 Remove-Item -Path build -Recurse
