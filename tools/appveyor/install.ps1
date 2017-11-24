@@ -1,7 +1,8 @@
 $ErrorActionPreference = "Stop"
 
-$cmd = "& $env:MAKE"
-Invoke-Expression $cmd
+$make_cmd = "& $env:MAKE"
+Invoke-Expression $make_cmd
+echo "Exit = $LASTEXITCODE"
 
 & git submodule --quiet update --init --recursive
 
