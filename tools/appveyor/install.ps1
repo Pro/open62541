@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
-
-& $env:MAKE $env:MAKE_ARG
+$cmd = "& $env:MAKE"
+Invoke-Expression $cmd
 
 & git submodule --quiet update --init --recursive
 
