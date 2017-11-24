@@ -1,6 +1,8 @@
 git submodule update --init --recursive
 
-if not exist "%CYG_ROOT%" mkdir "%CYG_ROOT%"
+if (-not (Test-Path "$env:CYG_ROOT")) {
+	New-Item -ItemType directory -Path "$env:CYG_ROOT"
+}
 
 # Cygwin
 echo "Installing Cygwin from $env:CYG_SETUP_URL to $env:CYG_ROOT/setup-x86.exe"
