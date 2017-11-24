@@ -47,6 +47,7 @@ environment:
           OUT_DIR_EXAMPLES: bin\examples\Debug
 
 cache:
+  - '%CYG_CACHE%'
   - C:\ProgramData\chocolatey\bin -> tools/appveyor/install.ps1
   - C:\ProgramData\chocolatey\lib -> tools/appveyor/install.ps1
 #  - 'c:\miktex'

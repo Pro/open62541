@@ -13,7 +13,7 @@ echo "`n### Installing Cygwin from $env:CYG_SETUP_URL to $env:CYG_ROOT/setup-x86
 #& "$env:CYG_BASH" -lc "cygcheck -dc cygwin"'
 #choco install cyg-get -y cmake python
 echo "Installing Cygwin from $env:CYG_SETUP_URL to $env:CYG_ROOT/setup-x86.exe"
-& appveyor DownloadFile ""$env:CYG_SETUP_URL" -FileName "$env:CYG_ROOT/setup-x86.exe"
+& appveyor DownloadFile "$env:CYG_SETUP_URL" -FileName "$env:CYG_ROOT/setup-x86.exe"
 echo "Downloaded. Now ready to install."
 
 & "$env:CYG_ROOT/setup-x86.exe" --quiet-mode --no-shortcuts --only-site -R "$env:CYG_ROOT" -s "$env:CYG_MIRROR" -l "$env:CYG_CACHE" --packages cmake,python'
