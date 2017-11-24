@@ -1,18 +1,19 @@
-& git submodule update --init --recursive
+& git submodule update --init --recursive 2>&1
 
 if (-not (Test-Path "$env:CYG_ROOT")) {
 	New-Item -ItemType directory -Path "$env:CYG_ROOT"
 }
 
 # Cygwin
-echo "Installing Cygwin from $env:CYG_SETUP_URL to $env:CYG_ROOT/setup-x86.exe"
+echo "`n### Installing Cygwin from $env:CYG_SETUP_URL to $env:CYG_ROOT/setup-x86.exe ###`n"
 & appveyor DownloadFile %CYG_SETUP_URL% -FileName %CYG_ROOT%/setup-x86.exe
 echo "Downloaded. Now ready to install."
 
 & "$env:CYG_ROOT/setup-x86.exe" --quiet-mode --no-shortcuts --only-site -R "$env:CYG_ROOT" -s "$env:CYG_MIRROR" -l "$env:CYG_CACHE" --packages cmake,python'
 & "$env:CYG_BASH" -lc "cygcheck -dc cygwin"'
 
-# Install miktex to get pdflatex, if we don't get it from the cache
+
+echo "`n### Installing Miktex ###`n"
 #if (-not (Test-Path "c:\miktex\texmfs\install\miktex\bin\pdflatex.exe")) {
 #	& appveyor DownloadFile http://mirrors.ctan.org/systems/win32/miktex/setup/miktex-portable.exe
 #	& 7z x miktex-portable.exe -oc:\miktex >NUL
@@ -26,12 +27,15 @@ echo "Downloaded. Now ready to install."
 #}
 & cinst --no-progress miktex.portable
 
-& pip install --user sphinx sphinx_rtd_theme
+echo "`n### Installing sphinx ###`n"
+& pip install --quiet --user sphinx sphinx_rtd_theme
+
+echo "`n### Installing graphviz ###`n"
 & cinst --no-progress graphviz.portable
 
-# Download and build libcheck
+echo "`n### Installing libcheck ###`n"
 & appveyor DownloadFile https://github.com/Pro/check/releases/download/0.12.0_win/check.zip
-& 7z x check.zip -oc:\
+& 7z x check.zip -oc:\ -bso0 -bsp0
 
-# Install DrMemory
+echo "`n### Installing DrMemory ###`n"
 & cinst --no-progress drmemory.portable
