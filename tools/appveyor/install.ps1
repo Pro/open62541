@@ -1,4 +1,4 @@
-git submodule update --init --recursive
+& git submodule update --init --recursive
 
 if (-not (Test-Path "$env:CYG_ROOT")) {
 	New-Item -ItemType directory -Path "$env:CYG_ROOT"
@@ -13,24 +13,25 @@ echo "Downloaded. Now ready to install."
 & "$env:CYG_BASH" -lc "cygcheck -dc cygwin"'
 
 # Install miktex to get pdflatex, if we don't get it from the cache
-if (-not (Test-Path "c:\miktex\texmfs\install\miktex\bin\pdflatex.exe")) {
-	& appveyor DownloadFile http://mirrors.ctan.org/systems/win32/miktex/setup/miktex-portable.exe
-	& 7z x miktex-portable.exe -oc:\miktex >NUL
-
-	# Remove some big files to reduce size to be cached
-	Remove-Item -Path c:\miktex\texmfs\install\doc -Recurse
-	Remove-Item -Path c:\miktex\texmfs\install\internal -Recurse
-	Remove-Item -Path c:\miktex\texmfs\install\miktex\bin\biber.exe
-	Remove-Item -Path c:\miktex\texmfs\install\miktex\bin\icudt58.dll
-	Remove-Item -Path c:\miktex\texmfs\install\miktex\bin\a5toa4.exe
-}
+#if (-not (Test-Path "c:\miktex\texmfs\install\miktex\bin\pdflatex.exe")) {
+#	& appveyor DownloadFile http://mirrors.ctan.org/systems/win32/miktex/setup/miktex-portable.exe
+#	& 7z x miktex-portable.exe -oc:\miktex >NUL
+#
+#	# Remove some big files to reduce size to be cached
+#	Remove-Item -Path c:\miktex\texmfs\install\doc -Recurse
+#	Remove-Item -Path c:\miktex\texmfs\install\internal -Recurse
+#	Remove-Item -Path c:\miktex\texmfs\install\miktex\bin\biber.exe
+#	Remove-Item -Path c:\miktex\texmfs\install\miktex\bin\icudt58.dll
+#	Remove-Item -Path c:\miktex\texmfs\install\miktex\bin\a5toa4.exe
+#}
+& cinst --no-progress miktex.portable
 
 & pip install --user sphinx sphinx_rtd_theme
-& cinst graphviz.portable
+& cinst --no-progress graphviz.portable
 
 # Download and build libcheck
 & appveyor DownloadFile https://github.com/Pro/check/releases/download/0.12.0_win/check.zip
-& 7z x check.zip -oc:\ >NUL
+& 7z x check.zip -oc:\
 
 # Install DrMemory
-& cinst drmemory
+& cinst --no-progress drmemory.portable
