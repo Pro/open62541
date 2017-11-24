@@ -8,14 +8,15 @@ $ErrorActionPreference = "Stop"
 
 # Miktex
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";c:\miktex\texmfs\install\miktex\bin", [EnvironmentVariableTarget]::User)
-
-# Python
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:APPDATA\Python\Scripts", [EnvironmentVariableTarget]::User)
-
+# We also need miktex for the following script
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";c:\miktex\texmfs\install\miktex\bin", [EnvironmentVariableTarget]::Process)
 # autoinstall latex packages (0=no, 1=autoinstall, 2=ask)
 # this adds this to the registry!
 & initexmf --set-config-value [MPM]AutoInstall=1
 & initexmf --update-fndb
+
+# Python
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:APPDATA\Python\Scripts", [EnvironmentVariableTarget]::User)
 
 # DrMemory
 #[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files (x86)\Dr. Memory\bin", [EnvironmentVariableTarget]::User)
