@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop"
+
 & git submodule --quiet update --init --recursive
 
 #if (-not (Test-Path "$env:CYG_ROOT")) {
@@ -21,18 +23,18 @@ echo "Downloaded. Now ready to install."
 
 
 echo "`n### Installing Miktex ###`n"
-#if (-not (Test-Path "c:\miktex\texmfs\install\miktex\bin\pdflatex.exe")) {
-#	& appveyor DownloadFile http://mirrors.ctan.org/systems/win32/miktex/setup/miktex-portable.exe
-#	& 7z x miktex-portable.exe -oc:\miktex >NUL
-#
-#	# Remove some big files to reduce size to be cached
-#	Remove-Item -Path c:\miktex\texmfs\install\doc -Recurse
-#	Remove-Item -Path c:\miktex\texmfs\install\internal -Recurse
-#	Remove-Item -Path c:\miktex\texmfs\install\miktex\bin\biber.exe
-#	Remove-Item -Path c:\miktex\texmfs\install\miktex\bin\icudt58.dll
-#	Remove-Item -Path c:\miktex\texmfs\install\miktex\bin\a5toa4.exe
-#}
-& cinst --no-progress miktex.portable
+if (-not (Test-Path "c:\miktex\texmfs\install\miktex\bin\pdflatex.exe")) {
+	& appveyor DownloadFile http://mirrors.ctan.org/systems/win32/miktex/setup/miktex-portable.exe
+	& 7z x miktex-portable.exe -oc:\miktex >NUL
+
+	# Remove some big files to reduce size to be cached
+	Remove-Item -Path c:\miktex\texmfs\install\doc -Recurse
+	Remove-Item -Path c:\miktex\texmfs\install\internal -Recurse
+	Remove-Item -Path c:\miktex\texmfs\install\miktex\bin\biber.exe
+	Remove-Item -Path c:\miktex\texmfs\install\miktex\bin\icudt58.dll
+	Remove-Item -Path c:\miktex\texmfs\install\miktex\bin\a5toa4.exe
+}
+#& cinst --no-progress miktex.portable
 
 echo "`n### Installing sphinx ###`n"
 & pip install --quiet --user sphinx sphinx_rtd_theme
