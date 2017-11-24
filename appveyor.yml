@@ -51,6 +51,8 @@ install:
 - ps: '& "./tools/appveyor/install.ps1"'
 
 before_build:
+  # Add msbuild for powershell
+  - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin\;%PATH%
   # use MinGW64
   - set PATH=C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\bin;C:\Program Files (x86)\Dr. Memory\bin;C:\Program Files\CMake\bin;%PATH%
   # Workaround for CMake not wanting sh.exe on PATH for MinGW
