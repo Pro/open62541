@@ -8,12 +8,6 @@ if (-not (Test-Path "$env:CYG_ROOT")) {
 
 # Cygwin
 echo "`n### Installing Cygwin from $env:CYG_SETUP_URL to $env:CYG_ROOT/setup-x86.exe ###`n"
-#& cinst --no-progress cygwin cyg-get
-#& cinst cygwin -y --installargs "-DdgP cmake"
-#& cinst cygwin -y --installargs "-DdgP python"
-# & cyg-get cmake python
-#& "$env:CYG_BASH" -lc "cygcheck -dc cygwin"'
-#choco install cyg-get -y cmake python
 & appveyor DownloadFile "$env:CYG_SETUP_URL" -FileName "$env:CYG_ROOT/setup-x86.exe"
 echo "Downloaded. Now ready to install."
 
