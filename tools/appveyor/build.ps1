@@ -76,6 +76,7 @@ Move-Item -Path "build\$env:OUT_DIR_EXAMPLES\server.exe" -Destination pack_tmp\
 Move-Item -Path "build\$env:OUT_DIR_EXAMPLES\client.exe" -Destination pack_tmp\
 if ($env:CC_SHORTNAME -eq "mingw") {
 	Move-Item -Path "build\$env:OUT_DIR_LIB\libopen62541.a" -Destination pack_tmp\
+} else {
 	Move-Item -Path "build\$env:OUT_DIR_LIB\open62541.lib" -Destination pack_tmp\
 }
 & 7z a -tzip open62541-$env:CC_SHORTNAME-static.zip "$env:APPVEYOR_BUILD_FOLDER\pack\*" "$env:APPVEYOR_BUILD_FOLDER\pack_tmp\*"
