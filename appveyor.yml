@@ -34,7 +34,8 @@ environment:
         - CC_NAME: Visual Studio 14 2015
           CC_SHORTNAME: vs2015
           # Do not build in parallel, project dependencies are not solved correctly and thus appveyor may randomly fail
-          MAKE: msbuild /m:1 /p:BuildInParallel=false /verbosity:minimal /p:ContinueOnError=false /p:StopOnFirstFailure=true open62541.sln
+          MAKE: msbuild
+          MAKE_ARG: /m:1 /p:BuildInParallel=false /verbosity:minimal /p:ContinueOnError=false /p:StopOnFirstFailure=true open62541.sln
           #MAKE: cmake --build . --target ALL_BUILD
           FORCE_CXX: OFF
           OUT_DIR_LIB: bin\Debug

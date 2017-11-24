@@ -1,10 +1,9 @@
 $ErrorActionPreference = "Stop"
 
+
+& $env:MAKE $env:MAKE_ARG
+
 & git submodule --quiet update --init --recursive
-
-$MAKE_EXP = '& $env:MAKE'
-
-Invoke-Expression $MAKE_EXP
 
 
 echo "`n### Installing CMake and python ###`n"
