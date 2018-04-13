@@ -104,10 +104,13 @@ class NodeSet(object):
         in that segment of memory.
     """
 
-    def __init__(self):
+    def __init__(self, name):
         self.nodes = {}
         self.aliases = {}
         self.namespaces = ["http://opcfoundation.org/UA/"]
+        self.nodesetShortName = name.upper() if name is not None else None
+        self.customDatatypes = {}
+        self.customDatatypeNames = {}
 
     def sanitize(self):
         for n in self.nodes.values():
@@ -144,6 +147,9 @@ class NodeSet(object):
         nodeId.ns = namespace
         nodeId.i = id
         return self.nodes[nodeId]
+
+    def getName(self):
+        return self.nodesetShortName
 
     def getRoot(self):
         return self.getNodeByBrowseName("Root")
@@ -311,3 +317,26 @@ class NodeSet(object):
         relevant_types += getSubTypesOf(self, self.getNodeByBrowseName("HasEncoding"), [])
         relevant_types += getSubTypesOf(self, self.getNodeByBrowseName("HasTypeDefinition"), [])
         return list(map(lambda x: x.id, relevant_types))
+
+    def addCustomDatatype(self, dataTypeNode):
+        if dataTypeNode in self.customDatatypes:
+            return
+        dataTypeName = "UA_{}_Custom_{}".format(self.nodesetShortName,
+                                                re.sub(r'[^a-zA-Z0-9_]', "_", dataTypeNode.browseName.name))
+        dataTypeNameDup = dataTypeName
+        idx = 0
+        while dataTypeNameDup in self.customDatatypeNames:
+            idx+=1
+            dataTypeNameDup = dataTypeName + "_" +idx
+        self.customDatatypes[dataTypeNode] = dataTypeNameDup
+        self.customDatatypeNames[dataTypeNameDup] = dataTypeNode
+        pass
+
+    def getCustomDatatypes(self):
+        return self.customDatatypes
+
+    def getCustomDatatypeName(self, dataTypeNode):
+        if not dataTypeNode in self.customDatatypes:
+            raise Exception("Datatype not in custom datatypes list")
+
+        return self.customDatatypes[dataTypeNode]

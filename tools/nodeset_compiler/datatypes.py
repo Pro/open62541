@@ -169,15 +169,16 @@ class Value(object):
         definition = parentDataTypeNode.getDefinition()
 
         if isinstance(definition, six.string_types):
-            if alias is None and not definition == xmlvalue.localName:
-                logger.error(str(parent.id) + ": Expected XML '<Value><{} ..>' but got '<Value><{} ..>".format(definition, xmlvalue.localName))
-                return None
-            else:
-                t = self.getTypeByString(definition, [definition])
-                t.alias = alias
-                t.parseXML(xmlvalue)
-                t.isInternal = True
-                return t
+            if (alias is not None and alias != xmlvalue.localName) or (alias is None and definition != xmlvalue.localName):
+                # TODO: Node 15960 defines datatype as DateTime, but uses String for the value.
+                if not (definition == "DateTime" and xmlvalue.localName == "String"):
+                    logger.error(str(parent.id) + ": Expected XML '<Value><{} ..>' but got '<Value><{} ..>".format(definition, xmlvalue.localName))
+                    return None
+            t = self.getTypeByString(definition, [definition])
+            t.alias = alias
+            t.parseXML(xmlvalue)
+            t.isInternal = True
+            return t
         elif definition.isEnum:
             if not xmlvalue.localName == "Int32":
                 logger.error(str(parent.id) + ": Expected XML '<Value><Int32 ..>' but got '<Value><{} ..>".format(xmlvalue.localName))
@@ -195,7 +196,8 @@ class Value(object):
 
             try:
                 extObj =  ExtensionObject(parentDataTypeNode)
-                return self.__parseExtensionObectWithDefinition(extObj, xmlvalue, parent)
+                extObj.value = self.__parseExtensionObectWithDefinition(extObj, xmlvalue, parent)
+                return extObj
             except Exception as ex:
                 logger.error(str(parent.id) + ": Parsing ExtensionObject failed with error: " + str(ex))
                 return None

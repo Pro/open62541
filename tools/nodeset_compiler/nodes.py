@@ -286,6 +286,7 @@ class VariableNode(Node):
             return False
 
         self.value = Value()
+        self.value.dataType = dataTypeNode
         self.value.parseXMLEncoding(self.xmlValueDef, dataTypeNode, self)
 
         # Array Dimensions must accurately represent the value and will be patched
@@ -613,6 +614,8 @@ class DataTypeNode(Node):
 
         self.definition = DataTypeDefinition(nodeset, self.__xmlDefinition__)
         self.__encodable__ = self.definition.__encodable__
+        if self.__encodable__:
+            nodeset.addCustomDatatype(self)
 
 
 class ViewNode(Node):

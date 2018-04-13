@@ -27,6 +27,11 @@ import argparse
 from nodeset import *
 from backend_open62541 import generateOpen62541Code
 
+def nsNameRegex(s, pat=re.compile(r"[a-z0-9A-Z]+")):
+    if not pat.match(s):
+        raise argparse.ArgumentTypeError
+    return s
+
 parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter)
 parser.add_argument('-e', '--existing',
                     metavar="<existingNodeSetXML>",
@@ -88,6 +93,12 @@ parser.add_argument('--max-string-length',
                     default=0,
                     help='Maximum allowed length of a string literal. If longer, it will be set to an empty string')
 
+parser.add_argument('-n', '--name',
+                    type=nsNameRegex,
+                    default=None,
+                    dest="name",
+                    help='Short name for the nodeset used to create the node ID defines. E.g. "NS_DI", "NS_ADI", ...')
+
 parser.add_argument('-v', '--verbose', action='count',
                     default=1,
                     help='Make the script more verbose. Can be applied up to 4 times')
@@ -111,9 +122,10 @@ elif (verbosity >= 4):
 else:
     logging.basicConfig(level=logging.CRITICAL)
 
+
 # Create a new nodeset. The nodeset name is not significant.
 # Parse the XML files
-ns = NodeSet()
+ns = NodeSet(args.name)
 nsCount = 0
 
 def getTypesArray(nsIdx):

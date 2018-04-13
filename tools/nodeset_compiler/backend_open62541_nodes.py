@@ -179,7 +179,7 @@ def generateExtensionObjectSubtypeCode(node, parent, nodeset, recursionDepth=0, 
         # Check if this is an array
         if encField[2] == 0:
             code.append(instanceName + "_struct." + subv.alias + " = " +
-                        generateNodeValueCode(subv, instanceName, asIndirect=False, max_string_length=max_string_length) + ";")
+                        generateNodeValueCode(subv, asIndirect=False, max_string_length=max_string_length) + ";")
         else:
             if isinstance(subv, list):
                 # this is an array
@@ -193,7 +193,7 @@ def generateExtensionObjectSubtypeCode(node, parent, nodeset, recursionDepth=0, 
                     subvv = subv[subvidx]
                     logger.debug("  " + str(subvidx) + " " + str(subvv))
                     code.append(instanceName + "_struct." + subv.alias + "[" + str(
-                        subvidx) + "] = " + generateNodeValueCode(subvv, instanceName, max_string_length=max_string_length) + ";")
+                        subvidx) + "] = " + generateNodeValueCode(subvv, max_string_length=max_string_length) + ";")
                 code.append("}")
             else:
                 code.append(instanceName + "_struct." + subv.alias + "Size = 1;")
@@ -203,7 +203,7 @@ def generateExtensionObjectSubtypeCode(node, parent, nodeset, recursionDepth=0, 
                 codeCleanup.append("UA_free({0}_struct.{1});".format(instanceName, subv.alias))
 
                 code.append(instanceName + "_struct." + subv.alias + "[0]  = " +
-                            generateNodeValueCode(subv, instanceName, asIndirect=True, max_string_length=max_string_length) + ";")
+                            generateNodeValueCode(subv, asIndirect=True, max_string_length=max_string_length) + ";")
 
     # Allocate some memory
     code.append("UA_ExtensionObject *" + instanceName + " =  UA_ExtensionObject_new();")
@@ -309,74 +309,92 @@ def generateValueCode(node, parentNode, nodeset, bootstrapping=True, max_string_
     if not isinstance(node.value[0], Value):
         return ["", ""]
 
-    if parentNode.valueRank != -1 and (parentNode.valueRank >= 0
-                                       or (len(node.value) > 1
-                                           and (parentNode.valueRank != -2 or parentNode.valueRank != -3))):
-        # User the following strategy for all directly mappable values a la 'UA_Type MyInt = (UA_Type) 23;'
-        if node.value[0].numericRepresentation == BUILTINTYPE_TYPEID_GUID:
-            logger.warn("Don't know how to print array of GUID in node " + str(parentNode.id))
-        elif node.value[0].numericRepresentation == BUILTINTYPE_TYPEID_DIAGNOSTICINFO:
-            logger.warn("Don't know how to print array of DiagnosticInfo in node " + str(parentNode.id))
-        elif node.value[0].numericRepresentation == BUILTINTYPE_TYPEID_STATUSCODE:
-            logger.warn("Don't know how to print array of StatusCode in node " + str(parentNode.id))
+    # Use the following strategy for all directly mappable values a la 'UA_Type MyInt = (UA_Type) 23;'
+    if node.value[0].numericRepresentation == BUILTINTYPE_TYPEID_GUID:
+        logger.warn("Don't know how to print GUID in node " + str(parentNode.id))
+        return ["", ""]
+    elif node.value[0].numericRepresentation == BUILTINTYPE_TYPEID_DIAGNOSTICINFO:
+        logger.warn("Don't know how to print DiagnosticInfo in node " + str(parentNode.id))
+        return ["", ""]
+    elif node.value[0].numericRepresentation == BUILTINTYPE_TYPEID_STATUSCODE:
+        logger.warn("Don't know how to print StatusCode in node " + str(parentNode.id))
+        return ["", ""]
+
+    is_array = parentNode.valueRank != -1 and (parentNode.valueRank >= 0
+                                              or (len(node.value) > 1 and (parentNode.valueRank != -2 or parentNode.valueRank != -3)))
+
+
+
+    if node.value[0].numericRepresentation == BUILTINTYPE_TYPEID_EXTENSIONOBJECT:
+        # we have an extension object which uses custom datatypes
+        customDatatypeName = nodeset.getCustomDatatypeName(node.dataType) + "Type"
+        if is_array:
+            code.append("{customDatatypeName} {valueName}[{arrayLength}];".format(
+                customDatatypeName=customDatatypeName, valueName=valueName, arrayLength=str(len(node.value))))
+            for idx, v in enumerate(node.value):
+                val = generateCustomDatatypeStruct(customDatatypeName, node.dataType, v, max_string_length)
+                code.append("{valueName}[{idx}] = {val};".format(valueName=valueName, idx=idx, val=val))
+            code.append("UA_Variant_setArray(&attr.value, &{valueName}, (UA_Int32){arrayLength}, &{customDatatypeName});".format(
+                valueName=valueName, customDatatypeName=customDatatypeName, arrayLength=str(len(node.value))))
         else:
-            if node.value[0].numericRepresentation == BUILTINTYPE_TYPEID_EXTENSIONOBJECT:
-                for idx, v in enumerate(node.value):
-                    logger.debug("Building extObj array index " + str(idx))
-                    [code1, codeCleanup1] = generateExtensionObjectSubtypeCode(v, parent=parentNode, nodeset=nodeset, arrayIndex=idx, max_string_length=max_string_length)
-                    code = code + code1
-                    codeCleanup = codeCleanup + codeCleanup1
+            # get unique name for variable
+            instanceName = generateNodeValueInstanceName(node.value[0], parentNode, 0, 0)
+            code.append("{customDatatypeName} *{instanceName} = {customDatatypeName}UA_malloc(sizeof{customDatatypeName}));".format(
+                customDatatypeName=customDatatypeName, instanceName=instanceName))
+            code += generateCustomDatatypeStruct(instanceName, customDatatypeName, node.dataType, node.value[0], max_string_length)
+            code.append("UA_Variant_setScalar(&attr.value, &{instanceName}, &{customDatatypeName});".format(
+                instanceName=instanceName, customDatatypeName=customDatatypeName))
+            code.append("UA_free({});".format(instanceName))
+    else:
+        if is_array:
             code.append("UA_" + node.value[0].__class__.__name__ + " " + valueName + "[" + str(len(node.value)) + "];")
-            if node.value[0].numericRepresentation == BUILTINTYPE_TYPEID_EXTENSIONOBJECT:
-                for idx, v in enumerate(node.value):
-                    logger.debug("Printing extObj array index " + str(idx))
-                    instanceName = generateNodeValueInstanceName(v, parentNode, 0, idx)
-                    code.append(
-                        valueName + "[" + str(idx) + "] = " +
-                        generateNodeValueCode(v, instanceName, max_string_length=max_string_length) + ";")
-                    # code.append("UA_free(&" +valueName + "[" + str(idx) + "]);")
-            else:
-                for idx, v in enumerate(node.value):
-                    instanceName = generateNodeValueInstanceName(v, parentNode, 0, idx)
-                    code.append(
-                        valueName + "[" + str(idx) + "] = " + generateNodeValueCode(v, instanceName, max_string_length=max_string_length) + ";")
+            for idx, v in enumerate(node.value):
+                instanceName = generateNodeValueInstanceName(v, parentNode, 0, idx)
+                code.append(
+                    valueName + "[" + str(idx) + "] = " + generateNodeValueCode(v, max_string_length=max_string_length) + ";")
             code.append("UA_Variant_setArray(&attr.value, &" + valueName +
                         ", (UA_Int32) " + str(len(node.value)) + ", " +
                         getTypesArrayForValue(nodeset, node.value[0]) + ");")
-    else:
-        # User the following strategy for all directly mappable values a la 'UA_Type MyInt = (UA_Type) 23;'
-        if node.value[0].numericRepresentation == BUILTINTYPE_TYPEID_GUID:
-            logger.warn("Don't know how to print scalar GUID in node " + str(parentNode.id))
-        elif node.value[0].numericRepresentation == BUILTINTYPE_TYPEID_DIAGNOSTICINFO:
-            logger.warn("Don't know how to print scalar DiagnosticInfo in node " + str(parentNode.id))
-        elif node.value[0].numericRepresentation == BUILTINTYPE_TYPEID_STATUSCODE:
-            logger.warn("Don't know how to print scalar StatusCode in node " + str(parentNode.id))
-        else:
-            # The following strategy applies to all other types, in particular strings and numerics.
-            if node.value[0].numericRepresentation == BUILTINTYPE_TYPEID_EXTENSIONOBJECT:
-                [code1, codeCleanup1] = generateExtensionObjectSubtypeCode(node.value[0], parent=parentNode, nodeset=nodeset, max_string_length=max_string_length)
-                code = code + code1
-                codeCleanup = codeCleanup + codeCleanup1
+        else:        # The following strategy applies to all other types, in particular strings and numerics.
             instanceName = generateNodeValueInstanceName(node.value[0], parentNode, 0, 0)
-            if node.value[0].numericRepresentation == BUILTINTYPE_TYPEID_EXTENSIONOBJECT:
-                code.append("UA_" + node.value[0].__class__.__name__ + " *" + valueName + " = " +
-                            generateNodeValueCode(node.value[0], instanceName, max_string_length=max_string_length) + ";")
-                code.append(
-                    "UA_Variant_setScalar(&attr.value, " + valueName + ", " +
-                    getTypesArrayForValue(nodeset, node.value[0]) + ");")
+            code.append("UA_" + node.value[0].__class__.__name__ + " *" + valueName + " =  UA_" + node.value[
+                0].__class__.__name__ + "_new();")
+            code.append("*" + valueName + " = " + generateNodeValueCode(node.value[0], asIndirect=True, max_string_length=max_string_length) + ";")
+            code.append(
+                "UA_Variant_setScalar(&attr.value, " + valueName + ", " +
+                getTypesArrayForValue(nodeset, node.value[0]) + ");")
+            codeCleanup.append("UA_{0}_delete({1});".format(
+                node.value[0].__class__.__name__, valueName))
 
-                # FIXME: There is no membership definition for extensionObjects generated in this function.
-                # code.append("UA_" + node.value[0].__class__.__name__ + "_deleteMembers(" + valueName + ");")
-            else:
-                code.append("UA_" + node.value[0].__class__.__name__ + " *" + valueName + " =  UA_" + node.value[
-                    0].__class__.__name__ + "_new();")
-                code.append("*" + valueName + " = " + generateNodeValueCode(node.value[0], instanceName, asIndirect=True, max_string_length=max_string_length) + ";")
-                code.append(
-                        "UA_Variant_setScalar(&attr.value, " + valueName + ", " +
-                        getTypesArrayForValue(nodeset, node.value[0]) + ");")
-                codeCleanup.append("UA_{0}_delete({1});".format(
-                    node.value[0].__class__.__name__, valueName))
     return [code, codeCleanup]
+
+
+def generateCustomDatatypeStruct(customDatatypeName, dataType, value, max_string_length):
+    # create code, which initializes the struct. E.g, for Point:
+    # {
+    #     3.0, /*x*/
+    #     4.0, /*y*/
+    #     5.0, /*z*/
+    # }
+
+    if dataType.getDefinition().isEnum:
+        return "(Int32) {}".format(int(value.value[1]))
+
+
+    code = []
+    code.append("{")
+    for i, fieldValue in enumerate(value.value):
+        field = fieldValue[0]
+        # TODO handle nested custom data structs by calling recursively
+        val = generateNodeValueCode(
+            fieldValue[1], asIndirect=False, max_string_length=max_string_length)
+        code.append("    {val}{sep} /* {field} */".format(
+            field=field.name,
+            val=val,
+            sep="," if i < len(value.value)-1 else ""))
+
+    code.append("}")
+    return "\n".join(code)
 
 def generateMethodNodeCode(node):
     code = []

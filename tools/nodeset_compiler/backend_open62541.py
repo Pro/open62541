@@ -131,17 +131,92 @@ def sortNodes(nodeset):
 # Generate C Code #
 ###################
 
-def generateOpen62541Code(nodeset, outfilename, generate_ns0=False, internal_headers=False, typesArray=[], max_string_length=0):
+def generateCustomDatatypesDefinition(nodeset, typesArray):
+    # See examples/custom_datatype/custom_datatype.h on how the definition should look
+    code = []
+
+    for datatype in nodeset.getCustomDatatypes().keys():
+        if datatype.getDefinition().isEnum:
+            continue
+
+        name = nodeset.getCustomDatatypeName(datatype)
+        code.append("/* ----------------------------- */")
+        code.append("typedef struct {")
+        for field in datatype.getDefinition().fields:
+            if field.dataType.id.ns != 0:
+                raise Exception("Custom datatypes currently only can be used with types from NS0")
+            code.append("UA_{type} {name};".format(
+                type=field.dataType.definition.__name__, name=field.name))
+        code.append("} {};".format(name))
+
+        code.append("\nstatic UA_DataTypeMember {name}_members[{size}] = {".format(
+            name=name, size=str(len(datatype.getDefinition().fields))
+        ))
+        prevField = None
+        for i, field in enumerate(datatype.getDefinition().fields):
+            padding = "0"
+            if prevField is not None:
+                padding = "offsetof({name},{field_name}) - offsetof({name}, {prev_name}) - sizeof(UA_{prev_type})".format(
+                    name=name,
+                    field_name=field.name,
+                    prev_name=prevField.name,
+                    prev_type=prevField.dataType.definition.__name__
+                )
+            # TODO handle types from custom types array not in NS0
+            code.append("""/* {memberName} */
+    {
+        UA_TYPENAME("{memberName}")
+        {memberTypeIndex},
+        {padding},
+        {namespaceZero},    
+        {isArray} 
+    }{sep}   
+            """.format(
+                memberName=field.name,
+                memberTypeIndex="UA_TYPES_" + field.dataType.definition.__name__.upper(),
+                padding=padding,
+                namespaceZero="true",
+                isArray="true" if field.valueRank > 0 else "false",
+                sep="," if i < len(datatype.getDefinition().fields)-1 else ""
+            ))
+            code.append("};")
+
+            if datatype.id.i is None:
+                raise Exception("Custom datatypes currently only support numeric node ids")
+            typeId = "{{ns}, UA_NODEIDTYPE_NUMERIC, {id}}".format(ns=datatype.id.ns, id=datatype.id.i)
+
+            code.append("""static const UA_DataType {typeName}Type = {
+    UA_TYPENAME("{typeName}")
+    {typeId},
+    sizeof({typeName}),
+    {typeIndex},
+    {membersSize},
+    false,
+    {pointerFree},
+    false,
+    {binaryEncodingId},
+    {typeName}_members
+};""".format(
+                typeName=name,
+                typeId=typeId,
+                typeIndex=TODO,
+                membersSize=len(datatype.getDefinition().fields),
+                pointerFree=TODO,
+                binaryEncodingId=TODO,
+                type=field.dataType.definition.__name__, name=field.name))
+            prevField = field
+
+    return "\n".join(code)
+
+def generateOpen62541Header(nodeset, outfilename, typesArray=[]):
+
     outfilebase = basename(outfilename)
     # Printing functions
     outfileh = codecs.open(outfilename + ".h", r"w+", encoding='utf-8')
-    outfilec = StringIO()
 
     def writeh(line):
         print(unicode(line), end='\n', file=outfileh)
 
-    def writec(line):
-        print(unicode(line), end='\n', file=outfilec)
 
     additionalHeaders = ""
     if len(typesArray) > 0:
@@ -157,52 +232,57 @@ def generateOpen62541Code(nodeset, outfilename, generate_ns0=False, internal_hea
 #ifndef %s_H_
 #define %s_H_
 """ % (outfilebase.upper(), outfilebase.upper()))
-    if internal_headers:
-        writeh("""
-#ifdef UA_NO_AMALGAMATION
-# include "ua_server.h"
-# include "ua_types_encoding_binary.h"
-#else
-# include "open62541.h"
-
-/* The following declarations are in the open62541.c file so here's needed when compiling nodesets externally */
-
-# ifndef UA_Nodestore_remove //this definition is needed to hide this code in the amalgamated .c file
-
-typedef UA_StatusCode (*UA_exchangeEncodeBuffer)(void *handle, UA_Byte **bufPos,
-                                                 const UA_Byte **bufEnd);
-
-UA_StatusCode
-UA_encodeBinary(const void *src, const UA_DataType *type,
-                UA_Byte **bufPos, const UA_Byte **bufEnd,
-                UA_exchangeEncodeBuffer exchangeCallback,
-                void *exchangeHandle) UA_FUNC_ATTR_WARN_UNUSED_RESULT;
-
-UA_StatusCode
-UA_decodeBinary(const UA_ByteString *src, size_t *offset, void *dst,
-                const UA_DataType *type, size_t customTypesSize,
-                const UA_DataType *customTypes) UA_FUNC_ATTR_WARN_UNUSED_RESULT;
-
-size_t
-UA_calcSizeBinary(void *p, const UA_DataType *type);
-
-const UA_DataType *
-UA_findDataTypeByBinary(const UA_NodeId *typeId);
-
-# endif // UA_Nodestore_remove
-
-#endif
-
-%s
-""" % (additionalHeaders))
-    else:
-        writeh("""
+    #     if internal_headers:
+    #         writeh("""
+    # #ifdef UA_NO_AMALGAMATION
+    # # include "ua_server.h"
+    # # include "ua_types_encoding_binary.h"
+    # #else
+    # # include "open62541.h"
+    #
+    # /* The following declarations are in the open62541.c file so here's needed when compiling nodesets externally */
+    #
+    # # ifndef UA_Nodestore_remove //this definition is needed to hide this code in the amalgamated .c file
+    #
+    # typedef UA_StatusCode (*UA_exchangeEncodeBuffer)(void *handle, UA_Byte **bufPos,
+    #                                                  const UA_Byte **bufEnd);
+    #
+    # UA_StatusCode
+    # UA_encodeBinary(const void *src, const UA_DataType *type,
+    #                 UA_Byte **bufPos, const UA_Byte **bufEnd,
+    #                 UA_exchangeEncodeBuffer exchangeCallback,
+    #                 void *exchangeHandle) UA_FUNC_ATTR_WARN_UNUSED_RESULT;
+    #
+    # UA_StatusCode
+    # UA_decodeBinary(const UA_ByteString *src, size_t *offset, void *dst,
+    #                 const UA_DataType *type, size_t customTypesSize,
+    #                 const UA_DataType *customTypes) UA_FUNC_ATTR_WARN_UNUSED_RESULT;
+    #
+    # size_t
+    # UA_calcSizeBinary(void *p, const UA_DataType *type);
+    #
+    # const UA_DataType *
+    # UA_findDataTypeByBinary(const UA_NodeId *typeId);
+    #
+    # # endif // UA_Nodestore_remove
+    #
+    # #endif
+    #
+    # %s
+    # """ % (additionalHeaders))
+    #     else:
+    writeh("""
 #include "open62541.h"
 """)
+
     writeh("""
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+/* Custom Datatypes */
+
+%s
 
 extern UA_StatusCode %s(UA_Server *server);
 
@@ -211,7 +291,17 @@ extern UA_StatusCode %s(UA_Server *server);
 #endif
 
 #endif /* %s_H_ */""" % \
-           (outfilebase, outfilebase.upper()))
+           (generateCustomDatatypesDefinition(nodeset, typesArray), outfilebase, outfilebase.upper()))
+
+    outfileh.close()
+
+def generateOpen62541Code(nodeset, outfilename, generate_ns0=False, internal_headers=False, typesArray=[], max_string_length=0):
+    outfilebase = basename(outfilename)
+    outfilec = StringIO()
+
+
+    def writec(line):
+        print(unicode(line), end='\n', file=outfilec)
 
     writec("""/* WARNING: This is a generated file.
  * Any manual changes will be overwritten. */
@@ -263,7 +353,7 @@ extern UA_StatusCode %s(UA_Server *server);
             writec("#else")
             writec("return UA_STATUSCODE_GOOD;")
             writec("#endif /* UA_ENABLE_METHODCALLS */")
-        writec("}");
+        writec("}")
 
         writec("\nstatic UA_StatusCode function_" + outfilebase + "_" + str(functionNumber) + "_finish(UA_Server *server, UA_UInt16* ns) {")
 
@@ -274,7 +364,7 @@ extern UA_StatusCode %s(UA_Server *server);
             writec("#else")
             writec("return UA_STATUSCODE_GOOD;")
             writec("#endif /* UA_ENABLE_METHODCALLS */")
-        writec("}");
+        writec("}")
 
         functionNumber = functionNumber + 1
 
@@ -296,10 +386,12 @@ UA_StatusCode retVal = UA_STATUSCODE_GOOD;""" % (outfilebase))
         writec("retVal |= function_" + outfilebase + "_" + str(i) + "_finish(server, ns);")
 
     writec("return retVal;\n}")
-    outfileh.close()
+
     fullCode = outfilec.getvalue()
     outfilec.close()
 
     outfilec = codecs.open(outfilename + ".c", r"w+", encoding='utf-8')
     outfilec.write(fullCode)
     outfilec.close()
+
+    generateOpen62541Header(nodeset, outfilename, typesArray)

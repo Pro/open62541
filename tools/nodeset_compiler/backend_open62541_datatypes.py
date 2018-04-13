@@ -81,7 +81,7 @@ def generateDateTimeCode(value):
     mSecsSinceEpoch = int((value - epoch).total_seconds() * 1000.0)
     return "( (UA_DateTime)(" + str(mSecsSinceEpoch) + " * UA_DATETIME_MSEC) + UA_DATETIME_UNIX_EPOCH)"
 
-def generateNodeValueCode(node, instanceName, asIndirect=False, max_string_length=0):
+def generateNodeValueCode(node, asIndirect=False, max_string_length=0):
     if type(node) in [Boolean, Byte, SByte, Int16, UInt16, Int32, UInt32, Int64, UInt64, Float, Double]:
         return "(UA_" + node.__class__.__name__ + ") " + str(node.value)
     elif type(node) == String:
@@ -108,6 +108,4 @@ def generateNodeValueCode(node, instanceName, asIndirect=False, max_string_lengt
     elif type(node) == Guid:
         raise Exception("generateNodeValueCode for type " + node.__class__.name + " not implemented")
     elif type(node) == ExtensionObject:
-        if asIndirect == False:
-            return "*" + str(instanceName)
-        return str(instanceName)
+        raise Exception("generateNodeValueCode for type ExtensionObject should be handled by generateCustomDatatypeStruct")
