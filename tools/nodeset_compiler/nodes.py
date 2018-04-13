@@ -346,6 +346,134 @@ class ObjectTypeNode(Node):
             if at == "IsAbstract":
                 self.isAbstract = "false" not in av.lower()
 
+class DataTypeField:
+    """
+    The DataTypeField is used within a DataTypeDefinition to define each field (= variable) within the data type.
+    It may again use a DataTypeDefinition to define the type of the field itself or it directly references a
+    built-in datatype
+    """
+    def __init__(self, nodeset, xmlelement=None):
+        self.name = None
+        self.symbolicName = None
+        self.dataType = None
+        self.valueRank = -1
+        self.value = None
+        self.isOptional = False
+        self.isEnum = None
+        self.__encodable__ = False
+
+        if xmlelement:
+            self.parseXML(xmlelement, nodeset)
+
+    def parseXML(self, xmlelement, nodeset):
+
+        self.__encodable__ = True
+        for at,av in xmlelement.attributes.items():
+            if at == "Name":
+                self.name = str(av)
+            elif at == "SymbolicName":
+                self.symbolicName = str(av)
+            elif at == "DataType":
+                fdtype = str(av)
+                if fdtype in nodeset.aliases:
+                    fdtype = nodeset.aliases[fdtype]
+                typeNode = nodeset.nodes[NodeId(fdtype)]
+                if typeNode == None:
+                    raise Exception("DataType {} referenced within data type field not found in nodeset.".format(str(fdtype)))
+                self.dataType = typeNode
+            elif at == "ValueRank":
+                self.valueRank = int(av)
+                if self.valueRank > 0:
+                    logger.warn("Value ranks >0 not fully supported. Further steps may fail")
+            elif at == "Value":
+                self.value = int(av)
+            elif at == "IsOptional":
+                self.isOptional = "false" not in av.lower()
+            else:
+                logger.warn("Unknown DataTypeDefinition Attribute " + str(at))
+
+
+        # This can either be an enumeration OR a structure, not both.
+        # - if a dataType is set, it is a type
+        # - if a value is set, it is an enum
+        self.isEnum = self.value is not None
+
+        if self.isEnum:
+            if self.dataType is not None:
+                # This is an error
+                logger.warn("DataType contains both enumeration and subtype")
+                self.__encodable__ = False
+                return False
+        else:
+            if self.dataType is None:
+                # default value is base datatype
+                self.dataType = nodeset.nodes[NodeId("ns=0;i=24")]
+
+            # The node in the datatype element was found. we inherit its encoding,
+            # but must still ensure that the dtnode is itself validly encodable
+            self.dataType.buildEncoding(nodeset=nodeset)
+            if not self.dataType.isEncodable():
+                # If we inherit an encoding from an unencodable not, this node is
+                # also not encodable
+                self.__encodable__ = False
+
+
+class DataTypeDefinition:
+    """
+    A DataTypeDefinition is optionally used inside of DataTypeNodes and
+    defines how the data type is defined. It is usually used to describe
+    non-built-in datatypes, like for example Argument (i=296)
+
+    Single-Elemented lists are always BuiltinTypes. Every nested list must
+    converge in a builtin type to be encodable. buildEncoding will follow
+    the first type inheritance reference (hasSupertype) of the dataType if
+    necessary;
+
+    If instead to "DataType" a numeric "Value" attribute is encountered,
+    the DataType will be considered an enumeration and all Variables using
+    it will be encoded as Int32.
+
+    DataTypes can be either structures or enumeration - mixed definitions will
+    be unencodable.
+
+    """
+    def __init__(self, nodeset, xmlelement=None):
+        self.fields = []
+        self.name = None
+        self.baseType = None
+        self.symbolicName = None
+        self.isUnion = False
+        self.__encodable__ = None
+        self.isEnum = False
+        if xmlelement:
+            self.parseXML(xmlelement, nodeset)
+
+    def parseXML(self, xmlelement, nodeset):
+        for (at, av) in xmlelement.attributes.items():
+            if at == "Name":
+                self.name = str(av)
+            elif at == "BaseType":
+                self.baseType = QualifiedName(str(av))
+            elif at == "SymbolicName":
+                self.symbolicName = str(av)
+            elif at == "IsUnion":
+                self.isUnion = "false" not in av.lower()
+            else:
+                logger.warn("Unknown DataTypeDefinition Attribute " + str(at))
+
+        self.__encodable__ = True
+        self.isEnum = None
+        for x in xmlelement.childNodes:
+            if x.nodeType == x.ELEMENT_NODE:
+                field = DataTypeField(nodeset, x)
+                self.__encodable__ &= field.__encodable__
+                if self.isEnum is None:
+                    self.isEnum = field.isEnum
+                else:
+                    if self.isEnum != field.isEnum:
+                        raise Exception("DataType contains mixed definition of enum and types. That's not supported.")
+                self.fields.append(field)
+
 class DataTypeNode(Node):
     """ DataTypeNode is a subtype of Node describing DataType nodes.
 
@@ -358,10 +486,6 @@ class DataTypeNode(Node):
            a inverse "hasSubtype" (hasSuperType) reference.
         2) A DataType may be an enumeration, in which each field has a name and a numeric
            value.
-        The definition is stored as an ordered list of tuples. Depending on which
-        definition style was used, the __definition__ will hold
-        1) A list of ("Fieldname", Node) tuples.
-        2) A list of ("Fieldname", int) tuples.
 
         A DataType (and in consequence all Variables using it) shall be deemed not
         encodable if any of its fields cannot be traced to an encodable builtin type.
@@ -371,23 +495,20 @@ class DataTypeNode(Node):
 
         If encodable, the encoding can be retrieved using getEncoding().
     """
-    __isEnum__     = False
-    __xmlDefinition__ = None
-    __baseTypeEncoding__ = []
     __encodable__ = False
     __encodingBuilt__ = False
-    __definition__ = []
+    __xmlDefinition__ = None
 
     def __init__(self, xmlelement=None):
         Node.__init__(self)
         self.nodeClass = NODE_CLASS_DATATYPE
         self.isAbstract = False
-        self.__xmlDefinition__ = None
-        self.__baseTypeEncoding__ = []
         self.__encodable__ = None
         self.__encodingBuilt__ = False
-        self.__definition__ = []
-        self.__isEnum__     = False
+        # The definition can be either:
+        # - string = built in datatype
+        # - DataTypeDefinition = definition of custom datatype
+        self.definition = None
         if xmlelement:
             self.parseXML(xmlelement)
 
@@ -411,58 +532,31 @@ class DataTypeNode(Node):
         """
         return self.__encodable__
 
-    def getEncoding(self):
-        """ If the dataType is encodable, getEncoding() returns a nested list
-            containing the encoding the structure definition for this type.
+    def getDefinition(self):
+        """ If the dataType is encodable, getEncoding() returns either:
+             - string = built in datatype
+             - DataTypeDefinition = definition of custom datatype
 
-            If no encoding has been build yet, this function will call buildEncoding()
-            and return the encoding if buildEncoding() succeeds.
-
-            If buildEncoding() fails or has failed, an empty list will be returned.
         """
-        if self.__encodable__ == False:
-            if self.__encodingBuilt__ == False:
-                return self.buildEncoding()
-            return []
-        else:
-            return self.__baseTypeEncoding__
+        if self.__encodable__ is None and not self.__encodingBuilt__:
+            raise Exception("Encoding was not yet build for DataType node. Call buildEncoding first")
+        return self.definition
 
 
     def buildEncoding(self, nodeset, indent=0, force=False):
         """ buildEncoding() determines the structure and aliases used for variables
             of this DataType.
 
-            The function will parse the XML <Definition> of the dataType and extract
-            "Name"-"Type" tuples. If successful, buildEncoding will return a nested
-            list of the following format:
+            The function will parse the XML <Definition> of the dataType which can
+            be either:
+             - string = built in datatype
+             - DataTypeDefinition = definition of custom datatype
 
-            [['Alias1', ['Alias2', ['BuiltinType']]], [Alias2, ['BuiltinType']], ...]
-
-            Aliases are fieldnames defined by this DataType or DataTypes referenced. A
-            list such as ['DataPoint', ['Int32']] indicates that a value will encode
-            an Int32 with the alias 'DataPoint' such as <DataPoint>12827</DataPoint>.
-            Only the first Alias of a nested list is considered valid for the BuiltinType.
-
-            Single-Elemented lists are always BuiltinTypes. Every nested list must
-            converge in a builtin type to be encodable. buildEncoding will follow
-            the first type inheritance reference (hasSupertype) of the dataType if
-            necessary;
-
-            If instead to "DataType" a numeric "Value" attribute is encountered,
-            the DataType will be considered an enumeration and all Variables using
-            it will be encoded as Int32.
-
-            DataTypes can be either structures or enumeration - mixed definitions will
-            be unencodable.
-
-            Calls to getEncoding() will be iterative. buildEncoding() can be called
-            only once per dataType, with all following calls returning the predetermined
-            value. Use of the 'force=True' parameter will force the Definition to be
+            buildEncoding() can be called only once per dataType, with all following
+            calls returning the predetermined value.
+            Use of the 'force=True' parameter will force the Definition to be
             reparsed.
 
-            After parsing, __definition__ holds the field definition as a list. Note
-            that this might deviate from the encoding, especially if inheritance was
-            used.
         """
 
         prefix = " " + "|"*indent+ "+"
@@ -472,26 +566,26 @@ class DataTypeNode(Node):
 
         if self.__encodingBuilt__ == True:
             if self.isEncodable():
-                logger.debug(prefix + str(self.__baseTypeEncoding__) + " (already analyzed)")
+                logger.debug(prefix + self.browseName.name + " (already analyzed)")
             else:
-                logger.debug( prefix + str(self.__baseTypeEncoding__) + "(already analyzed, not encodable!)")
-            return self.__baseTypeEncoding__
+                logger.debug( prefix + self.browseName.name + " (already analyzed, not encodable!)")
+            return
         self.__encodingBuilt__ = True # signify that we have attempted to built this type
-        self.__encodable__ = True
 
         if indent==0:
             logger.debug("Parsing DataType " + str(self.browseName) + " (" + str(self.id) + ")")
 
         if valueIsInternalType(self.browseName.name):
-            self.__baseTypeEncoding__ = [self.browseName.name]
+            self.definition = self.browseName.name
             self.__encodable__ = True
             logger.debug( prefix + str(self.browseName) + "*")
-            logger.debug("Encodable as: " + str(self.__baseTypeEncoding__))
+            logger.debug("Encodable as: " + str(self.browseName.name))
             logger.debug("")
-            return self.__baseTypeEncoding__
+            return
 
         if self.__xmlDefinition__ == None:
             # Check if there is a supertype available
+            targetNode = None
             for ref in self.references:
                 if ref.isForward:
                     continue
@@ -499,116 +593,27 @@ class DataTypeNode(Node):
                 if ref.referenceType.i == 45:
                     targetNode = nodeset.nodes[ref.target]
                     if targetNode is not None and isinstance(targetNode, DataTypeNode):
-                        logger.debug( prefix + "Attempting definition using supertype " + str(targetNode.browseName) + " for DataType " + " " + str(self.browseName))
-                        subenc = targetNode.buildEncoding(nodeset=nodeset, indent=indent+1)
-                        if not targetNode.isEncodable():
-                            self.__encodable__ = False
-                            break
-                        else:
-                            self.__baseTypeEncoding__ = self.__baseTypeEncoding__ + [self.browseName.name, subenc, 0]
-            if len(self.__baseTypeEncoding__) == 0:
+                        logger.debug( prefix + "Attempting definition using supertype " + str(targetNode.browseName.name) + " for DataType " + " " + str(self.browseName))
+                        targetNode.buildEncoding(nodeset=nodeset, indent=indent+1)
+                        self.__encodable__ = targetNode.isEncodable()
+                        if targetNode.isEncodable():
+                            self.definition = targetNode.getDefinition()
+            if self.definition is None:
                 logger.debug(prefix + "No viable definition for " + str(self.browseName) + " " + str(self.id) + " found.")
                 self.__encodable__ = False
 
             if indent==0:
                 if not self.__encodable__:
-                    logger.debug("Not encodable (partial): " + str(self.__baseTypeEncoding__))
+                    logger.debug("Not encodable (partial): " + str(self.browseName.name))
                 else:
-                    logger.debug("Encodable as: " + str(self.__baseTypeEncoding__))
+                    logger.debug("Encodable as: " + str(targetNode.browseName.name))
                 logger.debug( "")
 
-            return self.__baseTypeEncoding__
+            return
 
-        isEnum = True
-        isSubType = True
-        hasValueRank = 0
+        self.definition = DataTypeDefinition(nodeset, self.__xmlDefinition__)
+        self.__encodable__ = self.definition.__encodable__
 
-        # We need to store the definition as ordered data, but can't use orderedDict
-        # for backward compatibility with Python 2.6 and 3.4
-        enumDict = []
-        typeDict = []
-
-        # An XML Definition is provided and will be parsed... now
-        for x in self.__xmlDefinition__.childNodes:
-            if x.nodeType == x.ELEMENT_NODE:
-                fname  = ""
-                fdtype = ""
-                enumVal = ""
-                valueRank = 0
-                for at,av in x.attributes.items():
-                    if at == "DataType":
-                        fdtype = str(av)
-                        if fdtype in nodeset.aliases:
-                            fdtype = nodeset.aliases[fdtype]
-                        isEnum = False
-                    elif at == "Name":
-                        fname = str(av)
-                    elif at == "Value":
-                        enumVal = int(av)
-                        isSubType = False
-                    elif at == "ValueRank":
-                        valueRank = int(av)
-                        if valueRank > 0:
-                            logger.warn("Value ranks >0 not fully supported. Further steps may fail")
-                    else:
-                        logger.warn("Unknown Field Attribute " + str(at))
-                # This can either be an enumeration OR a structure, not both.
-                # Figure out which of the dictionaries gets the newly read value pair
-                if isEnum == isSubType:
-                    # This is an error
-                    logger.warn("DataType contains both enumeration and subtype (or neither)")
-                    self.__encodable__ = False
-                    break
-                elif isEnum:
-                    # This is an enumeration
-                    enumDict.append((fname, enumVal))
-                    continue
-                else:
-                    if fdtype == "":
-                        # If no datatype given use base datatype
-                        fdtype = "i=24"
-
-                    # This might be a subtype... follow the node defined as datatype to find out
-                    # what encoding to use
-                    if not NodeId(fdtype) in nodeset.nodes:
-                        raise Exception("Node {} not found in nodeset".format(NodeId(fdtype)))
-                    dtnode = nodeset.nodes[NodeId(fdtype)]
-                    # The node in the datatype element was found. we inherit its encoding,
-                    # but must still ensure that the dtnode is itself validly encodable
-                    typeDict.append([fname, dtnode])
-                    fdtype = str(dtnode.browseName.name)
-                    logger.debug( prefix + fname + " : " + fdtype + " -> " + str(dtnode.id))
-                    subenc = dtnode.buildEncoding(nodeset=nodeset, indent=indent+1)
-                    self.__baseTypeEncoding__ = self.__baseTypeEncoding__ + [[fname, subenc, valueRank]]
-                    if not dtnode.isEncodable():
-                        # If we inherit an encoding from an unencodable not, this node is
-                        # also not encodable
-                        self.__encodable__ = False
-                        break
-
-        # If we used inheritance to determine an encoding without alias, there is a
-        # the possibility that lists got double-nested despite of only one element
-        # being encoded, such as [['Int32']] or [['alias',['int32']]]. Remove that
-        # enclosing list.
-        while len(self.__baseTypeEncoding__) == 1 and isinstance(self.__baseTypeEncoding__[0], list):
-            self.__baseTypeEncoding__ = self.__baseTypeEncoding__[0]
-
-        if isEnum == True:
-            self.__baseTypeEncoding__ = self.__baseTypeEncoding__ + ['Int32']
-            self.__definition__ = enumDict
-            self.__isEnum__ = True
-            logger.debug( prefix+"Int32* -> enumeration with dictionary " + str(enumDict) + " encodable " + str(self.__encodable__))
-            return self.__baseTypeEncoding__
-
-        if indent==0:
-            if not self.__encodable__:
-                logger.debug( "Not encodable (partial): " + str(self.__baseTypeEncoding__))
-            else:
-                logger.debug( "Encodable as: " + str(self.__baseTypeEncoding__))
-                self.__isEnum__ = False
-                self.__definition__ = typeDict
-            logger.debug( "")
-        return self.__baseTypeEncoding__
 
 class ViewNode(Node):
     def __init__(self, xmlelement=None):
