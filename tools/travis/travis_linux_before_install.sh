@@ -9,6 +9,9 @@ fi
 if [ -z ${DOCKER+x} ] && [ -z ${SONAR+x} ]; then
 	# Only on non-docker builds required
 
+
+    make asdf
+
  	echo "=== Installing from external package sources in $LOCAL_PKG ===" && echo -en 'travis_fold:start:before_install.external\\r'
 
    # Increase the environment version to force a rebuild of the packages
