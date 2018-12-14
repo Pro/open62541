@@ -29,6 +29,7 @@ try {
     }
 
     $make_cmd = "& $env:MAKE"
+    $make_install_cmd = "& $env:MAKE_INSTALL"
 
     # Collect files for .zip packing
     New-Item -ItemType directory -Path pack
@@ -37,10 +38,10 @@ try {
     Copy-Item README.md pack
 
     Write-Host -ForegroundColor Green "`n###################################################################"
-    Write-Host -ForegroundColor Green "`n##### Testing $env:CC_NAME #####`n"
+    Write-Host -ForegroundColor Green "`n##### Testing $env:CC_NAME with amalgamation #####`n"
     New-Item -ItemType directory -Path "build"
     cd build
-    & cmake  $vcpkg_toolchain $vcpkg_triplet -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX `
+    & cmake  $vcpkg_toolchain $vcpkg_triplet -DUA_BUILD_EXAMPLES:BOOL=OFF -DUA_ENABLE_AMALGAMATION:BOOL=ON -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX `
         -DUA_ENABLE_ENCRYPTION:BOOL=$build_encryption -G"$env:GENERATOR" ..
     Invoke-Expression $make_cmd
     if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) {
@@ -78,57 +79,53 @@ try {
     Remove-Item -Path build -Recurse -Force
 
     Write-Host -ForegroundColor Green "`n###################################################################"
-    Write-Host -ForegroundColor Green "`n##### Testing $env:CC_NAME with amalgamation #####`n"
+    Write-Host -ForegroundColor Green "`n##### Testing $env:CC_NAME without amalgamation #####`n"
     New-Item -ItemType directory -Path "build"
     cd build
-    & cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_ENABLE_AMALGAMATION:BOOL=ON `
-     -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -DBUILD_SHARED_LIBS:BOOL=OFF -G"$env:GENERATOR" ..
+    & cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_ENABLE_AMALGAMATION:BOOL=OFF `
+     -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -DBUILD_SHARED_LIBS:BOOL=OFF -G"$env:GENERATOR" `
+     -DCMAKE_INSTALL_PREFIX="$env:APPVEYOR_BUILD_FOLDER-$env:CC_SHORTNAME-static" ..
     Invoke-Expression $make_cmd
     if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) {
         Write-Host -ForegroundColor Red "`n`n*** Make failed. Exiting ... ***"
         exit $LASTEXITCODE
     }
-    cd ..
-    New-Item -ItemType directory -Path pack_tmp
-    Move-Item -Path "build\open62541.c" -Destination pack_tmp\
-    Move-Item -Path "build\open62541.h" -Destination pack_tmp\
-    Move-Item -Path "build\$env:OUT_DIR_EXAMPLES\server_ctt.exe" -Destination pack_tmp\
-    Move-Item -Path "build\$env:OUT_DIR_EXAMPLES\client.exe" -Destination pack_tmp\
-    if ($env:CC_SHORTNAME -eq "mingw" -or $env:CC_SHORTNAME -eq "clang-mingw") {
-        Move-Item -Path "build\$env:OUT_DIR_LIB\libopen62541.a" -Destination pack_tmp\
-    } else {
-        Move-Item -Path "build\$env:OUT_DIR_LIB\open62541.lib" -Destination pack_tmp\
+    Invoke-Expression $make_install_cmd
+    if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) {
+        Write-Host -ForegroundColor Red "`n`n*** Make install failed. Exiting ... ***"
+        exit $LASTEXITCODE
     }
-    & 7z a -tzip open62541-$env:CC_SHORTNAME-static.zip "$env:APPVEYOR_BUILD_FOLDER\pack\*" "$env:APPVEYOR_BUILD_FOLDER\pack_tmp\*"
-    Remove-Item -Path pack_tmp -Recurse -Force
+    cd ..
+    & 7z a -tzip open62541-$env:CC_SHORTNAME-static.zip "$env:APPVEYOR_BUILD_FOLDER\pack\*" "$env:APPVEYOR_BUILD_FOLDER-$env:CC_SHORTNAME-static\*"
+    if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) {
+        Write-Host -ForegroundColor Red "`n`n*** Zipping failed. Exiting ... ***"
+        exit $LASTEXITCODE
+    }
     Remove-Item -Path build -Recurse -Force
 
     Write-Host -ForegroundColor Green "`n###################################################################"
-    Write-Host -ForegroundColor Green "`n##### Testing $env:CC_NAME with amalgamation and .dll #####`n"
+    Write-Host -ForegroundColor Green "`n##### Testing $env:CC_NAME (.dll) #####`n"
     New-Item -ItemType directory -Path "build"
     cd build
-    & cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_ENABLE_AMALGAMATION:BOOL=ON `
-        -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -DBUILD_SHARED_LIBS:BOOL=ON -G"$env:GENERATOR" ..
+    & cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DUA_BUILD_EXAMPLES:BOOL=ON -DUA_ENABLE_AMALGAMATION:BOOL=OFF `
+        -DUA_COMPILE_AS_CXX:BOOL=$env:FORCE_CXX -DBUILD_SHARED_LIBS:BOOL=ON -G"$env:GENERATOR" `
+        -DCMAKE_INSTALL_PREFIX="$env:APPVEYOR_BUILD_FOLDER-$env:CC_SHORTNAME-dynamic" ..
     Invoke-Expression $make_cmd
     if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) {
         Write-Host -ForegroundColor Red "`n`n*** Make failed. Exiting ... ***"
         exit $LASTEXITCODE
     }
-    cd ..
-    New-Item -ItemType directory -Path pack_tmp
-    Move-Item -Path "build\open62541.c" -Destination pack_tmp\
-    Move-Item -Path "build\open62541.h" -Destination pack_tmp\
-    Move-Item -Path "build\$env:OUT_DIR_EXAMPLES\server_ctt.exe" -Destination pack_tmp\
-    Move-Item -Path "build\$env:OUT_DIR_EXAMPLES\client.exe" -Destination pack_tmp\
-    if ($env:CC_SHORTNAME -eq "mingw" -or $env:CC_SHORTNAME -eq "clang-mingw") {
-        Move-Item -Path "build\$env:OUT_DIR_LIB\libopen62541.dll" -Destination pack_tmp\
-        Move-Item -Path "build\$env:OUT_DIR_LIB\libopen62541.dll.a" -Destination pack_tmp\
-    } else {
-        Move-Item -Path "build\$env:OUT_DIR_LIB\open62541.dll" -Destination pack_tmp\
-        Move-Item -Path "build\$env:OUT_DIR_LIB\open62541.pdb" -Destination pack_tmp\
+    Invoke-Expression $make_install_cmd
+    if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) {
+        Write-Host -ForegroundColor Red "`n`n*** Make install failed. Exiting ... ***"
+        exit $LASTEXITCODE
     }
-    & 7z a -tzip open62541-$env:CC_SHORTNAME-dynamic.zip "$env:APPVEYOR_BUILD_FOLDER\pack\*" "$env:APPVEYOR_BUILD_FOLDER\pack_tmp\*"
-    Remove-Item -Path pack_tmp -Recurse -Force
+    cd ..
+    & 7z a -tzip open62541-$env:CC_SHORTNAME-dynamic.zip "$env:APPVEYOR_BUILD_FOLDER\pack\*" "$env:APPVEYOR_BUILD_FOLDER-$env:CC_SHORTNAME-static\*"
+    if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) {
+        Write-Host -ForegroundColor Red "`n`n*** Zipping failed. Exiting ... ***"
+        exit $LASTEXITCODE
+    }
     Remove-Item -Path build -Recurse -Force
 
     # Only execute unit tests on vs2017 to save compilation time
