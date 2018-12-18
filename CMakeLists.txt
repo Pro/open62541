@@ -308,6 +308,9 @@ mark_as_advanced(UA_BUILD_OSS_FUZZ)
 option(UA_BUILD_SELFSIGNED_CERTIFICATE "Generate self-signed certificate" OFF)
 mark_as_advanced(UA_BUILD_SELFSIGNED_CERTIFICATE)
 
+option(UA_PACK_DEBIAN "Special build switch used in .deb packaging" OFF)
+mark_as_advanced(UA_PACK_DEBIAN)
+
 # Building shared libs (dll, so). This option is written into ua_config.h.
 set(UA_DYNAMIC_LINKING OFF)
 if(BUILD_SHARED_LIBS)
@@ -371,6 +374,10 @@ if(NOT UA_COMPILE_AS_CXX AND (CMAKE_COMPILER_IS_GNUCC OR "x${CMAKE_C_COMPILER_ID
 
     if(UA_ENABLE_AMALGAMATION)
         add_definitions(-Wno-unused-function)
+    endif()
+
+    if(UA_PACK_DEBIAN)
+        remove_definitions(-Wno-static-in-inline)
     endif()
 
     # Linker
@@ -781,9 +788,9 @@ ua_generate_nodeset(
     DEPENDS_TARGET "open62541-generator-types"
 )
 
-# stack protector needs to be disabled for the huge ns0 file, otherwise it may take many minutes to compile the file.
+# stack protector and optimization needs to be disabled for the huge ns0 file, otherwise it may take many minutes to compile the file.
 if(NOT MSVC)
-    set_source_files_properties(${PROJECT_BINARY_DIR}/src_generated/ua_namespace0.c PROPERTIES COMPILE_FLAGS -fno-stack-protector)
+    set_source_files_properties(${PROJECT_BINARY_DIR}/src_generated/ua_namespace0.c PROPERTIES COMPILE_FLAGS "-fno-stack-protector -O0")
 endif()
 
 #####################
