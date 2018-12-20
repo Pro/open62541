@@ -11,7 +11,7 @@ env:
     - secure: C7LLWmOCdRYJGiXjFYDHWwBB6XGjs9Hio4kkvDehLRredRgp1UJ73g6Av9L7xrTUide6GiPrSd+RJw7py/twx5qaeIjOWPy+XvtmabDEQBquLjEkvS+LP2EycaMe92kHMo1ItFfRomgj1FyNYPVnUFgdyedGWv+p553ziDbrMas=
 
 
-dist: trusty
+dist: xenial
 
 matrix:
   fast_finish: true
@@ -49,8 +49,8 @@ matrix:
             - zip
       env:
         - ANALYZE=false
-        - CC=gcc-4.8
-        - CXX=g++-4.8
+        - CC=gcc-5
+        - CXX=g++-5
         - PYTHON=python2
         - MINGW=true
         - DEBIAN=true
@@ -84,12 +84,12 @@ matrix:
       addons:
         apt:
           sources:
-            - llvm-toolchain-trusty-6.0
+            - llvm-toolchain-xenial-7
             - ubuntu-toolchain-r-test
           packages:
             - check
-            - clang-6.0
-            - clang-tidy-6.0
+            - clang-7
+            - clang-tidy-7
             - debhelper
             - fakeroot
             - graphviz
@@ -100,19 +100,19 @@ matrix:
             - valgrind
       env:
         - ANALYZE=false
-        - CC=clang-6.0
-        - CXX=clang++-6.0
+        - CC=clang-7
+        - CXX=clang++-7
         - PYTHON=python2
     - os: linux
       addons:
         apt:
           sources:
-            - llvm-toolchain-trusty-6.0
+            - llvm-toolchain-xenial-7
             - ubuntu-toolchain-r-test
           packages:
             - check
-            - clang-6.0
-            - clang-tidy-6.0
+            - clang-7
+            - clang-tidy-7
             - debhelper
             - fakeroot
             - graphviz
@@ -123,8 +123,8 @@ matrix:
             - valgrind
       env:
         - ANALYZE=false
-        - CC=clang-6.0
-        - CXX=clang++-6.0
+        - CC=clang-7
+        - CXX=clang++-7
         - PYTHON=python3
     - os: linux
       addons:
@@ -166,18 +166,18 @@ matrix:
             - cppcheck
       env:
         - ANALYZE=true
-        - CC=gcc-4.8
-        - CXX=g++-4.8
+        - CC=gcc-5
+        - CXX=g++-5
     - os: linux
       addons:
         apt:
           sources:
-            - llvm-toolchain-trusty-6.0
+            - llvm-toolchain-xenial-7
             - ubuntu-toolchain-r-test
           packages:
             - check
-            - clang-6.0
-            - clang-tidy-6.0
+            - clang-7
+            - clang-tidy-7
             - graphviz
             - python-six
             - python3-six
@@ -187,8 +187,8 @@ matrix:
       env:
         - ANALYZE=true
         - PYTHON=python3
-        - CC=clang-6.0
-        - CXX=clang++-6.0
+        - CC=clang-7
+        - CXX=clang++-7
     #- os: linux
     #  compiler: gcc
     #  env: LINT=true
@@ -199,13 +199,13 @@ matrix:
       addons:
         apt:
           sources:
-            - llvm-toolchain-trusty-6.0
+            - llvm-toolchain-xenial-7
             - ubuntu-toolchain-r-test
           packages:
             - check
-            - clang-6.0
-            - clang-tidy-6.0
-            - libfuzzer-6.0-dev
+            - clang-7
+            - clang-tidy-7
+            - libfuzzer-7-dev
             - python-six
             - python3-six
       env:
@@ -225,8 +225,8 @@ matrix:
             - master
             - sonarcloud
       env:
-        - CC=gcc-4.9
-        - CXX=g++-4.9
+        - CC=gcc-5
+        - CXX=g++-5
         - SONAR=true
         - PYTHON=python2
       cache:
@@ -362,4 +362,4 @@ deploy:
   on:
     repo: open62541/open62541
     tags: true
-    condition: $CC = gcc-4.8 && $ANALYZE = false
+    condition: $CC = gcc-5 && $ANALYZE = false

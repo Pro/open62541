@@ -89,8 +89,8 @@ if [ $ANALYZE = "true" ]; then
     if ! case $CC in clang*) false;; esac; then
         mkdir -p build
         cd build
-        scan-build-6.0 cmake -DUA_BUILD_EXAMPLES=ON -DUA_BUILD_UNIT_TESTS=ON ..
-        scan-build-6.0 -enable-checker security.FloatLoopCounter \
+        scan-build-7 cmake -DUA_BUILD_EXAMPLES=ON -DUA_BUILD_UNIT_TESTS=ON ..
+        scan-build-7 -enable-checker security.FloatLoopCounter \
           -enable-checker security.insecureAPI.UncheckedReturn \
           --status-bugs -v \
           make -j
@@ -98,8 +98,8 @@ if [ $ANALYZE = "true" ]; then
 
         mkdir -p build
         cd build
-        scan-build-6.0 cmake -DUA_ENABLE_PUBSUB=ON -DUA_ENABLE_PUBSUB_DELTAFRAMES=ON -DUA_ENABLE_PUBSUB_INFORMATIONMODEL=ON ..
-        scan-build-6.0 -enable-checker security.FloatLoopCounter \
+        scan-build-7 cmake -DUA_ENABLE_PUBSUB=ON -DUA_ENABLE_PUBSUB_DELTAFRAMES=ON -DUA_ENABLE_PUBSUB_INFORMATIONMODEL=ON ..
+        scan-build-7 -enable-checker security.FloatLoopCounter \
           -enable-checker security.insecureAPI.UncheckedReturn \
           --status-bugs -v \
           make -j
@@ -107,8 +107,8 @@ if [ $ANALYZE = "true" ]; then
 
         mkdir -p build
         cd build
-        scan-build-6.0 cmake -DUA_ENABLE_AMALGAMATION=OFF ..
-        scan-build-6.0 -enable-checker security.FloatLoopCounter \
+        scan-build-7 cmake -DUA_ENABLE_AMALGAMATION=OFF ..
+        scan-build-7 -enable-checker security.FloatLoopCounter \
           -enable-checker security.insecureAPI.UncheckedReturn \
           --status-bugs -v \
           make -j

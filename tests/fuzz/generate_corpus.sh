@@ -28,8 +28,8 @@ if [ -z ${TRAVIS+x} ]; then
 	export CXX=clang++
 else
 	# Travis needs a specific
-	export CC=clang-6.0
-	export CXX=clang++-6.0
+	export CC=clang-7
+	export CXX=clang++-7
 fi
 # First build and run the unit tests without any specific fuzz settings
 cmake -DUA_BUILD_FUZZING_CORPUS=ON -DUA_BUILD_UNIT_TESTS=ON -DUA_ENABLE_DISCOVERY_MULTICAST=ON -DUA_ENABLE_ENCRYPTION=ON ..
