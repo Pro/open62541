@@ -556,6 +556,8 @@ cleanup:
  * the type-level constructor fails. */
 static UA_StatusCode callConstructors(UA_Server *server, UA_Session *session,
                                       const UA_Node *node, const UA_Node *type) {
+    if (!type || !node)
+        return UA_STATUSCODE_BADINTERNALERROR;
     /* Get the node type constructor */
     const UA_NodeTypeLifecycle *lifecycle = NULL;
     if(node->nodeClass == UA_NODECLASS_OBJECT) {

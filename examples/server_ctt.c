@@ -138,10 +138,9 @@ setInformationModel(UA_Server *server) {
     myVar = UA_VariableAttributes_default;
     myVar.description = UA_LOCALIZEDTEXT("en-US", "the answer - not current user");
     myVar.displayName = UA_LOCALIZEDTEXT("en-US", "the answer - not current user");
-    myVar.accessLevel = UA_ACCESSLEVELMASK_WRITE;
+    myVar.accessLevel = UA_ACCESSLEVELMASK_READ | UA_ACCESSLEVELMASK_WRITE;
     myVar.dataType = UA_TYPES[UA_TYPES_INT32].typeId;
     myVar.valueRank = UA_VALUERANK_SCALAR;
-    myVar.accessLevel = UA_ACCESSLEVELMASK_READ | UA_ACCESSLEVELMASK_WRITE;
     UA_Variant_setScalar(&myVar.value, &myInteger, &UA_TYPES[UA_TYPES_INT32]);
     const UA_QualifiedName accessDeniedName = UA_QUALIFIEDNAME(1, "the answer - not current user");
     UA_Server_addVariableNode(server, accessDenied, parentNodeId, parentReferenceNodeId,

@@ -354,6 +354,7 @@ ENCODE_BINARY(Float) {
     /* cppcheck-suppress duplicateExpression */
     if(f != f) encoded = FLOAT_NAN;
     else if(f == 0.0f) encoded = signbit(f) ? FLOAT_NEG_ZERO : 0;
+    //cppcheck-suppress duplicateExpression
     else if(f/f != f/f) encoded = f > 0 ? FLOAT_INF : FLOAT_NEG_INF;
     else encoded = (u32)pack754(f, 32, 8);
     return ENCODE_DIRECT(&encoded, UInt32);
@@ -386,6 +387,7 @@ ENCODE_BINARY(Double) {
     /* cppcheck-suppress duplicateExpression */
     if(d != d) encoded = DOUBLE_NAN;
     else if(d == 0.0) encoded = signbit(d) ? DOUBLE_NEG_ZERO : 0;
+    //cppcheck-suppress duplicateExpression
     else if(d/d != d/d) encoded = d > 0 ? DOUBLE_INF : DOUBLE_NEG_INF;
     else encoded = pack754(d, 64, 11);
     return ENCODE_DIRECT(&encoded, UInt64);
