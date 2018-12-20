@@ -146,6 +146,22 @@ matrix:
     - os: linux
       addons:
         apt:
+          sources:
+            - llvm-toolchain-xenial-7
+            - ubuntu-toolchain-r-test
+          packages:
+            - clang-7
+            - clang-tidy-7
+            - python3-six
+            - valgrind
+      env:
+        - INSTALL=true
+        - CC=clang-7
+        - CXX=clang++-7
+        - PYTHON=python3
+    - os: linux
+      addons:
+        apt:
           packages:
             - cppcheck
       env:
