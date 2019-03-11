@@ -37,7 +37,7 @@
 UA_UInt16 addNamespace(UA_Server *server, const UA_String name) {
     /* Check if the namespace already exists in the server's namespace array */
     for(UA_UInt16 i = 0; i < server->namespacesSize; ++i) {
-        if(UA_String_equal(&name, &server->namespaces[i]))
+            if(UA_String_equal(&name, &server->namespaces[i]))
             return i;
     }
 
