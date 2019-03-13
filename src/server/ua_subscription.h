@@ -16,8 +16,10 @@
 
 #include <open62541/types.h>
 #include <open62541/types_generated.h>
-#include "ua_util_internal.h"
+
 #include "ua_session.h"
+#include "ua_util_internal.h"
+#include "ua_workqueue.h"
 
 _UA_BEGIN_DECLS
 

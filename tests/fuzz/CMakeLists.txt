@@ -58,8 +58,8 @@ set(fuzzing_plugin_sources ${PROJECT_SOURCE_DIR}/arch/ua_network_tcp.c
         ${PROJECT_SOURCE_DIR}/plugins/ua_config_default.c
         ${PROJECT_SOURCE_DIR}/plugins/ua_nodestore_default.c
         ${PROJECT_SOURCE_DIR}/plugins/ua_accesscontrol_default.c
-        ${PROJECT_SOURCE_DIR}/plugins/ua_pki_certificate.c
-        ${PROJECT_SOURCE_DIR}/plugins/securityPolicies/ua_securitypolicy_none.c
+        ${PROJECT_SOURCE_DIR}/plugins/ua_pki_default.c
+        ${PROJECT_SOURCE_DIR}/plugins/ua_securitypolicy_none.c
 )
 
 if(UA_ENABLE_ENCRYPTION)
