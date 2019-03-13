@@ -11,7 +11,7 @@
 #include <signal.h>
 #include <stdlib.h>
 
-#include "open62541/ua_namespace_testnodeset.h"
+#include "open62541/namespace_testnodeset_generated.h"
 
 UA_Boolean running = true;
 
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 
     UA_StatusCode retval;
     /* create nodes from nodeset */
-    if(ua_namespace_testnodeset(server) != UA_STATUSCODE_GOOD) {
+    if(namespace_testnodeset_generated(server) != UA_STATUSCODE_GOOD) {
         UA_LOG_ERROR(UA_Log_Stdout, UA_LOGCATEGORY_SERVER,
                      "Could not add the example nodeset. "
                      "Check previous output for any error.");

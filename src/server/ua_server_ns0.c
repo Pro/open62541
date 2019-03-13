@@ -11,7 +11,7 @@
  */
 
 #include "ua_server_internal.h"
-#include "open62541/ua_namespace0.h"
+#include "open62541/namespace0_generated.h"
 #include "ua_subscription.h"
 #include "ua_session.h"
 
@@ -578,7 +578,7 @@ UA_Server_initNS0(UA_Server *server) {
 
 #ifdef UA_GENERATED_NAMESPACE_ZERO
     /* Load nodes and references generated from the XML ns0 definition */
-    retVal = ua_namespace0(server);
+    retVal = namespace0_generated(server);
 #else
     /* Create a minimal server object */
     retVal = UA_Server_minimalServerObject(server);

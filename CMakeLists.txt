@@ -639,8 +639,8 @@ set(default_plugin_sources ${PROJECT_SOURCE_DIR}/plugins/ua_log_stdout.c
 )
 
 if(UA_GENERATED_NAMESPACE_ZERO)
-    list(APPEND internal_headers ${PROJECT_BINARY_DIR}/src_generated/open62541/ua_namespace0.h)
-    list(APPEND lib_sources ${PROJECT_BINARY_DIR}/src_generated/open62541/ua_namespace0.c)
+    list(APPEND internal_headers ${PROJECT_BINARY_DIR}/src_generated/open62541/namespace0_generated.h)
+    list(APPEND lib_sources ${PROJECT_BINARY_DIR}/src_generated/open62541/namespace0_generated.c)
 endif()
 
 if(UA_ENABLE_ENCRYPTION)
@@ -879,7 +879,7 @@ if(UA_PACK_DEBIAN OR (NOT "$ENV{APPVEYOR}" STREQUAL "") OR (
             (("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang") AND (CMAKE_C_COMPILER_VERSION VERSION_LESS 7.0))
         )
    ))
-    set_source_files_properties(${PROJECT_BINARY_DIR}/src_generated/ua_namespace0.c PROPERTIES COMPILE_FLAGS "-fno-stack-protector -O0")
+    set_source_files_properties(${PROJECT_BINARY_DIR}/src_generated/namespace0_generated.c PROPERTIES COMPILE_FLAGS "-fno-stack-protector -O0")
 endif()
 
 #####################
