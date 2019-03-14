@@ -529,7 +529,6 @@ set(exported_headers ${exported_headers}
                      ${PROJECT_BINARY_DIR}/src_generated/open62541/types_generated_handling.h
                      ${PROJECT_SOURCE_DIR}/include/open62541/util.h
                      ${PROJECT_SOURCE_DIR}/include/open62541/server.h
-                     ${PROJECT_SOURCE_DIR}/include/open62541/plugin/historydatabase.h
                      ${PROJECT_SOURCE_DIR}/include/open62541/plugin/log.h
                      ${PROJECT_SOURCE_DIR}/include/open62541/plugin/network.h
                      ${PROJECT_SOURCE_DIR}/include/open62541/plugin/accesscontrol.h
@@ -538,6 +537,7 @@ set(exported_headers ${exported_headers}
                      ${PROJECT_SOURCE_DIR}/include/open62541/server_pubsub.h
                      ${PROJECT_SOURCE_DIR}/include/open62541/plugin/pubsub.h
                      ${PROJECT_SOURCE_DIR}/include/open62541/plugin/nodestore.h
+                     ${PROJECT_SOURCE_DIR}/include/open62541/plugin/historydatabase.h
                      ${PROJECT_SOURCE_DIR}/include/open62541/server_config.h
                      ${PROJECT_SOURCE_DIR}/include/open62541/client_config.h
                      ${PROJECT_SOURCE_DIR}/include/open62541/client.h
@@ -621,7 +621,6 @@ set(lib_sources ${PROJECT_SOURCE_DIR}/src/ua_types.c
                 ${PROJECT_SOURCE_DIR}/deps/base64.c)
 
 set(default_plugin_headers ${PROJECT_SOURCE_DIR}/plugins/include/open62541/plugin/accesscontrol_default.h
-                           ${PROJECT_SOURCE_DIR}/plugins/include/open62541/plugin/historydatabase_default.h
                            ${PROJECT_SOURCE_DIR}/plugins/include/open62541/plugin/pki_default.h
                            ${PROJECT_SOURCE_DIR}/plugins/include/open62541/plugin/log_stdout.h
                            ${PROJECT_SOURCE_DIR}/plugins/include/open62541/plugin/nodestore_default.h
@@ -650,14 +649,18 @@ if(UA_ENABLE_ENCRYPTION)
 endif()
 
 if(UA_ENABLE_HISTORIZING)
+    list(APPEND default_plugin_headers
+         ${PROJECT_SOURCE_DIR}/plugins/include/open62541/plugin/historydata/history_data_backend.h
+         ${PROJECT_SOURCE_DIR}/plugins/include/open62541/plugin/historydata/history_data_gathering.h
+         ${PROJECT_SOURCE_DIR}/plugins/include/open62541/plugin/historydata/history_database_default.h
+         ${PROJECT_SOURCE_DIR}/plugins/include/open62541/plugin/historydata/history_data_gathering_default.h
+         ${PROJECT_SOURCE_DIR}/plugins/include/open62541/plugin/historydata/history_data_backend_memory.h
+         )
     list(APPEND default_plugin_sources
-         ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_historydatabackend_memory.h
-         ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_historydatagathering_default.h
-         ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_plugin_history_data_backend.h
-         ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_plugin_history_data_gathering.h
-         ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_historydatabackend_memory.c
-         ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_historydatagathering_default.c
-         ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_historydatabase_default.c)
+         ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_history_data_backend_memory.c
+         ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_history_data_gathering_default.c
+         ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_history_database_default.c
+         )
 endif()
 
 if(UA_ENABLE_DISCOVERY)
@@ -968,9 +971,8 @@ else()
                                "${PROJECT_BINARY_DIR}/src_generated")
 
     # Private includes
-    include_directories_private("${PROJECT_BINARY_DIR}"
-                                "${PROJECT_SOURCE_DIR}/deps"
-                                "${PROJECT_BINARY_DIR}/src_generated")
+    include_directories_private("${PROJECT_BINARY_DIR}")
+
     if(UA_ENABLE_ENCRYPTION)
         include_directories_private(${MBEDTLS_INCLUDE_DIRS})
     endif()
@@ -980,15 +982,6 @@ else()
         include_directories_private("${PROJECT_SOURCE_DIR}/src/client")
     endif()
 
-    if(UA_ENABLE_HISTORIZING)
-        include_directories_public("${PROJECT_SOURCE_DIR}/plugins/historydata")
-    endif()
-
-    if(UA_ENABLE_PUBSUB)
-        include_directories_public("${PROJECT_SOURCE_DIR}/plugins/networking"
-                                   "${PROJECT_SOURCE_DIR}/src/pubsub"
-                                   "${PROJECT_BINARY_DIR}")
-    endif()
 endif()
 
 # Ensure that the open62541::open62541 alias can be used inside open62541's build

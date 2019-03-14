@@ -56,9 +56,9 @@ set(test_plugin_sources ${PROJECT_SOURCE_DIR}/arch/ua_network_tcp.c
 
 if(UA_ENABLE_HISTORIZING)
     set(test_plugin_sources ${test_plugin_sources}
-                            ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_historydatabackend_memory.c
-                            ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_historydatagathering_default.c
-                            ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_historydatabase_default.c)
+        ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_history_data_backend_memory.c
+        ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_history_data_gathering_default.c
+        ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_history_database_default.c)
 endif()
 
 if(UA_ENABLE_ENCRYPTION)

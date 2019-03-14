@@ -8,6 +8,8 @@
 #ifndef UA_PLUGIN_HISTORYDATABASE_H_
 #define UA_PLUGIN_HISTORYDATABASE_H_
 
+#ifdef UA_ENABLE_HISTORIZING
+
 #include <open62541/server.h>
 
 _UA_BEGIN_DECLS
@@ -99,5 +101,7 @@ struct UA_HistoryDatabase {
 };
 
 _UA_END_DECLS
+
+#endif /* UA_ENABLE_HISTORIZING */
 
 #endif /* UA_PLUGIN_HISTORYDATABASE_H_ */
