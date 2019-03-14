@@ -47,25 +47,25 @@ set(test_plugin_sources ${PROJECT_SOURCE_DIR}/arch/ua_network_tcp.c
                         ${PROJECT_SOURCE_DIR}/plugins/ua_log_stdout.c
                         ${PROJECT_SOURCE_DIR}/plugins/ua_config_default.c
                         ${PROJECT_SOURCE_DIR}/plugins/ua_accesscontrol_default.c
-                        ${PROJECT_SOURCE_DIR}/plugins/ua_pki_certificate.c
+                        ${PROJECT_SOURCE_DIR}/plugins/ua_pki_default.c
                         ${PROJECT_SOURCE_DIR}/plugins/ua_nodestore_default.c
-                        ${PROJECT_SOURCE_DIR}/plugins/securityPolicies/ua_securitypolicy_none.c
+                        ${PROJECT_SOURCE_DIR}/plugins/ua_securitypolicy_none.c
                         ${PROJECT_SOURCE_DIR}/tests/testing-plugins/testing_policy.c
                         ${PROJECT_SOURCE_DIR}/tests/testing-plugins/testing_networklayers.c
 )
 
 if(UA_ENABLE_HISTORIZING)
     set(test_plugin_sources ${test_plugin_sources}
-                            ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_historydatabackend_memory.c
-                            ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_historydatagathering_default.c
-                            ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_historydatabase_default.c)
+        ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_history_data_backend_memory.c
+        ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_history_data_gathering_default.c
+        ${PROJECT_SOURCE_DIR}/plugins/historydata/ua_history_database_default.c)
 endif()
 
 if(UA_ENABLE_ENCRYPTION)
     set(test_plugin_sources ${test_plugin_sources}
-        ${PROJECT_SOURCE_DIR}/plugins/securityPolicies/ua_securitypolicy_basic128rsa15.c)
+        ${PROJECT_SOURCE_DIR}/plugins/ua_securitypolicy_basic128rsa15.c)
     set(test_plugin_sources ${test_plugin_sources}
-        ${PROJECT_SOURCE_DIR}/plugins/securityPolicies/ua_securitypolicy_basic256sha256.c)
+        ${PROJECT_SOURCE_DIR}/plugins/ua_securitypolicy_basic256sha256.c)
 endif()
 
 add_library(open62541-testplugins OBJECT ${test_plugin_sources} ${PROJECT_SOURCE_DIR}/arch/${UA_ARCHITECTURE}/ua_architecture_functions.c)

@@ -182,10 +182,22 @@ matrix:
         - ANALYZE=true
         - PYTHON=python3
 #
-# cpplint checking
-    #- os: linux
-    #  compiler: gcc
-    #  env: LINT=true
+# clang-format code analysis
+# is allowed to fail (see allow_failures)
+    - os: linux
+      compiler: clang-6.0
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-6.0
+            - ubuntu-toolchain-r-test
+          packages:
+            - clang-6.0
+            - clang-tidy-6.0
+            - clang-format-6.0
+            - pastebinit
+      env:
+        - CLANG_FORMAT=true
 #
 # DOCKER build
     - os: linux
@@ -232,6 +244,11 @@ matrix:
       cache:
         directories:
           - '$HOME/.sonar/cache'
+  allow_failures:
+    #
+    # clang-format code analysis
+    - env:
+        - CLANG_FORMAT=true
 
 cache:
   pip: true

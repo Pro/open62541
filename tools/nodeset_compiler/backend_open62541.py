@@ -147,7 +147,10 @@ def generateOpen62541Code(nodeset, outfilename, generate_ns0=False, internal_hea
         for arr in set(typesArray):
             if arr == "UA_TYPES":
                 continue
-            additionalHeaders += """#include "%s_generated.h"\n""" % arr.lower()
+            # remove ua_ prefix if exists
+            typeFile = arr.lower()
+            typeFile = typeFile[typeFile.startswith("ua_") and len("ua_"):]
+            additionalHeaders += """#include "%s_generated.h"\n""" % typeFile
 
     # Print the preamble of the generated code
     writeh("""/* WARNING: This is a generated file.
@@ -188,7 +191,7 @@ UA_findDataTypeByBinary(const UA_NodeId *typeId);
 # endif // UA_Nodestore_remove
 
 #else // UA_ENABLE_AMALGAMATION
-# include "ua_server.h"
+# include <open62541/server.h>
 #endif
 
 %s
@@ -198,7 +201,7 @@ UA_findDataTypeByBinary(const UA_NodeId *typeId);
 #ifdef UA_ENABLE_AMALGAMATION
 # include "open62541.h"
 #else
-# include "ua_server.h"
+# include <open62541/server.h>
 #endif
 %s
 """ % (additionalHeaders))

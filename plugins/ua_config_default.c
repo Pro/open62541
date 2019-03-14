@@ -10,15 +10,14 @@
  *    Copyright 2018 (c) Fabian Arndt, Root-Core
  */
 
-#include "ua_config_default.h"
-#include "ua_client_config.h"
-#include "ua_log_stdout.h"
+#include <open62541/client_config_default.h>
+#include <open62541/server_config_default.h>
+#include <open62541/plugin/log_stdout.h>
+#include <open62541/plugin/accesscontrol_default.h>
+#include <open62541/plugin/pki_default.h>
+#include <open62541/plugin/nodestore_default.h>
+#include <open62541/plugin/securitypolicy_default.h>
 #include "ua_network_tcp.h"
-#include "ua_accesscontrol_default.h"
-#include "ua_pki_certificate.h"
-#include "ua_nodestore_default.h"
-#include "ua_securitypolicies.h"
-#include "ua_plugin_securitypolicy.h"
 
 /* Struct initialization works across ANSI C/C99/C++ if it is done when the
  * variable is first declared. Assigning values to existing structs is
@@ -272,12 +271,12 @@ UA_ServerConfig_new_customBuffer(UA_UInt16 portNumber,
     }
 
     /* Allocate the SecurityPolicies */
-    conf->securityPoliciesSize = 1;
     conf->securityPolicies = (UA_SecurityPolicy *)UA_malloc(sizeof(UA_SecurityPolicy));
     if(!conf->securityPolicies) {
        UA_ServerConfig_delete(conf);
        return NULL;
     }
+    conf->securityPoliciesSize = 1;
 
     /* Populate the SecurityPolicies */
     UA_ByteString localCertificate = UA_BYTESTRING_NULL;

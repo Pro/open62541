@@ -92,6 +92,51 @@ echo "=== Install build, then compile examples ===" && echo -en 'travis_fold:sta
     exit 0
 fi
 
+if ! [ -z ${CLANG_FORMAT+x} ]; then
+
+    # Only run clang format on Pull requests, not on direct push
+    if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+        echo -en "\\nSkipping clang-format on non-pull request\\n"
+        exit 0
+    fi
+
+    echo "=== Running clang-format with diff against branch '$TRAVIS_BRANCH' ===" && echo -en 'travis_fold:start:script.clang-format\\r'
+
+    # add clang-format-ci
+    curl -Ls "https://raw.githubusercontent.com/llvm-mirror/clang/c510fac5695e904b43d5bf0feee31cc9550f110e/tools/clang-format/git-clang-format" -o "$LOCAL_PKG/bin/git-clang-format"
+    chmod +x $LOCAL_PKG/bin/git-clang-format
+
+    # Ignore files in the deps directory diff by resetting them to master
+    git diff --name-only $TRAVIS_BRANCH | grep 'deps/*' | xargs git checkout $TRAVIS_BRANCH --
+
+    # clang-format the diff to the target branch of the PR
+    difference="$($LOCAL_PKG/bin/git-clang-format --style=file --diff $TRAVIS_BRANCH)"
+
+    if ! case $difference in *"no modified files to format"*) false;; esac; then
+        echo "====== clang-format did not find any issues. Well done! ======"
+        exit 0
+    fi
+
+    echo "====== clang-format Format Errors ======"
+
+    echo "Uploading the patch to a pastebin page ..."
+    pastebinUrl="$($LOCAL_PKG/bin/git-clang-format --style=file --diff $TRAVIS_BRANCH | curl -F 'sprunge=<-' http://sprunge.us)"
+
+    echo "Created a patch file under: $pastebinUrl"
+
+    echo "Please fix the following issues.\n\n"
+    echo "You can also use the following command to apply the diff to your source locally:\n-------------\n"
+    echo "curl -o format.patch $pastebinUrl && git apply format.patch\n-------------\n"
+    echo "=============== DIFFERENCE - START =================\n"
+    # We want to get colored diff output into the variable
+    git config color.diff always
+    $LOCAL_PKG/bin/git-clang-format --style=file --diff $TRAVIS_BRANCH
+    echo "\n============= DIFFERENCE - END ===================="
+
+    echo -en 'travis_fold:start:script.clang-format\\r'
+    exit 1
+fi
+
 if ! [ -z ${ANALYZE+x} ]; then
     echo "=== Running static code analysis ===" && echo -en 'travis_fold:start:script.analyze\\r'
     if ! case $CC in clang*) false;; esac; then
@@ -128,6 +173,12 @@ if ! [ -z ${ANALYZE+x} ]; then
           make -j
         cd .. && rm build -rf
 
+        #mkdir -p build && cd build
+        #cmake -DUA_ENABLE_STATIC_ANALYZER=REDUCED ..
+        ## previous clang-format to reduce to non-trivial warnings
+        #make clangformat
+        #make
+        #cd .. && rm build -rf
     else
         cppcheck --template "{file}({line}): {severity} ({id}): {message}" \
             --enable=style --force --std=c++11 -j 8 \
@@ -269,7 +320,9 @@ cmake \
     -DCMAKE_INSTALL_PREFIX=${TRAVIS_BUILD_DIR}/open62541-linux64 \
     -DPYTHON_EXECUTABLE:FILEPATH=/usr/bin/$PYTHON \
     -DUA_BUILD_EXAMPLES=OFF \
-    -DUA_ENABLE_AMALGAMATION=ON ..
+    -DUA_ENABLE_AMALGAMATION=ON \
+    -DUA_ENABLE_ENCRYPTION=ON \
+    -DUA_ENABLE_HISTORIZING=ON  ..
 make -j
 cp open62541.h ../.. # copy single file-release
 cp open62541.c ../.. # copy single file-release
@@ -290,18 +343,6 @@ make -j
 if [ $? -ne 0 ] ; then exit 1 ; fi
 cd .. && rm build -rf
 echo -en 'travis_fold:end:script.build.shared_libs\\r'
-
-echo "Compile as shared lib version with amalgamation" && echo -en 'travis_fold:start:script.build.shared_libs_amalgamate\\r'
-mkdir -p build && cd build
-cmake \
-    -DBUILD_SHARED_LIBS=ON \
-    -DPYTHON_EXECUTABLE:FILEPATH=/usr/bin/$PYTHON \
-    -DUA_BUILD_EXAMPLES=OFF \
-    -DUA_ENABLE_AMALGAMATION=ON ..
-make -j
-if [ $? -ne 0 ] ; then exit 1 ; fi
-cd .. && rm build -rf
-echo -en 'travis_fold:end:script.build.shared_libs_amalgamate\\r'
 
 if [ "$CC" != "tcc" ]; then
     echo -e "\r\n==Compile multithreaded version==" && echo -en 'travis_fold:start:script.build.multithread\\r'

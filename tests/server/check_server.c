@@ -11,9 +11,11 @@
 
 #include "check.h"
 #include "server/ua_services.h"
-#include "ua_client.h"
-#include "ua_types.h"
-#include "ua_config_default.h"
+
+#include <open62541/server.h>
+#include <open62541/types.h>
+#include <open62541/server_config_default.h>
+
 #include "server/ua_server_internal.h"
 
 static UA_Server *server = NULL;
