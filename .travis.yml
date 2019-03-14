@@ -195,6 +195,7 @@ matrix:
             - clang-6.0
             - clang-tidy-6.0
             - clang-format-6.0
+            - pastebinit
       env:
         - CLANG_FORMAT=true
 #
