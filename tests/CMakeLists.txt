@@ -118,214 +118,214 @@ add_custom_target(test-verbose COMMAND ${CMAKE_CTEST_COMMAND} --verbose)
 
 add_executable(check_types_builtin check_types_builtin.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
 target_link_libraries(check_types_builtin ${LIBS})
-add_test_valgrind(types_builtin ${TESTS_BINARY_DIR}/check_types_builtin)
+#add_test_valgrind(types_builtin ${TESTS_BINARY_DIR}/check_types_builtin)
 
-if(UA_ENABLE_JSON_ENCODING)
-    add_executable(check_types_builtin_json check_types_builtin_json.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-    target_link_libraries(check_types_builtin_json ${LIBS})
-    add_test_valgrind(types_builtin_json ${TESTS_BINARY_DIR}/check_types_builtin_json)
-
-    if(UA_ENABLE_PUBSUB)
-        add_executable(check_pubsub_encoding_json pubsub/check_pubsub_encoding_json.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-        target_link_libraries(check_pubsub_encoding_json ${LIBS})
-        add_test_valgrind(pubsub_encoding_json ${TESTS_BINARY_DIR}/check_pubsub_encoding_json)
-
-        add_executable(check_pubsub_publish_json pubsub/check_pubsub_publish_json.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-plugins>)
-        target_link_libraries(check_pubsub_publish_json ${LIBS})
-        add_test_valgrind(pubsub_publish_json ${TESTS_BINARY_DIR}/check_pubsub_publish_json)
-    endif()
-endif()
-
-add_executable(check_types_memory check_types_memory.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_types_memory ${LIBS})
-add_test_valgrind(types_memory ${TESTS_BINARY_DIR}/check_types_memory)
-
-add_executable(check_types_range check_types_range.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_types_range ${LIBS})
-add_test_valgrind(types_range ${TESTS_BINARY_DIR}/check_types_range)
-
-add_executable(check_types_custom check_types_custom.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_types_custom ${LIBS})
-add_test_valgrind(types_custom ${TESTS_BINARY_DIR}/check_types_custom)
-
-add_executable(check_chunking check_chunking.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_chunking ${LIBS})
-add_test_valgrind(chunking ${TESTS_BINARY_DIR}/check_chunking)
-
-add_executable(check_utils check_utils.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_utils ${LIBS})
-add_test_valgrind(utils ${TESTS_BINARY_DIR}/check_utils)
-
-add_executable(check_securechannel check_securechannel.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_securechannel ${LIBS})
-add_test_valgrind(securechannel ${TESTS_BINARY_DIR}/check_securechannel)
-
-add_executable(check_timer check_timer.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_timer ${LIBS})
-add_test_valgrind(timer ${TESTS_BINARY_DIR}/check_timer)
-
-# Test Server
-
-add_executable(check_accesscontrol server/check_accesscontrol.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_accesscontrol ${LIBS})
-add_test_valgrind(accesscontrol ${TESTS_BINARY_DIR}/check_accesscontrol)
-
-add_executable(check_services_view server/check_services_view.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_services_view ${LIBS})
-add_test_valgrind(services_view ${TESTS_BINARY_DIR}/check_services_view)
-
-add_executable(check_services_attributes server/check_services_attributes.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_services_attributes ${LIBS})
-add_test_valgrind(services_attributes ${TESTS_BINARY_DIR}/check_services_attributes)
-
-add_executable(check_services_nodemanagement server/check_services_nodemanagement.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_services_nodemanagement ${LIBS})
-add_test_valgrind(services_nodemanagement ${TESTS_BINARY_DIR}/check_services_nodemanagement)
-
-add_executable(check_services_call server/check_services_call.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_services_call ${LIBS})
-add_test_valgrind(services_call ${TESTS_BINARY_DIR}/check_services_call)
-
-add_executable(check_services_subscriptions server/check_services_subscriptions.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_services_subscriptions ${LIBS})
-add_test_valgrind(services_subscriptions ${TESTS_BINARY_DIR}/check_services_subscriptions)
-
-add_executable(check_monitoreditem_filter server/check_monitoreditem_filter.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_monitoreditem_filter ${LIBS})
-add_test_valgrind(monitoreditem_filter ${TESTS_BINARY_DIR}/check_monitoreditem_filter)
-
-add_executable(check_subscription_events server/check_subscription_events.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_subscription_events ${LIBS})
-add_test_valgrind(subscription_events ${TESTS_BINARY_DIR}/check_subscription_events)
-
-add_executable(check_nodestore server/check_nodestore.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_nodestore ${LIBS})
-add_test_valgrind(nodestore ${TESTS_BINARY_DIR}/check_nodestore)
-
-if(UA_ENABLE_HISTORIZING)
-    add_executable(check_server_historical_data server/check_server_historical_data.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-    target_link_libraries(check_server_historical_data ${LIBS})
-    add_test_valgrind(server_historical_data ${TESTS_BINARY_DIR}/check_server_historical_data)
-endif()
-
-add_executable(check_session server/check_session.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_session ${LIBS})
-add_test_valgrind(session ${TESTS_BINARY_DIR}/check_session)
-
-add_executable(check_server server/check_server.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_server ${LIBS})
-add_test_valgrind(server ${TESTS_BINARY_DIR}/check_server)
-
-add_executable(check_server_jobs server/check_server_jobs.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_server_jobs ${LIBS})
-add_test_valgrind(server_jobs ${TESTS_BINARY_DIR}/check_server_jobs)
-
-add_executable(check_server_userspace server/check_server_userspace.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_server_userspace ${LIBS})
-add_test_valgrind(server_userspace ${TESTS_BINARY_DIR}/check_server_userspace)
-
-add_executable(check_node_inheritance server/check_node_inheritance.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_node_inheritance ${LIBS})
-add_test_valgrind(node_inheritance ${TESTS_BINARY_DIR}/check_node_inheritance)
-
-add_executable(check_local_monitored_item server/check_local_monitored_item.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_local_monitored_item ${LIBS})
-add_test_valgrind(local_monitored_item ${TESTS_BINARY_DIR}/check_local_monitored_item)
+#if(UA_ENABLE_JSON_ENCODING)
+#    add_executable(check_types_builtin_json check_types_builtin_json.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#    target_link_libraries(check_types_builtin_json ${LIBS})
+#    add_test_valgrind(types_builtin_json ${TESTS_BINARY_DIR}/check_types_builtin_json)
+#
+#    if(UA_ENABLE_PUBSUB)
+#        add_executable(check_pubsub_encoding_json pubsub/check_pubsub_encoding_json.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#        target_link_libraries(check_pubsub_encoding_json ${LIBS})
+#        add_test_valgrind(pubsub_encoding_json ${TESTS_BINARY_DIR}/check_pubsub_encoding_json)
+#
+#        add_executable(check_pubsub_publish_json pubsub/check_pubsub_publish_json.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-plugins>)
+#        target_link_libraries(check_pubsub_publish_json ${LIBS})
+#        add_test_valgrind(pubsub_publish_json ${TESTS_BINARY_DIR}/check_pubsub_publish_json)
+#    endif()
+#endif()
+#
+#add_executable(check_types_memory check_types_memory.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_types_memory ${LIBS})
+#add_test_valgrind(types_memory ${TESTS_BINARY_DIR}/check_types_memory)
+#
+#add_executable(check_types_range check_types_range.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_types_range ${LIBS})
+#add_test_valgrind(types_range ${TESTS_BINARY_DIR}/check_types_range)
+#
+#add_executable(check_types_custom check_types_custom.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_types_custom ${LIBS})
+#add_test_valgrind(types_custom ${TESTS_BINARY_DIR}/check_types_custom)
+#
+#add_executable(check_chunking check_chunking.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_chunking ${LIBS})
+#add_test_valgrind(chunking ${TESTS_BINARY_DIR}/check_chunking)
+#
+#add_executable(check_utils check_utils.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_utils ${LIBS})
+#add_test_valgrind(utils ${TESTS_BINARY_DIR}/check_utils)
+#
+#add_executable(check_securechannel check_securechannel.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_securechannel ${LIBS})
+#add_test_valgrind(securechannel ${TESTS_BINARY_DIR}/check_securechannel)
+#
+#add_executable(check_timer check_timer.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_timer ${LIBS})
+#add_test_valgrind(timer ${TESTS_BINARY_DIR}/check_timer)
+#
+## Test Server
+#
+#add_executable(check_accesscontrol server/check_accesscontrol.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_accesscontrol ${LIBS})
+#add_test_valgrind(accesscontrol ${TESTS_BINARY_DIR}/check_accesscontrol)
+#
+#add_executable(check_services_view server/check_services_view.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_services_view ${LIBS})
+#add_test_valgrind(services_view ${TESTS_BINARY_DIR}/check_services_view)
+#
+#add_executable(check_services_attributes server/check_services_attributes.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_services_attributes ${LIBS})
+#add_test_valgrind(services_attributes ${TESTS_BINARY_DIR}/check_services_attributes)
+#
+#add_executable(check_services_nodemanagement server/check_services_nodemanagement.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_services_nodemanagement ${LIBS})
+#add_test_valgrind(services_nodemanagement ${TESTS_BINARY_DIR}/check_services_nodemanagement)
+#
+#add_executable(check_services_call server/check_services_call.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_services_call ${LIBS})
+#add_test_valgrind(services_call ${TESTS_BINARY_DIR}/check_services_call)
+#
+#add_executable(check_services_subscriptions server/check_services_subscriptions.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_services_subscriptions ${LIBS})
+#add_test_valgrind(services_subscriptions ${TESTS_BINARY_DIR}/check_services_subscriptions)
+#
+#add_executable(check_monitoreditem_filter server/check_monitoreditem_filter.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_monitoreditem_filter ${LIBS})
+#add_test_valgrind(monitoreditem_filter ${TESTS_BINARY_DIR}/check_monitoreditem_filter)
+#
+#add_executable(check_subscription_events server/check_subscription_events.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_subscription_events ${LIBS})
+#add_test_valgrind(subscription_events ${TESTS_BINARY_DIR}/check_subscription_events)
+#
+#add_executable(check_nodestore server/check_nodestore.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_nodestore ${LIBS})
+#add_test_valgrind(nodestore ${TESTS_BINARY_DIR}/check_nodestore)
+#
+#if(UA_ENABLE_HISTORIZING)
+#    add_executable(check_server_historical_data server/check_server_historical_data.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#    target_link_libraries(check_server_historical_data ${LIBS})
+#    add_test_valgrind(server_historical_data ${TESTS_BINARY_DIR}/check_server_historical_data)
+#endif()
+#
+#add_executable(check_session server/check_session.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_session ${LIBS})
+#add_test_valgrind(session ${TESTS_BINARY_DIR}/check_session)
+#
+#add_executable(check_server server/check_server.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_server ${LIBS})
+#add_test_valgrind(server ${TESTS_BINARY_DIR}/check_server)
+#
+#add_executable(check_server_jobs server/check_server_jobs.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_server_jobs ${LIBS})
+#add_test_valgrind(server_jobs ${TESTS_BINARY_DIR}/check_server_jobs)
+#
+#add_executable(check_server_userspace server/check_server_userspace.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_server_userspace ${LIBS})
+#add_test_valgrind(server_userspace ${TESTS_BINARY_DIR}/check_server_userspace)
+#
+#add_executable(check_node_inheritance server/check_node_inheritance.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_node_inheritance ${LIBS})
+#add_test_valgrind(node_inheritance ${TESTS_BINARY_DIR}/check_node_inheritance)
+#
+#add_executable(check_local_monitored_item server/check_local_monitored_item.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_local_monitored_item ${LIBS})
+#add_test_valgrind(local_monitored_item ${TESTS_BINARY_DIR}/check_local_monitored_item)
 
 if(UA_ENABLE_DISCOVERY)
     add_executable(check_discovery server/check_discovery.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
     target_link_libraries(check_discovery ${LIBS})
     add_test_valgrind(discovery ${TESTS_BINARY_DIR}/check_discovery)
 endif()
-
-if(UA_ENABLE_PUBSUB)
-    add_executable(check_pubsub_encoding pubsub/check_pubsub_encoding.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-    target_link_libraries(check_pubsub_encoding ${LIBS})
-    add_test_valgrind(pubsub_encoding ${TESTS_BINARY_DIR}/check_pubsub_encoding)
-    add_executable(check_pubsub_pds pubsub/check_pubsub_pds.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-plugins>)
-    target_link_libraries(check_pubsub_pds ${LIBS})
-    add_test_valgrind(check_pubsub_pds ${TESTS_BINARY_DIR}/check_pubsub_pds)
-    add_executable(check_pubsub_connection_udp pubsub/check_pubsub_connection_udp.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-plugins>)
-    target_link_libraries(check_pubsub_connection_udp ${LIBS})
-    add_test_valgrind(check_pubsub_connection_udp ${TESTS_BINARY_DIR}/check_pubsub_connection_udp)
-    add_executable(check_pubsub_publish pubsub/check_pubsub_publish.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-plugins>)
-    target_link_libraries(check_pubsub_publish ${LIBS})
-    add_test_valgrind(check_pubsub_publish ${TESTS_BINARY_DIR}/check_pubsub_publish)
-
-    add_executable(check_pubsub_publishspeed pubsub/check_pubsub_publishspeed.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-plugins>)
-    target_link_libraries(check_pubsub_publishspeed ${LIBS})
-    add_test_valgrind(check_pubsub_publishspeed ${TESTS_BINARY_DIR}/check_pubsub_publish)
-
-    add_executable(check_pubsub_multiple_layer pubsub/check_pubsub_multiple_layer.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-plugins>)
-    target_link_libraries(check_pubsub_multiple_layer ${LIBS})
-    add_test_valgrind(check_pubsub_multiple_layer ${TESTS_BINARY_DIR}/check_pubsub_multiple_layer)
-
-    if(UA_ENABLE_PUBSUB_INFORMATIONMODEL)
-        add_executable(check_pubsub_informationmodel pubsub/check_pubsub_informationmodel.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-plugins>)
-        target_link_libraries(check_pubsub_informationmodel ${LIBS})
-        add_test(check_pubsub_informationmodel ${TESTS_BINARY_DIR}/check_pubsub_informationmodel)
-        if(UA_ENABLE_PUBSUB_INFORMATIONMODEL_METHODS)
-            add_executable(check_pubsub_informationmodel_methods pubsub/check_pubsub_informationmodel_methods.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-plugins>)
-            target_link_libraries(check_pubsub_informationmodel_methods ${LIBS})
-            add_test(check_pubsub_informationmodel_methods ${TESTS_BINARY_DIR}/check_pubsub_informationmodel_methods)
-
-        endif()
-    endif()
-endif()
-
-add_executable(check_server_readspeed server/check_server_readspeed.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_server_readspeed ${LIBS})
-add_test_valgrind(server_readspeed ${TESTS_BINARY_DIR}/check_server_readspeed)
-
-if(UA_ENABLE_SUBSCRIPTIONS)
-    add_executable(check_server_monitoringspeed server/check_server_monitoringspeed.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-    target_link_libraries(check_server_monitoringspeed ${LIBS})
-    add_test_valgrind(server_monitoringspeed ${TESTS_BINARY_DIR}/check_server_monitoringspeed)
-endif()
-
-# Test Client
-
-add_executable(check_client client/check_client.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_client ${LIBS})
-add_test_valgrind(client ${TESTS_BINARY_DIR}/check_client)
-
-add_executable(check_client_securechannel client/check_client_securechannel.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_client_securechannel ${LIBS})
-add_test_valgrind(client_securechannel ${TESTS_BINARY_DIR}/check_client_securechannel)
-
-add_executable(check_client_async client/check_client_async.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_client_async ${LIBS})
-add_test_valgrind(client_async ${TESTS_BINARY_DIR}/check_client_async)
-
-add_executable(check_client_async_connect client/check_client_async_connect.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_client_async_connect ${LIBS})
-add_test_valgrind(client_async_connect ${TESTS_BINARY_DIR}/check_client_async_connect)
-
-add_executable(check_client_subscriptions client/check_client_subscriptions.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_client_subscriptions ${LIBS})
-add_test_valgrind(client_subscriptions ${TESTS_BINARY_DIR}/check_client_subscriptions)
-
-add_executable(check_client_highlevel client/check_client_highlevel.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-target_link_libraries(check_client_highlevel ${LIBS})
-add_test_valgrind(client_highlevel ${TESTS_BINARY_DIR}/check_client_highlevel)
-
-if(UA_ENABLE_HISTORIZING)
-    add_executable(check_client_historical_data client/check_client_historical_data.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-    target_link_libraries(check_client_historical_data ${LIBS})
-    add_test_valgrind(client_historical_data ${TESTS_BINARY_DIR}/check_client_historical_data)
-endif()
-
-# Test Encryption
-
-if(UA_ENABLE_ENCRYPTION)
-    add_executable(check_encryption_basic128rsa15 encryption/check_encryption_basic128rsa15.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-    target_link_libraries(check_encryption_basic128rsa15 ${LIBS})
-    add_test_valgrind(encryption_basic128rsa15 ${TESTS_BINARY_DIR}/check_encryption_basic128rsa15)
-
-    add_executable(check_encryption_basic256sha256 encryption/check_encryption_basic256sha256.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
-    target_link_libraries(check_encryption_basic256sha256 ${LIBS})
-    add_test_valgrind(encryption_basic256sha256 ${TESTS_BINARY_DIR}/check_encryption_basic256sha256)
-endif()
+#
+#if(UA_ENABLE_PUBSUB)
+#    add_executable(check_pubsub_encoding pubsub/check_pubsub_encoding.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#    target_link_libraries(check_pubsub_encoding ${LIBS})
+#    add_test_valgrind(pubsub_encoding ${TESTS_BINARY_DIR}/check_pubsub_encoding)
+#    add_executable(check_pubsub_pds pubsub/check_pubsub_pds.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-plugins>)
+#    target_link_libraries(check_pubsub_pds ${LIBS})
+#    add_test_valgrind(check_pubsub_pds ${TESTS_BINARY_DIR}/check_pubsub_pds)
+#    add_executable(check_pubsub_connection_udp pubsub/check_pubsub_connection_udp.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-plugins>)
+#    target_link_libraries(check_pubsub_connection_udp ${LIBS})
+#    add_test_valgrind(check_pubsub_connection_udp ${TESTS_BINARY_DIR}/check_pubsub_connection_udp)
+#    add_executable(check_pubsub_publish pubsub/check_pubsub_publish.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-plugins>)
+#    target_link_libraries(check_pubsub_publish ${LIBS})
+#    add_test_valgrind(check_pubsub_publish ${TESTS_BINARY_DIR}/check_pubsub_publish)
+#
+#    add_executable(check_pubsub_publishspeed pubsub/check_pubsub_publishspeed.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-plugins>)
+#    target_link_libraries(check_pubsub_publishspeed ${LIBS})
+#    add_test_valgrind(check_pubsub_publishspeed ${TESTS_BINARY_DIR}/check_pubsub_publish)
+#
+#    add_executable(check_pubsub_multiple_layer pubsub/check_pubsub_multiple_layer.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-plugins>)
+#    target_link_libraries(check_pubsub_multiple_layer ${LIBS})
+#    add_test_valgrind(check_pubsub_multiple_layer ${TESTS_BINARY_DIR}/check_pubsub_multiple_layer)
+#
+#    if(UA_ENABLE_PUBSUB_INFORMATIONMODEL)
+#        add_executable(check_pubsub_informationmodel pubsub/check_pubsub_informationmodel.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-plugins>)
+#        target_link_libraries(check_pubsub_informationmodel ${LIBS})
+#        add_test(check_pubsub_informationmodel ${TESTS_BINARY_DIR}/check_pubsub_informationmodel)
+#        if(UA_ENABLE_PUBSUB_INFORMATIONMODEL_METHODS)
+#            add_executable(check_pubsub_informationmodel_methods pubsub/check_pubsub_informationmodel_methods.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-plugins>)
+#            target_link_libraries(check_pubsub_informationmodel_methods ${LIBS})
+#            add_test(check_pubsub_informationmodel_methods ${TESTS_BINARY_DIR}/check_pubsub_informationmodel_methods)
+#
+#        endif()
+#    endif()
+#endif()
+#
+#add_executable(check_server_readspeed server/check_server_readspeed.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_server_readspeed ${LIBS})
+#add_test_valgrind(server_readspeed ${TESTS_BINARY_DIR}/check_server_readspeed)
+#
+#if(UA_ENABLE_SUBSCRIPTIONS)
+#    add_executable(check_server_monitoringspeed server/check_server_monitoringspeed.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#    target_link_libraries(check_server_monitoringspeed ${LIBS})
+#    add_test_valgrind(server_monitoringspeed ${TESTS_BINARY_DIR}/check_server_monitoringspeed)
+#endif()
+#
+## Test Client
+#
+#add_executable(check_client client/check_client.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_client ${LIBS})
+#add_test_valgrind(client ${TESTS_BINARY_DIR}/check_client)
+#
+#add_executable(check_client_securechannel client/check_client_securechannel.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_client_securechannel ${LIBS})
+#add_test_valgrind(client_securechannel ${TESTS_BINARY_DIR}/check_client_securechannel)
+#
+#add_executable(check_client_async client/check_client_async.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_client_async ${LIBS})
+#add_test_valgrind(client_async ${TESTS_BINARY_DIR}/check_client_async)
+#
+#add_executable(check_client_async_connect client/check_client_async_connect.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_client_async_connect ${LIBS})
+#add_test_valgrind(client_async_connect ${TESTS_BINARY_DIR}/check_client_async_connect)
+#
+#add_executable(check_client_subscriptions client/check_client_subscriptions.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_client_subscriptions ${LIBS})
+#add_test_valgrind(client_subscriptions ${TESTS_BINARY_DIR}/check_client_subscriptions)
+#
+#add_executable(check_client_highlevel client/check_client_highlevel.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#target_link_libraries(check_client_highlevel ${LIBS})
+#add_test_valgrind(client_highlevel ${TESTS_BINARY_DIR}/check_client_highlevel)
+#
+#if(UA_ENABLE_HISTORIZING)
+#    add_executable(check_client_historical_data client/check_client_historical_data.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#    target_link_libraries(check_client_historical_data ${LIBS})
+#    add_test_valgrind(client_historical_data ${TESTS_BINARY_DIR}/check_client_historical_data)
+#endif()
+#
+## Test Encryption
+#
+#if(UA_ENABLE_ENCRYPTION)
+#    add_executable(check_encryption_basic128rsa15 encryption/check_encryption_basic128rsa15.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#    target_link_libraries(check_encryption_basic128rsa15 ${LIBS})
+#    add_test_valgrind(encryption_basic128rsa15 ${TESTS_BINARY_DIR}/check_encryption_basic128rsa15)
+#
+#    add_executable(check_encryption_basic256sha256 encryption/check_encryption_basic256sha256.c $<TARGET_OBJECTS:open62541-object> $<TARGET_OBJECTS:open62541-testplugins>)
+#    target_link_libraries(check_encryption_basic256sha256 ${LIBS})
+#    add_test_valgrind(encryption_basic256sha256 ${TESTS_BINARY_DIR}/check_encryption_basic256sha256)
+#endif()
 
 # Tests for Nodeset Compiler
 add_subdirectory(nodeset-compiler)

@@ -338,8 +338,14 @@ ServerNetworkLayerTCP_start(UA_ServerNetworkLayer *nl, const UA_String *customHo
                                      customHostname->data,
                                      layer->port);
         du.data = (UA_Byte*)discoveryUrlBuffer;
+
+		UA_LOG_ERROR(layer->logger, UA_LOGCATEGORY_SERVER, "ServerNetworkLayerTCP_start custon hostname: %.*s", (int)customHostname->length, (const char*)customHostname->data);
+
     }else{
         if(UA_gethostname(hostnameBuffer, 255) == 0) {
+
+			UA_LOG_ERROR(layer->logger, UA_LOGCATEGORY_SERVER, "ServerNetworkLayerTCP_start get hostname: %s", hostnameBuffer);
+
             du.length = (size_t)UA_snprintf(discoveryUrlBuffer, 255, "opc.tcp://%s:%d/",
                                          hostnameBuffer, layer->port);
             du.data = (UA_Byte*)discoveryUrlBuffer;

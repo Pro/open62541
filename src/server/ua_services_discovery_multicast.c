@@ -88,6 +88,8 @@ addMdnsRecordForNetworkLayer(UA_Server *server, const UA_String *appName,
                        (int)nl->discoveryUrl.length, nl->discoveryUrl.data);
         return retval;
     }
+	UA_LOG_ERROR(&server->config.logger, UA_LOGCATEGORY_SERVER, "addMdnsRecordForNetworkLayer hostname: %.*s", (int)hostname.length, (const char*)hostname.data);
+
     UA_Discovery_addRecord(server, appName, &hostname, port,
                            &path, UA_DISCOVERY_TCP, true,
                            server->config.serverCapabilities,
@@ -97,6 +99,7 @@ addMdnsRecordForNetworkLayer(UA_Server *server, const UA_String *appName,
 
 void startMulticastDiscoveryServer(UA_Server *server) {
     UA_String *appName = &server->config.mdnsServerName;
+    UA_LOG_ERROR(&server->config.logger, UA_LOGCATEGORY_SERVER, "startMulticastDiscoveryServer: %.*s", (int)appName->length, (const char*)appName->data);
     for(size_t i = 0; i < server->config.networkLayersSize; i++)
         addMdnsRecordForNetworkLayer(server, appName, &server->config.networkLayers[i]);
 
