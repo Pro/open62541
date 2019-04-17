@@ -146,7 +146,7 @@ END_TEST
 #define SEMAPHORE_PATH ".\\open62541-unit-test-semaphore"
 #endif
 
-START_TEST(Server_register_semaphore) {
+/*START_TEST(Server_register_semaphore) {
     // create the semaphore
 #ifndef WIN32
     int fd = open(SEMAPHORE_PATH, O_RDWR|O_CREAT, S_IRWXU | S_IRWXG | S_IRWXO);
@@ -169,15 +169,15 @@ START_TEST(Server_register_semaphore) {
     UA_Client_disconnect(clientRegister);
     UA_Client_delete(clientRegister);
 }
-END_TEST
+END_TEST*/
 
-START_TEST(Server_unregister_semaphore) {
+/*START_TEST(Server_unregister_semaphore) {
     // delete the semaphore, this should remove the registration automatically on next check
     ck_assert_int_eq(remove(SEMAPHORE_PATH), 0);
 }
-END_TEST
+END_TEST*/
 
-START_TEST(Server_register_periodic) {
+/*START_TEST(Server_register_periodic) {
     ck_assert(clientRegisterRepeated == NULL);
 
     clientRegisterRepeated = UA_Client_new();
@@ -189,9 +189,9 @@ START_TEST(Server_register_periodic) {
                                                     60*1000, 100, &periodicRegisterCallbackId);
     ck_assert_uint_eq(retval, UA_STATUSCODE_GOOD);
 }
-END_TEST
+END_TEST*/
 
-START_TEST(Server_unregister_periodic) {
+/*START_TEST(Server_unregister_periodic) {
     // wait for first register delay
     UA_fakeSleep(1000);
     UA_realSleep(1000);
@@ -202,7 +202,7 @@ START_TEST(Server_unregister_periodic) {
     UA_Client_delete(clientRegisterRepeated);
     clientRegisterRepeated=NULL;
 }
-END_TEST
+END_TEST*/
 
 static void
 FindAndCheck(const UA_String expectedUris[], size_t expectedUrisSize,
@@ -427,7 +427,12 @@ START_TEST(Client_find_on_network_registered) {
     UA_String expectedUris[2];
     char hostname[256];
 
-    ck_assert_uint_eq(gethostname(hostname, 255), 0);
+    for (unsigned int i=0; i<10; i++) {
+		ck_assert_uint_eq(gethostname(hostname, 255), 0);
+		printf("Hostname: %s\n", hostname);
+
+    }
+
 
     //DNS limits name to max 63 chars (+ \0)
     //We need this ugly casting, otherwise gcc >7.2 will complain about format-truncation, but we want it here
@@ -497,22 +502,22 @@ START_TEST(Client_find_registered) {
 }
 END_TEST
 
-START_TEST(Util_start_lds) {
+/*START_TEST(Util_start_lds) {
     setup_lds();
 }
-END_TEST
+END_TEST*/
 
-START_TEST(Util_stop_lds) {
+/*START_TEST(Util_stop_lds) {
     teardown_lds();
 }
-END_TEST
+END_TEST*/
 
-START_TEST(Util_wait_timeout) {
+/*START_TEST(Util_wait_timeout) {
     // wait until server is removed by timeout. Additionally wait a few seconds more to be sure.
     UA_fakeSleep(100000 * checkWait);
     UA_realSleep(1000);
 }
-END_TEST
+END_TEST*/
 
 #ifdef UA_ENABLE_DISCOVERY_MULTICAST
 START_TEST(Util_wait_mdns) {
@@ -522,22 +527,22 @@ START_TEST(Util_wait_mdns) {
 END_TEST
 #endif
 
-START_TEST(Util_wait_startup) {
+/*START_TEST(Util_wait_startup) {
     UA_fakeSleep(1000);
     UA_realSleep(1000);
 }
-END_TEST
+END_TEST*/
 
-START_TEST(Util_wait_retry) {
+/*START_TEST(Util_wait_retry) {
     // first retry is after 2 seconds, then 4, so it should be enough to wait 3 seconds
     UA_fakeSleep(3000);
     UA_realSleep(3000);
 }
-END_TEST
+END_TEST*/
 
 static Suite* testSuite_Client(void) {
     Suite *s = suite_create("Register Server and Client");
-    TCase *tc_register = tcase_create("RegisterServer");
+    /*TCase *tc_register = tcase_create("RegisterServer");
     tcase_add_unchecked_fixture(tc_register, setup_lds, teardown_lds);
     tcase_add_unchecked_fixture(tc_register, setup_register, teardown_register);
     tcase_add_test(tc_register, Server_register);
@@ -562,7 +567,7 @@ static Suite* testSuite_Client(void) {
     tcase_add_test(tc_register_retry, Client_find_discovery);
     tcase_add_test(tc_register_retry, Util_stop_lds);
 
-    suite_add_tcase(s,tc_register_retry);
+    suite_add_tcase(s,tc_register_retry);*/
 
 #ifdef UA_ENABLE_DISCOVERY_MULTICAST
     TCase *tc_register_find = tcase_create("RegisterServer and FindServers");
@@ -581,7 +586,7 @@ static Suite* testSuite_Client(void) {
     tcase_add_test(tc_register_find, Client_filter_discovery);
     suite_add_tcase(s,tc_register_find);
 #endif
-
+/*
     // register server again, then wait for timeout and auto unregister
     TCase *tc_register_timeout = tcase_create("RegisterServer timeout");
     tcase_add_unchecked_fixture(tc_register_timeout, setup_lds, teardown_lds);
@@ -599,7 +604,7 @@ static Suite* testSuite_Client(void) {
     tcase_add_test(tc_register_timeout, Util_wait_timeout);
     tcase_add_test(tc_register_timeout, Client_find_discovery);
 #endif
-    suite_add_tcase(s,tc_register_timeout);
+    suite_add_tcase(s,tc_register_timeout);*/
     return s;
 }
 
