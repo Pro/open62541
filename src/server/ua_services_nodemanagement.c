@@ -924,6 +924,80 @@ recursiveTypeCheckAddChildren(UA_Server *server, UA_Session *session,
     return UA_STATUSCODE_GOOD;
 }
 
+/* Check if we got a valid browse name for the new node.
+ * For object nodes the BrowseName may only be null if the parent type has a
+ * 'DefaultInstanceBrowseName' property.
+ * */
+static UA_StatusCode
+checkValidBrowseName(UA_Server *server, UA_Session *session,
+							  const UA_Node **nodeptr, const UA_Node *type) {
+
+	UA_assert(type != NULL);
+	UA_StatusCode retval = UA_STATUSCODE_GOOD;
+	const UA_Node *node = *nodeptr;
+
+	if (node->nodeClass != UA_NODECLASS_OBJECT) {
+		if (UA_QualifiedName_isNull(&node->browseName))
+			return UA_STATUSCODE_BADBROWSENAMEINVALID;
+		return UA_STATUSCODE_GOOD;
+	}
+
+	if (!UA_QualifiedName_isNull(&node->browseName))
+		return UA_STATUSCODE_GOOD;
+
+	/* at this point we have an object with an empty browse name.
+	 * Check the type node if it has a DefaultInstanceBrowseName property
+	 */
+
+	UA_Variant defaultBrowseName;
+	UA_Variant_init(&defaultBrowseName);
+
+	UA_NodeId hasPropertyReference = UA_NODEID_NUMERIC(0, UA_NS0ID_HASPROPERTY);
+	UA_String defaultInstanceBrowseName = UA_STRING("DefaultInstanceBrowseName");
+
+	bool found = false;
+	for (size_t i = 0; i < type->referencesSize && !found; i++) {
+		if (type->references[i].isInverse ||
+			!UA_NodeId_equal(&type->references[i].referenceTypeId, &hasPropertyReference))
+			continue;
+
+		for (size_t j = 0; j < type->references[i].targetIdsSize; j++) {
+			const UA_Node *propertyNode = UA_Nodestore_getNode(server->nsCtx, &type->references[i].targetIds[j].nodeId);
+			if (!propertyNode)
+				continue;
+			if (propertyNode->nodeClass != UA_NODECLASS_VARIABLE ||
+				!UA_String_equal(&propertyNode->browseName.name, &defaultInstanceBrowseName)
+					) {
+				UA_Nodestore_releaseNode(server->nsCtx, propertyNode);
+				continue;
+			}
+
+			retval = UA_Server_readValue(server, propertyNode->nodeId, &defaultBrowseName);
+			UA_Nodestore_releaseNode(server->nsCtx, propertyNode);
+
+			if (retval != UA_STATUSCODE_GOOD)
+				return retval;
+
+			found = true;
+			break;
+		}
+	}
+	if (!found)
+		return UA_STATUSCODE_BADBROWSENAMEINVALID;
+
+	if (defaultBrowseName.type != &UA_TYPES[UA_TYPES_QUALIFIEDNAME]) {
+		UA_Variant_clear(&defaultBrowseName);
+		return UA_STATUSCODE_BADBROWSENAMEINVALID;
+	}
+
+
+	UA_QualifiedName *defaultValue = (UA_QualifiedName*)defaultBrowseName.data;
+	retval = UA_Server_writeBrowseName(server, node->nodeId, *defaultValue);
+	UA_Variant_clear(&defaultBrowseName);
+
+	return retval;
+}
+
 /* Construct children first */
 static UA_StatusCode
 recursiveCallConstructors(UA_Server *server, UA_Session *session,
@@ -1070,6 +1144,10 @@ AddNode_finish(UA_Server *server, UA_Session *session, const UA_NodeId *nodeId) 
             retval = UA_STATUSCODE_BADTYPEDEFINITIONINVALID;
             goto cleanup;
         }
+
+		retval = checkValidBrowseName(server, session, &node, type);
+		if(retval != UA_STATUSCODE_GOOD)
+			goto cleanup;
 
         retval = recursiveTypeCheckAddChildren(server, session, &node, type);
         if(retval != UA_STATUSCODE_GOOD)
