@@ -1,0 +1,1585 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UANodeSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd">
+  <NamespaceUris>
+    <Uri>http://HSPforzheim.de/UA/AML/</Uri>
+    <Uri>http://HSPforzheim/SystemModel_LinearAchse_Version1.AML</Uri>
+  </NamespaceUris>
+  <Aliases>
+    <Alias Alias="Boolean">i=1</Alias>
+    <Alias Alias="SByte">i=2</Alias>
+    <Alias Alias="Byte">i=3</Alias>
+    <Alias Alias="Int16">i=4</Alias>
+    <Alias Alias="UInt16">i=5</Alias>
+    <Alias Alias="Int32">i=6</Alias>
+    <Alias Alias="UInt32">i=7</Alias>
+    <Alias Alias="Int64">i=8</Alias>
+    <Alias Alias="UInt64">i=9</Alias>
+    <Alias Alias="Float">i=10</Alias>
+    <Alias Alias="Double">i=11</Alias>
+    <Alias Alias="String">i=12</Alias>
+    <Alias Alias="DateTime">i=13</Alias>
+    <Alias Alias="Guid">i=14</Alias>
+    <Alias Alias="ByteString">i=15</Alias>
+    <Alias Alias="XmlElement">i=16</Alias>
+    <Alias Alias="NodeId">i=17</Alias>
+    <Alias Alias="ExpandedNodeId">i=18</Alias>
+    <Alias Alias="StatusCode">i=19</Alias>
+    <Alias Alias="QualifiedName">i=20</Alias>
+    <Alias Alias="LocalizedText">i=21</Alias>
+    <Alias Alias="Number">i=26</Alias>
+    <Alias Alias="Integer">i=27</Alias>
+    <Alias Alias="UInteger">i=28</Alias>
+    <Alias Alias="Organizes">i=35</Alias>
+    <Alias Alias="HasEventSource">i=36</Alias>
+    <Alias Alias="HasModellingRule">i=37</Alias>
+    <Alias Alias="HasEncoding">i=38</Alias>
+    <Alias Alias="HasDescription">i=39</Alias>
+    <Alias Alias="HasTypeDefinition">i=40</Alias>
+    <Alias Alias="HasSubtype">i=45</Alias>
+    <Alias Alias="HasProperty">i=46</Alias>
+    <Alias Alias="HasComponent">i=47</Alias>
+    <Alias Alias="HasNotifier">i=48</Alias>
+    <Alias Alias="Duration">i=290</Alias>
+    <Alias Alias="Argument">i=296</Alias>
+    <Alias Alias="Range">i=884</Alias>
+  </Aliases>
+  <UAObject NodeId="ns=2;s=SystemModel_LinearAchse_Version1.aml" BrowseName="2:SystemModel_LinearAchse_Version1.aml">
+    <DisplayName>SystemModel_LinearAchse_Version1.aml</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1002</Reference>
+      <Reference ReferenceType="Organizes" IsForward="false">ns=1;i=5001</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=SystemModel_LinearAchse_Version1.aml@SchemaVersion</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=SystemModel_LinearAchse_Version1.aml@InstanceHierarchies</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=SystemModel_LinearAchse_Version1.aml@SystemUnitClassLibs</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=SystemModel_LinearAchse_Version1.aml@RoleClassLibs</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=SystemModel_LinearAchse_Version1.aml@InterfaceClassLibs</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=SystemModel_LinearAchse_Version1.aml@AttributeTypeLibs</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=2;s=SystemModel_LinearAchse_Version1.aml@SchemaVersion" BrowseName="2:SchemaVersion" ParentNodeId="ns=2;s=SystemModel_LinearAchse_Version1.aml" DataType="String">
+    <DisplayName>SchemaVersion</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6004</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">3.0</String>
+    </Value>
+  </UAVariable>
+  <UAObject NodeId="ns=2;s=SystemModel_LinearAchse_Version1.aml@InstanceHierarchies" BrowseName="2:InstanceHierarchies" ParentNodeId="ns=2;s=SystemModel_LinearAchse_Version1.aml">
+    <DisplayName>InstanceHierarchies</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=5007</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=SystemModel_LinearAchse_Version1.aml</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=InstanceHierarchy</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=2;s=InstanceHierarchy" BrowseName="2:InstanceHierarchy">
+    <DisplayName>InstanceHierarchy</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=5016</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=InstanceHierarchy@Version</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=SystemModel_LinearAchse_Version1.aml@InstanceHierarchies</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=2;s=InstanceHierarchy@Version" BrowseName="2:Version" ParentNodeId="ns=2;s=InstanceHierarchy" DataType="String">
+    <DisplayName>Version</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6001</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</String>
+    </Value>
+  </UAVariable>
+  <UAObject NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6" BrowseName="2:LinearAchse">
+    <DisplayName>LinearAchse</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1007</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=InstanceHierarchy</Reference>
+      <Reference ReferenceType="ns=1;i=4002">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Resource</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6@ID</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Velocity</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.DriveEnable</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Acceleration</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.StartHoming</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.StartPositioning</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ErrorReset</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.JogPos</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.JogNeg</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.DriveEnabled</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.HomeValid</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPositionValid</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPositionValid</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualRotationalSpeed</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Error</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6@ID" BrowseName="2:ID" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6" DataType="String">
+    <DisplayName>ID</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6005</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">8fc2e94c-5215-4d13-96e3-86394bb42cd6</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition" BrowseName="2:GoalPosition" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>GoalPosition</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=OPCUARobotCompendium/Position</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition.x</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition.y</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition.z</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition.Direction</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition@Unit</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition.x" BrowseName="2:x" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition" DataType="Double" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>x</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition.y" BrowseName="2:y" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition" DataType="Double" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>y</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition.z" BrowseName="2:z" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition" DataType="Double" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>z</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition.Direction@DefaultValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition.Direction@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition.Direction" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">In</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition@Unit" BrowseName="2:Unit" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPosition" DataType="String">
+    <DisplayName>Unit</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6010</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">mm</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Velocity" BrowseName="2:Velocity" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6" DataType="Int32" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Velocity</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Velocity.Direction</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Velocity@Unit</Reference>
+    </References>
+    <Value>
+      <Int32 xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Int32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Velocity.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Velocity" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Velocity</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Velocity.Direction@DefaultValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Velocity.Direction@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Velocity.Direction" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">In</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Velocity@Unit" BrowseName="2:Unit" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Velocity" DataType="String">
+    <DisplayName>Unit</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6010</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">mm/s</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.DriveEnable" BrowseName="2:DriveEnable" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6" DataType="Boolean" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>DriveEnable</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.DriveEnable.Direction</Reference>
+    </References>
+    <Value>
+      <Boolean xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Boolean>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.DriveEnable.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.DriveEnable" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.DriveEnable</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.DriveEnable.Direction@DefaultValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.DriveEnable.Direction@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.DriveEnable.Direction" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">In</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Acceleration" BrowseName="2:Acceleration" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6" DataType="Int32" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Acceleration</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Acceleration.Direction</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Acceleration@Unit</Reference>
+    </References>
+    <Value>
+      <Int32 xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Int32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Acceleration.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Acceleration" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Acceleration</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Acceleration.Direction@DefaultValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Acceleration.Direction@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Acceleration.Direction" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">In</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Acceleration@Unit" BrowseName="2:Unit" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Acceleration" DataType="String">
+    <DisplayName>Unit</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6010</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">mm/s^2</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.StartHoming" BrowseName="2:StartHoming" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6" DataType="Boolean" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>StartHoming</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.StartHoming.Direction</Reference>
+    </References>
+    <Value>
+      <Boolean xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Boolean>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.StartHoming.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.StartHoming" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.StartHoming</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.StartHoming.Direction@DefaultValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.StartHoming.Direction@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.StartHoming.Direction" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">In</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.StartPositioning" BrowseName="2:StartPositioning" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6" DataType="Boolean" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>StartPositioning</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.StartPositioning.Direction</Reference>
+    </References>
+    <Value>
+      <Boolean xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Boolean>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.StartPositioning.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.StartPositioning" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.StartPositioning</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.StartPositioning.Direction@DefaultValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.StartPositioning.Direction@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.StartPositioning.Direction" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">In</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ErrorReset" BrowseName="2:ErrorReset" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6" DataType="Boolean" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>ErrorReset</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ErrorReset.Direction</Reference>
+    </References>
+    <Value>
+      <Boolean xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Boolean>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ErrorReset.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ErrorReset" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ErrorReset</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ErrorReset.Direction@DefaultValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ErrorReset.Direction@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ErrorReset.Direction" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">In</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.JogPos" BrowseName="2:JogPos" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6" DataType="Boolean" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>JogPos</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.JogPos.Direction</Reference>
+    </References>
+    <Value>
+      <Boolean xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Boolean>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.JogPos.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.JogPos" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.JogPos</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.JogPos.Direction@DefaultValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.JogPos.Direction@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.JogPos.Direction" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">In</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.JogNeg" BrowseName="2:JogNeg" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6" DataType="Boolean" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>JogNeg</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.JogNeg.Direction</Reference>
+    </References>
+    <Value>
+      <Boolean xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Boolean>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.JogNeg.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.JogNeg" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.JogNeg</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.JogNeg.Direction@DefaultValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.JogNeg.Direction@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.JogNeg.Direction" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">In</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.DriveEnabled" BrowseName="2:DriveEnabled" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6" DataType="Boolean" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>DriveEnabled</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.DriveEnabled.Direction</Reference>
+    </References>
+    <Value>
+      <Boolean xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Boolean>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.DriveEnabled.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.DriveEnabled" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.DriveEnabled</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.DriveEnabled.Direction@DefaultValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.DriveEnabled.Direction@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.DriveEnabled.Direction" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">Out</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.HomeValid" BrowseName="2:HomeValid" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6" DataType="Boolean" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>HomeValid</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.HomeValid.Direction</Reference>
+    </References>
+    <Value>
+      <Boolean xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Boolean>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.HomeValid.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.HomeValid" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.HomeValid</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.HomeValid.Direction@DefaultValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.HomeValid.Direction@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.HomeValid.Direction" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">Out</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPositionValid" BrowseName="2:GoalPositionValid" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6" DataType="Boolean" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>GoalPositionValid</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPositionValid.Direction</Reference>
+    </References>
+    <Value>
+      <Boolean xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Boolean>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPositionValid.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPositionValid" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPositionValid</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPositionValid.Direction@DefaultValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPositionValid.Direction@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.GoalPositionValid.Direction" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">Out</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPositionValid" BrowseName="2:ActualPositionValid" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6" DataType="Boolean" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>ActualPositionValid</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPositionValid.Direction</Reference>
+    </References>
+    <Value>
+      <Boolean xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Boolean>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPositionValid.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPositionValid" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPositionValid</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPositionValid.Direction@DefaultValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPositionValid.Direction@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPositionValid.Direction" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">Out</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition" BrowseName="2:ActualPosition" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>ActualPosition</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=OPCUARobotCompendium/Position</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition.x</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition.y</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition.z</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition.Direction</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition@Unit</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition.x" BrowseName="2:x" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition" DataType="Double" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>x</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition.y" BrowseName="2:y" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition" DataType="Double" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>y</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition.z" BrowseName="2:z" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition" DataType="Double" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>z</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition.Direction@DefaultValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition.Direction@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition.Direction" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">Out</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition@Unit" BrowseName="2:Unit" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualPosition" DataType="String">
+    <DisplayName>Unit</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6010</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">mm</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualRotationalSpeed" BrowseName="2:ActualRotationalSpeed" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6" DataType="Int32" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>ActualRotationalSpeed</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualRotationalSpeed.Direction</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualRotationalSpeed@Unit</Reference>
+    </References>
+    <Value>
+      <Int32 xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Int32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualRotationalSpeed.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualRotationalSpeed" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualRotationalSpeed</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualRotationalSpeed.Direction@DefaultValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualRotationalSpeed.Direction@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualRotationalSpeed.Direction" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">Out</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualRotationalSpeed@Unit" BrowseName="2:Unit" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.ActualRotationalSpeed" DataType="String">
+    <DisplayName>Unit</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6010</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">1/s</String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Error" BrowseName="2:Error" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6" DataType="Boolean" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Error</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Error.Direction</Reference>
+    </References>
+    <Value>
+      <Boolean xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Boolean>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Error.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Error" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Error</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Error.Direction@DefaultValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Error.Direction@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=8fc2e94c-5215-4d13-96e3-86394bb42cd6.Error.Direction" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">Out</String>
+    </Value>
+  </UAVariable>
+  <UAObject NodeId="ns=2;s=SystemModel_LinearAchse_Version1.aml@SystemUnitClassLibs" BrowseName="2:SystemUnitClassLibs" ParentNodeId="ns=2;s=SystemModel_LinearAchse_Version1.aml">
+    <DisplayName>SystemUnitClassLibs</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=5006</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=SystemModel_LinearAchse_Version1.aml</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=2;s=SystemModel_LinearAchse_Version1.aml@RoleClassLibs" BrowseName="2:RoleClassLibs" ParentNodeId="ns=2;s=SystemModel_LinearAchse_Version1.aml">
+    <DisplayName>RoleClassLibs</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=5005</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=SystemModel_LinearAchse_Version1.aml</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseRoleClassLib</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=RoleClassLib</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=2;s=AutomationMLBaseRoleClassLib" BrowseName="2:AutomationMLBaseRoleClassLib">
+    <DisplayName>AutomationMLBaseRoleClassLib</DisplayName>
+    <Description>Automation Markup Language Base Role Class Library - Part 1</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=5014</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=SystemModel_LinearAchse_Version1.aml@RoleClassLibs</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=AutomationMLBaseRoleClassLib@Version</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseRoleClassLib@Version" BrowseName="2:Version" ParentNodeId="ns=2;s=AutomationMLBaseRoleClassLib" DataType="String">
+    <DisplayName>Version</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6001</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">2.10.0</String>
+    </Value>
+  </UAVariable>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole" BrowseName="2:AutomationMLBaseRole">
+    <DisplayName>AutomationMLBaseRole</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;i=1005</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Group</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Facet</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Resource</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Product</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Process</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Structure</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/ExternalData</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Group" BrowseName="2:Group">
+    <DisplayName>Group</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Group.AssociatedFacet</Reference>
+    </References>
+  </UAObjectType>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Group.AssociatedFacet" BrowseName="2:AssociatedFacet" ParentNodeId="ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Group" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>AssociatedFacet</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/AssociatedFacet</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Group</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Facet" BrowseName="2:Facet">
+    <DisplayName>Facet</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Resource" BrowseName="2:Resource">
+    <DisplayName>Resource</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Product" BrowseName="2:Product">
+    <DisplayName>Product</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Process" BrowseName="2:Process">
+    <DisplayName>Process</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Structure" BrowseName="2:Structure">
+    <DisplayName>Structure</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Structure/ProductStructure</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Structure/ProcessStructure</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Structure/ResourceStructure</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Structure/ProductStructure" BrowseName="2:ProductStructure">
+    <DisplayName>ProductStructure</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Structure</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Structure</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Structure/ProcessStructure" BrowseName="2:ProcessStructure">
+    <DisplayName>ProcessStructure</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Structure</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Structure</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Structure/ResourceStructure" BrowseName="2:ResourceStructure">
+    <DisplayName>ResourceStructure</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Structure</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Structure</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole/ExternalData" BrowseName="2:ExternalData">
+    <DisplayName>ExternalData</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseRoleClassLib/AutomationMLBaseRole</Reference>
+    </References>
+  </UAObjectType>
+  <UAObject NodeId="ns=2;s=RoleClassLib" BrowseName="2:RoleClassLib">
+    <DisplayName>RoleClassLib</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=5014</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=SystemModel_LinearAchse_Version1.aml@RoleClassLibs</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=RoleClassLib@Version</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=RoleClassLib/MotionDevice</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=RoleClassLib/Axes</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=RoleClassLib/PowerTrain</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=2;s=RoleClassLib@Version" BrowseName="2:Version" ParentNodeId="ns=2;s=RoleClassLib" DataType="String">
+    <DisplayName>Version</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6001</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</String>
+    </Value>
+  </UAVariable>
+  <UAObjectType NodeId="ns=2;s=RoleClassLib/MotionDevice" BrowseName="2:MotionDevice">
+    <DisplayName>MotionDevice</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;i=1005</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=RoleClassLib</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=RoleClassLib/Axes" BrowseName="2:Axes">
+    <DisplayName>Axes</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;i=1005</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=RoleClassLib</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=RoleClassLib/PowerTrain" BrowseName="2:PowerTrain">
+    <DisplayName>PowerTrain</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;i=1005</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=RoleClassLib</Reference>
+    </References>
+  </UAObjectType>
+  <UAObject NodeId="ns=2;s=SystemModel_LinearAchse_Version1.aml@InterfaceClassLibs" BrowseName="2:InterfaceClassLibs" ParentNodeId="ns=2;s=SystemModel_LinearAchse_Version1.aml">
+    <DisplayName>InterfaceClassLibs</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=5004</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=SystemModel_LinearAchse_Version1.aml</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=2;s=AutomationMLInterfaceClassLib" BrowseName="2:AutomationMLInterfaceClassLib">
+    <DisplayName>AutomationMLInterfaceClassLib</DisplayName>
+    <Description>Standard Automation Markup Language Interface Class Library - Part 1 Content </Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=5013</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=AutomationMLInterfaceClassLib@Version</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=SystemModel_LinearAchse_Version1.aml@InterfaceClassLibs</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=2;s=AutomationMLInterfaceClassLib@Version" BrowseName="2:Version" ParentNodeId="ns=2;s=AutomationMLInterfaceClassLib" DataType="String">
+    <DisplayName>Version</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6001</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">2.10</String>
+    </Value>
+  </UAVariable>
+  <UAObjectType NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface" BrowseName="2:AutomationMLBaseInterface">
+    <DisplayName>AutomationMLBaseInterface</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=1;i=1004</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Order</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/PPRConnector</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Communication</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Order" BrowseName="2:Order">
+    <DisplayName>Order</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Order.Direction</Reference>
+    </References>
+  </UAObjectType>
+  <UAVariable NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Order.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Order" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Order</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Order.Direction@DefaultValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Order.Direction@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Order.Direction" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">InOut</String>
+    </Value>
+  </UAVariable>
+  <UAObjectType NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port" BrowseName="2:Port">
+    <DisplayName>Port</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port.Direction</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port.Cardinality</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port.Category</Reference>
+    </References>
+  </UAObjectType>
+  <UAVariable NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port.Cardinality" BrowseName="2:Cardinality" ParentNodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Cardinality</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Cardinality</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port.Cardinality.MinOccur</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port.Cardinality.MaxOccur</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port.Cardinality.MinOccur" BrowseName="2:MinOccur" ParentNodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port.Cardinality" DataType="UInt32" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>MinOccur</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port.Cardinality</Reference>
+    </References>
+    <Value>
+      <UInt32 xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </UInt32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port.Cardinality.MaxOccur" BrowseName="2:MaxOccur" ParentNodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port.Cardinality" DataType="UInt32" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>MaxOccur</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port.Cardinality</Reference>
+    </References>
+    <Value>
+      <UInt32 xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </UInt32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port.Category" BrowseName="2:Category" ParentNodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Category</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/Category</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Port</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAObjectType NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/PPRConnector" BrowseName="2:PPRConnector">
+    <DisplayName>PPRConnector</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector" BrowseName="2:ExternalDataConnector">
+    <DisplayName>ExternalDataConnector</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/COLLADAInterface</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/PLCopenXMLInterface</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/ExternalDataReference</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector.refURI</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/COLLADAInterface" BrowseName="2:COLLADAInterface">
+    <DisplayName>COLLADAInterface</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/COLLADAInterface.refType</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/COLLADAInterface.target</Reference>
+    </References>
+  </UAObjectType>
+  <UAVariable NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/COLLADAInterface.refType" BrowseName="2:refType" ParentNodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/COLLADAInterface" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>refType</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/COLLADAInterface</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/COLLADAInterface.target" BrowseName="2:target" ParentNodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/COLLADAInterface" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>target</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/COLLADAInterface</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAObjectType NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/PLCopenXMLInterface" BrowseName="2:PLCopenXMLInterface">
+    <DisplayName>PLCopenXMLInterface</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/ExternalDataReference" BrowseName="2:ExternalDataReference">
+    <DisplayName>ExternalDataReference</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/ExternalDataReference.MIMEType</Reference>
+    </References>
+  </UAObjectType>
+  <UAVariable NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/ExternalDataReference.MIMEType" BrowseName="2:MIMEType" ParentNodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/ExternalDataReference" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>MIMEType</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/MIMEType</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/ExternalDataReference</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector.refURI" BrowseName="2:refURI" ParentNodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>refURI</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;s=AutomationMLBaseAttributeTypeLib/refURI</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAObjectType NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Communication" BrowseName="2:Communication">
+    <DisplayName>Communication</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Communication/SignalInterface</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Communication/SignalInterface" BrowseName="2:SignalInterface">
+    <DisplayName>SignalInterface</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Communication</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Communication</Reference>
+    </References>
+  </UAObjectType>
+  <UAObject NodeId="ns=2;s=SystemModel_LinearAchse_Version1.aml@AttributeTypeLibs" BrowseName="2:AttributeTypeLibs" ParentNodeId="ns=2;s=SystemModel_LinearAchse_Version1.aml">
+    <DisplayName>AttributeTypeLibs</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=5011</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=SystemModel_LinearAchse_Version1.aml</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=OPCUARobotCompendium</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AttributeTypeLib</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib" BrowseName="2:AutomationMLBaseAttributeTypeLib">
+    <DisplayName>AutomationMLBaseAttributeTypeLib</DisplayName>
+    <Description>Standard Automation Markup Language Attribute Type Library</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=5017</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=AutomationMLBaseAttributeTypeLib@Version</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=SystemModel_LinearAchse_Version1.aml@AttributeTypeLibs</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/AssociatedExternalValue</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/AssociatedFacet</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/Cardinality</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/Category</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/Direction</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/DocLang</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/ListType</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/LocalizedAttribute</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/MIMEType</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/OrderedListType</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/refURI</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib@Version" BrowseName="2:Version" ParentNodeId="ns=2;s=AutomationMLBaseAttributeTypeLib" DataType="String">
+    <DisplayName>Version</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6001</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">2.10.0</String>
+    </Value>
+  </UAVariable>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/AssociatedExternalValue" BrowseName="2:AssociatedExternalValue">
+    <DisplayName>AssociatedExternalValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/AssociatedExternalValue.refCAEXAttribute</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/AssociatedExternalValue.refURI</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/AssociatedExternalValue.Direction</Reference>
+    </References>
+  </UAObjectType>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/AssociatedExternalValue.refCAEXAttribute" BrowseName="2:refCAEXAttribute" ParentNodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/AssociatedExternalValue" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>refCAEXAttribute</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib/AssociatedExternalValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/AssociatedExternalValue.refURI" BrowseName="2:refURI" ParentNodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/AssociatedExternalValue" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>refURI</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib/AssociatedExternalValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/AssociatedExternalValue.Direction" BrowseName="2:Direction" ParentNodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/AssociatedExternalValue" DataType="String" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib/AssociatedExternalValue</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </String>
+    </Value>
+  </UAVariable>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/AssociatedFacet" BrowseName="2:AssociatedFacet">
+    <DisplayName>AssociatedFacet</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Cardinality" BrowseName="2:Cardinality">
+    <DisplayName>Cardinality</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/Cardinality.MinOccur</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/Cardinality.MaxOccur</Reference>
+    </References>
+  </UAObjectType>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Cardinality.MinOccur" BrowseName="2:MinOccur" ParentNodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Cardinality" DataType="UInt32" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>MinOccur</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib/Cardinality</Reference>
+    </References>
+    <Value>
+      <UInt32 xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </UInt32>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Cardinality.MaxOccur" BrowseName="2:MaxOccur" ParentNodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Cardinality" DataType="UInt32" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>MaxOccur</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib/Cardinality</Reference>
+    </References>
+    <Value>
+      <UInt32 xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </UInt32>
+    </Value>
+  </UAVariable>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Category" BrowseName="2:Category">
+    <DisplayName>Category</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Direction" BrowseName="2:Direction">
+    <DisplayName>Direction</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/DocLang" BrowseName="2:DocLang">
+    <DisplayName>DocLang</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame" BrowseName="2:Frame">
+    <DisplayName>Frame</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.x</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.y</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.z</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.rx</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.ry</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.rz</Reference>
+    </References>
+  </UAObjectType>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.x" BrowseName="2:x" ParentNodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame" DataType="Double" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>x</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.x@DefaultValue</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.x@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.x" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.y" BrowseName="2:y" ParentNodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame" DataType="Double" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>y</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.y@DefaultValue</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.y@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.y" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.z" BrowseName="2:z" ParentNodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame" DataType="Double" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>z</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.z@DefaultValue</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.z@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.z" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.rx" BrowseName="2:rx" ParentNodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame" DataType="Double" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>rx</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.rx@DefaultValue</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.rx@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.rx" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.ry" BrowseName="2:ry" ParentNodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame" DataType="Double" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>ry</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.ry@DefaultValue</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.ry@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.ry" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.rz" BrowseName="2:rz" ParentNodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame" DataType="Double" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>rz</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.rz@DefaultValue</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.rz@DefaultValue" BrowseName="2:DefaultValue" ParentNodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/Frame.rz" DataType="String">
+    <DisplayName>DefaultValue</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6011</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</Double>
+    </Value>
+  </UAVariable>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/ListType" BrowseName="2:ListType">
+    <DisplayName>ListType</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/LocalizedAttribute" BrowseName="2:LocalizedAttribute">
+    <DisplayName>LocalizedAttribute</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/MIMEType" BrowseName="2:MIMEType">
+    <DisplayName>MIMEType</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/OrderedListType" BrowseName="2:OrderedListType">
+    <DisplayName>OrderedListType</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib</Reference>
+    </References>
+  </UAObjectType>
+  <UAObjectType NodeId="ns=2;s=AutomationMLBaseAttributeTypeLib/refURI" BrowseName="2:refURI">
+    <DisplayName>refURI</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=AutomationMLBaseAttributeTypeLib</Reference>
+    </References>
+  </UAObjectType>
+  <UAObject NodeId="ns=2;s=OPCUARobotCompendium" BrowseName="2:OPCUARobotCompendium">
+    <DisplayName>OPCUARobotCompendium</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=5017</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=OPCUARobotCompendium@Version</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=SystemModel_LinearAchse_Version1.aml@AttributeTypeLibs</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=OPCUARobotCompendium/Position</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=OPCUARobotCompendium/ActualSpeed</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=2;s=OPCUARobotCompendium@Version" BrowseName="2:Version" ParentNodeId="ns=2;s=OPCUARobotCompendium" DataType="String">
+    <DisplayName>Version</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6001</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</String>
+    </Value>
+  </UAVariable>
+  <UAObjectType NodeId="ns=2;s=OPCUARobotCompendium/Position" BrowseName="2:Position">
+    <DisplayName>Position</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=OPCUARobotCompendium</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=OPCUARobotCompendium/Position.x</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=OPCUARobotCompendium/Position.y</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;s=OPCUARobotCompendium/Position.z</Reference>
+    </References>
+  </UAObjectType>
+  <UAVariable NodeId="ns=2;s=OPCUARobotCompendium/Position.x" BrowseName="2:x" ParentNodeId="ns=2;s=OPCUARobotCompendium/Position" DataType="Double" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>x</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=OPCUARobotCompendium/Position</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=OPCUARobotCompendium/Position.y" BrowseName="2:y" ParentNodeId="ns=2;s=OPCUARobotCompendium/Position" DataType="Double" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>y</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=OPCUARobotCompendium/Position</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Double>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;s=OPCUARobotCompendium/Position.z" BrowseName="2:z" ParentNodeId="ns=2;s=OPCUARobotCompendium/Position" DataType="Double" AccessLevel="15" UserAccessLevel="15">
+    <DisplayName>z</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=OPCUARobotCompendium/Position</Reference>
+    </References>
+    <Value>
+      <Double xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      </Double>
+    </Value>
+  </UAVariable>
+  <UAObjectType NodeId="ns=2;s=OPCUARobotCompendium/ActualSpeed" BrowseName="2:ActualSpeed">
+    <DisplayName>ActualSpeed</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=OPCUARobotCompendium</Reference>
+    </References>
+  </UAObjectType>
+  <UAObject NodeId="ns=2;s=AttributeTypeLib" BrowseName="2:AttributeTypeLib">
+    <DisplayName>AttributeTypeLib</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=5017</Reference>
+      <Reference ReferenceType="HasProperty">ns=2;s=AttributeTypeLib@Version</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;s=SystemModel_LinearAchse_Version1.aml@AttributeTypeLibs</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=2;s=AttributeTypeLib@Version" BrowseName="2:Version" ParentNodeId="ns=2;s=AttributeTypeLib" DataType="String">
+    <DisplayName>Version</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=6001</Reference>
+    </References>
+    <Value>
+      <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">0</String>
+    </Value>
+  </UAVariable>
+</UANodeSet>

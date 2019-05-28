@@ -103,7 +103,39 @@ if(UA_NAMESPACE_ZERO STREQUAL "FULL")
                 ${UA_TYPES_DI_SOURCES}
                 ${UA_TYPES_PLC_SOURCES})
     add_dependencies(server_nodeset_plcopen open62541-generator-ns-plc)
-    
+
+
+
+    # generate aml namespace which is using DI
+    ua_generate_nodeset_and_datatypes(
+        NAME "aml"
+        #FILE_CSV "${FILE_CSV_DIRPREFIX}/POWERLINK/Opc.Ua.POWERLINK.NodeIds.csv"
+        #FILE_BSD "${FILE_BSD_POWERLINK_DIRPREFIX}/Opc.Ua.POWERLINK.NodeSet2.bsd"
+        # NAMESPACE_IDX 2
+        FILE_NS "${CMAKE_CURRENT_SOURCE_DIR}/Opc.Ua.AMLBaseTypes.NodeSet2.xml"
+        # POWERLINK depends on the di nodeset, which must be generated before
+        INTERNAL
+    )
+    # generate aml_linear namespace which is using AML
+    ua_generate_nodeset_and_datatypes(
+        NAME "aml_linear"
+        #FILE_CSV "${FILE_CSV_DIRPREFIX}/POWERLINK/Opc.Ua.POWERLINK.NodeIds.csv"
+        #FILE_BSD "${FILE_BSD_POWERLINK_DIRPREFIX}/Opc.Ua.POWERLINK.NodeSet2.bsd"
+        # NAMESPACE_IDX 2
+        FILE_NS "${CMAKE_CURRENT_SOURCE_DIR}/SystemModel_LinearAchse_Version1.xml"
+        # POWERLINK depends on the di nodeset, which must be generated before
+        DEPENDS "aml"
+        INTERNAL
+    )
+
+
+    add_example(server_nodeset_aml server_nodeset_aml.c
+                ${UA_NODESET_DI_SOURCES}
+                ${UA_NODESET_AML_SOURCES}
+                ${UA_NODESET_AML_LINEAR_SOURCES}
+                ${UA_TYPES_DI_SOURCES})
+    add_dependencies(server_nodeset_aml open62541-generator-ns-aml_linear)
+
 
 endif()
 
