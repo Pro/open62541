@@ -3,16 +3,11 @@ set -e
 
 if [ "$ARCH" = "freertoslwip" ]; then
     echo -e "\r\n==Compile for FREERTOS==" && echo -en 'travis_fold:start:script.build.freertoslwip\\r'
-    cd $HOME/build/open62541
     mkdir -p build && cd build
     cmake \
     -DUA_ARCHITECTURE:STRING=freertosLWIP \
-    -DUA_ENABLE_PUBSUB:BOOL=OFF \
-    -DUA_ENABLE_METHODCALLS:BOOL=ON \
-    -DUA_ENABLE_NODEMANAGEMENT:BOOL=ON \
     -DUA_ENABLE_AMALGAMATION:STRING=ON \
-    -DUA_ENABLE_PUBSUB:BOOL=ON \
-    -DUA_LOGLEVEL:STRING=600 ..
+    -DUA_ENABLE_PUBSUB:BOOL=ON ..
 	# Compile error ignored and does not cause any problems. Related Issues: #2887 and #2893
     make -j || true
 

@@ -326,6 +326,10 @@ before_install: |
  export PATH=$PATH:$HOME/.local/bin # linux
  export PATH=$PATH:$HOME/Library/Python #OS X
  export PATH=$PATH:$HOME/Library/Python/2.7/bin #OS X
+ # set paths for freeRTOS builds
+ export IDF_PATH=$LOCAL_PKG/esp-idf
+ export PATH=$PATH:$LOCAL_PKG/xtensa-esp32-elf/bin # linux
+
 
  if [ ${TRAVIS_OS_NAME} == "linux" ]; then sh ./tools/travis/travis_linux_before_install.sh; fi
  if [ ${TRAVIS_OS_NAME} == "osx" ]; then sh ./tools/travis/travis_osx_before_install.sh; fi
