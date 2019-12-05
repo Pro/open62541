@@ -1,7 +1,7 @@
-<opc:TypeDictionary xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://www.euromap.org/euromap77/" DefaultByteOrder="LittleEndian" xmlns:opc="http://opcfoundation.org/BinarySchema/" xmlns:ua="http://opcfoundation.org/UA/" TargetNamespace="http://www.euromap.org/euromap77/">
+<opc:TypeDictionary xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://opcfoundation.org/UA/PlasticsRubber/IMM2MES/" DefaultByteOrder="LittleEndian" xmlns:opc="http://opcfoundation.org/BinarySchema/" xmlns:ua="http://opcfoundation.org/UA/" TargetNamespace="http://opcfoundation.org/UA/PlasticsRubber/IMM2MES/">
     <opc:Import Namespace="http://opcfoundation.org/UA/"/>
     <opc:EnumeratedType LengthInBits="32" Name="IMMMessageClassificationEnumeration">
-        <opc:Documentation>This Enumeration specifies the values to be used in the Classification property in the MessageConditionType and related logbook events of EUROMAP 83</opc:Documentation>
+        <opc:Documentation>This Enumeration specifies the values to be used in the Classification property in the MessageConditionType and related logbook events of OPC 40083</opc:Documentation>
         <opc:EnumeratedValue Name="OTHER" Value="0"/>
         <opc:EnumeratedValue Name="IMM_INJECTION_UNIT" Value="100"/>
         <opc:EnumeratedValue Name="IMM_CLAMPING_UNIT" Value="101"/>

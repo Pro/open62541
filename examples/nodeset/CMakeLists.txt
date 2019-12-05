@@ -113,10 +113,10 @@ if(UA_NAMESPACE_ZERO STREQUAL "FULL")
     # generate euromap83 namespace which is using DI
     ua_generate_nodeset_and_datatypes(
         NAME "euromap83"
-        FILE_CSV "${PROJECT_SOURCE_DIR}/nodeset/euromap/Opc_Ua.EUROMAP83.RC1_01.NodeId.csv"
-        FILE_BSD "${PROJECT_SOURCE_DIR}/nodeset/euromap/Opc_Ua.EUROMAP83.1_01.NodeSet2.bsd"
+        FILE_CSV "${PROJECT_SOURCE_DIR}/nodeset/euromap/Opc.Ua.PlasticsRubber.GeneralTypes.NodeSet2.csv"
+        FILE_BSD "${PROJECT_SOURCE_DIR}/nodeset/euromap/Opc.Ua.PlasticsRubber.GeneralTypes.NodeSet2.bsd"
         NAMESPACE_IDX 3
-        FILE_NS "${PROJECT_SOURCE_DIR}/nodeset/euromap/Opc_Ua.EUROMAP83.1_01.NodeSet2.xml"
+        FILE_NS "${PROJECT_SOURCE_DIR}/nodeset/euromap/Opc.Ua.PlasticsRubber.GeneralTypes.NodeSet2.xml"
         DEPENDS "di"
         INTERNAL
     )
@@ -124,10 +124,10 @@ if(UA_NAMESPACE_ZERO STREQUAL "FULL")
     # generate euromap77 namespace which is using euromap83
     ua_generate_nodeset_and_datatypes(
         NAME "euromap77"
-        FILE_CSV "${PROJECT_SOURCE_DIR}/nodeset/euromap/Opc_Ua.EUROMAP77.1_00.NodeId.csv"
-        FILE_BSD "${PROJECT_SOURCE_DIR}/nodeset/euromap/Opc_Ua.EUROMAP77.1_00.NodeSet2.bsd"
+        FILE_CSV "${PROJECT_SOURCE_DIR}/nodeset/euromap/Opc.Ua.PlasticsRubber.IMM2MES.NodeSet2.csv"
+        FILE_BSD "${PROJECT_SOURCE_DIR}/nodeset/euromap/Opc.Ua.PlasticsRubber.IMM2MES.NodeSet2.bsd"
         NAMESPACE_IDX 4
-        FILE_NS "${PROJECT_SOURCE_DIR}/nodeset/euromap/Opc_Ua.EUROMAP77.1_00.NodeSet2.xml"
+        FILE_NS "${PROJECT_SOURCE_DIR}/nodeset/euromap/Opc.Ua.PlasticsRubber.IMM2MES.NodeSet2.xml"
         DEPENDS "euromap83"
         INTERNAL
     )

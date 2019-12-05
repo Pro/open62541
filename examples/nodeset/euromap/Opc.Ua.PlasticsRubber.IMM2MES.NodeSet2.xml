@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<UANodeSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:s1="http://www.euromap.org/files/EUROMAP77_Types.xsd" xmlns:s2="http://www.euromap.org/files/EUROMAP83_Types.xsd" xmlns:s3="http://opcfoundation.org/UA/DI/Types.xsd" xmlns:ua="http://unifiedautomation.com/Configuration/NodeSet.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<UANodeSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:s1="http://opcfoundation.org/UA/PlasticsRubber/IMM2MES/Types.xsd" xmlns:s2="http://opcfoundation.org/UA/PlasticsRubber/GeneralTypes/Types.xsd" xmlns:s3="http://opcfoundation.org/UA/DI/Types.xsd" xmlns:ua="http://unifiedautomation.com/Configuration/NodeSet.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <NamespaceUris>
-        <Uri>http://www.euromap.org/euromap77/</Uri>
-        <Uri>http://www.euromap.org/euromap83/</Uri>
+        <Uri>http://opcfoundation.org/UA/PlasticsRubber/IMM2MES/</Uri>
+        <Uri>http://opcfoundation.org/UA/PlasticsRubber/GeneralTypes/</Uri>
         <Uri>http://opcfoundation.org/UA/DI/</Uri>
     </NamespaceUris>
     <Models>
-        <Model ModelUri="http://www.euromap.org/euromap77/" PublicationDate="2018-05-04T06:00:00Z" Version="1.00">
-            <RequiredModel ModelUri="http://opcfoundation.org/UA/" PublicationDate="2018-02-09T00:00:00Z" Version="1.04"/>
-            <RequiredModel ModelUri="http://opcfoundation.org/UA/DI/" PublicationDate="2013-12-02T00:00:00Z" Version="1.01"/>
-            <RequiredModel ModelUri="http://www.euromap.org/euromap83/" PublicationDate="2018-05-04T06:00:00Z" Version="1.00"/>
+        <Model ModelUri="http://opcfoundation.org/UA/PlasticsRubber/IMM2MES/" PublicationDate="2019-08-26T12:00:00Z" Version="RC 1.01.01">
+            <RequiredModel ModelUri="http://opcfoundation.org/UA/" PublicationDate="2019-09-09T00:00:00Z" Version="1.04.3"/>
+            <RequiredModel ModelUri="http://opcfoundation.org/UA/DI/" PublicationDate="2019-05-01T00:00:00Z" Version="1.02"/>
+            <RequiredModel ModelUri="http://opcfoundation.org/UA/PlasticsRubber/GeneralTypes/" PublicationDate="2019-08-26T12:00:00Z" Version="RC 1.02.01"/>
         </Model>
     </Models>
     <Aliases>
@@ -48,12 +48,12 @@
     </Aliases>
     <Extensions>
         <Extension>
-            <ua:ModelInfo Tool="UaModeler" Hash="ZdNDGHEVWQn5RKmtG4cjQQ==" Version="1.5.2"/>
+            <ua:ModelInfo Tool="UaModeler" Hash="t2pLyPFUQq/RrryfroUPNA==" Version="1.6.3"/>
         </Extension>
     </Extensions>
     <UADataType NodeId="ns=1;i=3004" BrowseName="1:IMMMessageClassificationEnumeration">
         <DisplayName>IMMMessageClassificationEnumeration</DisplayName>
-        <Description>This Enumeration specifies the values to be used in the Classification property in the MessageConditionType and related logbook events of EUROMAP 83</Description>
+        <Description>This Enumeration specifies the values to be used in the Classification property in the MessageConditionType and related logbook events of OPC 40083</Description>
         <References>
             <Reference ReferenceType="HasProperty">ns=1;i=6049</Reference>
             <Reference ReferenceType="HasSubtype" IsForward="false">i=29</Reference>
@@ -658,76 +658,77 @@
             </uax:ListOfExtensionObject>
         </Value>
     </UAVariable>
-    <UAVariable SymbolicName="Euromap77_BinarySchema" DataType="ByteString" NodeId="ns=1;i=6012" BrowseName="1:Euromap77">
-        <DisplayName>Euromap77</DisplayName>
-        <Description>Collects the data type descriptions of http://www.euromap.org/euromap77</Description>
+    <UAVariable SymbolicName="OPC40077_BinarySchema" DataType="ByteString" NodeId="ns=1;i=6012" BrowseName="1:OPC40077">
+        <DisplayName>OPC40077</DisplayName>
+        <Description>Collects the data type descriptions of http://opcfoundation.org/UA/PlasticsRubber/IMM2MES/</Description>
         <References>
             <Reference ReferenceType="HasTypeDefinition">i=72</Reference>
-            <Reference ReferenceType="HasComponent" IsForward="false">i=93</Reference>
             <Reference ReferenceType="HasProperty">ns=1;i=6013</Reference>
+            <Reference ReferenceType="HasComponent" IsForward="false">i=93</Reference>
         </References>
         <Value>
             <uax:ByteString>PG9wYzpUeXBlRGljdGlvbmFyeSB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZ
-        W1hLWluc3RhbmNlIiB4bWxuczp0bnM9Imh0dHA6Ly93d3cuZXVyb21hcC5vcmcvZXVyb21hc
-        Dc3LyIgRGVmYXVsdEJ5dGVPcmRlcj0iTGl0dGxlRW5kaWFuIiB4bWxuczpvcGM9Imh0dHA6L
-        y9vcGNmb3VuZGF0aW9uLm9yZy9CaW5hcnlTY2hlbWEvIiB4bWxuczp1YT0iaHR0cDovL29wY
-        2ZvdW5kYXRpb24ub3JnL1VBLyIgVGFyZ2V0TmFtZXNwYWNlPSJodHRwOi8vd3d3LmV1cm9tY
-        XAub3JnL2V1cm9tYXA3Ny8iPgogPG9wYzpJbXBvcnQgTmFtZXNwYWNlPSJodHRwOi8vb3BjZ
-        m91bmRhdGlvbi5vcmcvVUEvIi8+CiA8b3BjOkVudW1lcmF0ZWRUeXBlIExlbmd0aEluQml0c
-        z0iMzIiIE5hbWU9IklNTU1lc3NhZ2VDbGFzc2lmaWNhdGlvbkVudW1lcmF0aW9uIj4KICA8b
-        3BjOkRvY3VtZW50YXRpb24+VGhpcyBFbnVtZXJhdGlvbiBzcGVjaWZpZXMgdGhlIHZhbHVlc
-        yB0byBiZSB1c2VkIGluIHRoZSBDbGFzc2lmaWNhdGlvbiBwcm9wZXJ0eSBpbiB0aGUgTWVzc
-        2FnZUNvbmRpdGlvblR5cGUgYW5kIHJlbGF0ZWQgbG9nYm9vayBldmVudHMgb2YgRVVST01BU
-        CA4Mzwvb3BjOkRvY3VtZW50YXRpb24+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgTmFtZT0iT
-        1RIRVIiIFZhbHVlPSIwIi8+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgTmFtZT0iSU1NX0lOS
-        kVDVElPTl9VTklUIiBWYWx1ZT0iMTAwIi8+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgTmFtZ
-        T0iSU1NX0NMQU1QSU5HX1VOSVQiIFZhbHVlPSIxMDEiLz4KICA8b3BjOkVudW1lcmF0ZWRWY
-        Wx1ZSBOYW1lPSJJTU1fSEFSRFdBUkUiIFZhbHVlPSIxMDIiLz4KICA8b3BjOkVudW1lcmF0Z
-        WRWYWx1ZSBOYW1lPSJJTU1fQ09NUFJFU1NFRF9BSVJfQ09OVFJPTCIgVmFsdWU9IjEwMyIvP
-        gogIDxvcGM6RW51bWVyYXRlZFZhbHVlIE5hbWU9IklNTV9NQUNISU5FX01PTklUT1JJTkciI
-        FZhbHVlPSIxMDQiLz4KICA8b3BjOkVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJJTU1fTU9VTEQiI
-        FZhbHVlPSIxMDUiLz4KICA8b3BjOkVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJJTU1fRUpFQ1RPU
-        iIgVmFsdWU9IjEwNiIvPgogIDxvcGM6RW51bWVyYXRlZFZhbHVlIE5hbWU9IklNTV9DT1JFX
-        1BVTEwiIFZhbHVlPSIxMDciLz4KICA8b3BjOkVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJJTU1fV
-        EFCTEUiIFZhbHVlPSIxMDgiLz4KICA8b3BjOkVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJJTU1fS
-        U5KRUNUSU9OX1BST0dSQU0iIFZhbHVlPSIxMDkiLz4KICA8b3BjOkVudW1lcmF0ZWRWYWx1Z
-        SBOYW1lPSJJTU1fSFlEUkFVTElDX1RFTVBFUkFUVVJFX0NPTlRST0wiIFZhbHVlPSIxMTAiL
-        z4KICA8b3BjOkVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJJTU1fQ1lMSU5ERVJfVEVNUEVSQVRVU
-        kVfQ09OVFJPTCIgVmFsdWU9IjExMSIvPgogIDxvcGM6RW51bWVyYXRlZFZhbHVlIE5hbWU9I
-        klNTV9NT1VMRF9URU1QRVJBVFVSRV9DT05UUk9MIiBWYWx1ZT0iMTEyIi8+CiAgPG9wYzpFb
-        nVtZXJhdGVkVmFsdWUgTmFtZT0iSU1NX0hPVF9SVU5ORVIiIFZhbHVlPSIxMTMiLz4KICA8b
-        3BjOkVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJJTU1fSU5URVJGQUNFUyIgVmFsdWU9IjExNCIvP
-        gogIDxvcGM6RW51bWVyYXRlZFZhbHVlIE5hbWU9IklNTV9NRUFTVVJJTkdfU1lTVEVNIiBWY
-        Wx1ZT0iMTE1Ii8+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgTmFtZT0iSU1NX1JPQk9USUNfU
-        1lTVEVNX0lOVEVSRkFDRSIgVmFsdWU9IjExNiIvPgogIDxvcGM6RW51bWVyYXRlZFZhbHVlI
-        E5hbWU9IklNTV9TUEVDSUFMX1BVUlBPU0VfU0lHTkFMUyIgVmFsdWU9IjExNyIvPgogIDxvc
-        GM6RW51bWVyYXRlZFZhbHVlIE5hbWU9IklNTV9SRUFMX1RJTUVfRVRIRVJORVRfU1lTVEVNI
-        iBWYWx1ZT0iMTE4Ii8+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgTmFtZT0iSU1NX01BQ0hJT
-        kVfQ09OVFJPTExFUiIgVmFsdWU9IjExOSIvPgogIDxvcGM6RW51bWVyYXRlZFZhbHVlIE5hb
-        WU9IklNTV9TT0ZUV0FSRV9NT05JVE9SSU5HIiBWYWx1ZT0iMTIwIi8+CiAgPG9wYzpFbnVtZ
-        XJhdGVkVmFsdWUgTmFtZT0iUEVSSVBIRVJBTF9FWFRFUk5BTF9ERVZJQ0VfSU5URVJGQUNFI
-        iBWYWx1ZT0iMjAwIi8+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgTmFtZT0iUEVSSVBIRVJBT
-        F9URU1QRVJBVFVSRV9DT05UUk9MX1VOSVQiIFZhbHVlPSIyMDEiLz4KICA8b3BjOkVudW1lc
-        mF0ZWRWYWx1ZSBOYW1lPSJQRVJJUEhFUkFMX1JPQk9USUNTX1NZU1RFTSIgVmFsdWU9IjIwM
-        iIvPgogIDxvcGM6RW51bWVyYXRlZFZhbHVlIE5hbWU9IlBFUklQSEVSQUxfTFNSIiBWYWx1Z
-        T0iMjAzIi8+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgTmFtZT0iUEVSSVBIRVJBTF9TVFJJU
-        FBFUl9VTklUIiBWYWx1ZT0iMjA0Ii8+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgTmFtZT0iU
-        EVSSVBIRVJBTF9EUllFUiIgVmFsdWU9IjIwNSIvPgogIDxvcGM6RW51bWVyYXRlZFZhbHVlI
-        E5hbWU9IlBFUklQSEVSQUxfQ09OVkVZT1JfQkVMVCIgVmFsdWU9IjIwNiIvPgogIDxvcGM6R
-        W51bWVyYXRlZFZhbHVlIE5hbWU9IlBFUklQSEVSQUxfU09SVEVSX1VOSVQiIFZhbHVlPSIyM
-        DciLz4KICA8b3BjOkVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJQRVJJUEhFUkFMX0NPTE9VUklOR
-        19VTklUIiBWYWx1ZT0iMjA4Ii8+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgTmFtZT0iUEVSS
-        VBIRVJBTF9GRUVESU5HIiBWYWx1ZT0iMjA5Ii8+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgT
-        mFtZT0iUEVSSVBIRVJBTF9FWFRFUk5BTF9BTEFSTVMiIFZhbHVlPSIyMTAiLz4KICA8b3BjO
-        kVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJQRVJJUEhFUkFMX1ZBQ1VVTV9DT05UUk9MIiBWYWx1Z
-        T0iMjExIi8+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgTmFtZT0iUEVSSVBIRVJBTF9QUklOV
-        EVSX0lOVEVSRkFDRSIgVmFsdWU9IjIxMiIvPgogIDxvcGM6RW51bWVyYXRlZFZhbHVlIE5hb
-        WU9Ik9QRVJBVElPTl9RVUFMSVRZX01PTklUT1JJTkciIFZhbHVlPSIzMDAiLz4KICA8b3BjO
-        kVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJPUEVSQVRJT05fTUFOVUFMX09QRVJBVElPTiIgVmFsd
-        WU9IjMwMSIvPgogIDxvcGM6RW51bWVyYXRlZFZhbHVlIE5hbWU9Ik9QRVJBVElPTl9FTUVSR
-        0VOQ1lfU1RPUCIgVmFsdWU9IjMwMiIvPgogIDxvcGM6RW51bWVyYXRlZFZhbHVlIE5hbWU9I
-        k9QRVJBVElPTl9KT0JfU1RBVFVTIiBWYWx1ZT0iMzAzIi8+CiA8L29wYzpFbnVtZXJhdGVkV
-        HlwZT4KPC9vcGM6VHlwZURpY3Rpb25hcnk+Cg==</uax:ByteString>
+        W1hLWluc3RhbmNlIiB4bWxuczp0bnM9Imh0dHA6Ly9vcGNmb3VuZGF0aW9uLm9yZy9VQS9Qb
+        GFzdGljc1J1YmJlci9JTU0yTUVTLyIgRGVmYXVsdEJ5dGVPcmRlcj0iTGl0dGxlRW5kaWFuI
+        iB4bWxuczpvcGM9Imh0dHA6Ly9vcGNmb3VuZGF0aW9uLm9yZy9CaW5hcnlTY2hlbWEvIiB4b
+        Wxuczp1YT0iaHR0cDovL29wY2ZvdW5kYXRpb24ub3JnL1VBLyIgVGFyZ2V0TmFtZXNwYWNlP
+        SJodHRwOi8vb3BjZm91bmRhdGlvbi5vcmcvVUEvUGxhc3RpY3NSdWJiZXIvSU1NMk1FUy8iP
+        gogPG9wYzpJbXBvcnQgTmFtZXNwYWNlPSJodHRwOi8vb3BjZm91bmRhdGlvbi5vcmcvVUEvI
+        i8+CiA8b3BjOkVudW1lcmF0ZWRUeXBlIExlbmd0aEluQml0cz0iMzIiIE5hbWU9IklNTU1lc
+        3NhZ2VDbGFzc2lmaWNhdGlvbkVudW1lcmF0aW9uIj4KICA8b3BjOkRvY3VtZW50YXRpb24+V
+        GhpcyBFbnVtZXJhdGlvbiBzcGVjaWZpZXMgdGhlIHZhbHVlcyB0byBiZSB1c2VkIGluIHRoZ
+        SBDbGFzc2lmaWNhdGlvbiBwcm9wZXJ0eSBpbiB0aGUgTWVzc2FnZUNvbmRpdGlvblR5cGUgY
+        W5kIHJlbGF0ZWQgbG9nYm9vayBldmVudHMgb2YgT1BDIDQwMDgzPC9vcGM6RG9jdW1lbnRhd
+        Glvbj4KICA8b3BjOkVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJPVEhFUiIgVmFsdWU9IjAiLz4KI
+        CA8b3BjOkVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJJTU1fSU5KRUNUSU9OX1VOSVQiIFZhbHVlP
+        SIxMDAiLz4KICA8b3BjOkVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJJTU1fQ0xBTVBJTkdfVU5JV
+        CIgVmFsdWU9IjEwMSIvPgogIDxvcGM6RW51bWVyYXRlZFZhbHVlIE5hbWU9IklNTV9IQVJEV
+        0FSRSIgVmFsdWU9IjEwMiIvPgogIDxvcGM6RW51bWVyYXRlZFZhbHVlIE5hbWU9IklNTV9DT
+        01QUkVTU0VEX0FJUl9DT05UUk9MIiBWYWx1ZT0iMTAzIi8+CiAgPG9wYzpFbnVtZXJhdGVkV
+        mFsdWUgTmFtZT0iSU1NX01BQ0hJTkVfTU9OSVRPUklORyIgVmFsdWU9IjEwNCIvPgogIDxvc
+        GM6RW51bWVyYXRlZFZhbHVlIE5hbWU9IklNTV9NT1VMRCIgVmFsdWU9IjEwNSIvPgogIDxvc
+        GM6RW51bWVyYXRlZFZhbHVlIE5hbWU9IklNTV9FSkVDVE9SIiBWYWx1ZT0iMTA2Ii8+CiAgP
+        G9wYzpFbnVtZXJhdGVkVmFsdWUgTmFtZT0iSU1NX0NPUkVfUFVMTCIgVmFsdWU9IjEwNyIvP
+        gogIDxvcGM6RW51bWVyYXRlZFZhbHVlIE5hbWU9IklNTV9UQUJMRSIgVmFsdWU9IjEwOCIvP
+        gogIDxvcGM6RW51bWVyYXRlZFZhbHVlIE5hbWU9IklNTV9JTkpFQ1RJT05fUFJPR1JBTSIgV
+        mFsdWU9IjEwOSIvPgogIDxvcGM6RW51bWVyYXRlZFZhbHVlIE5hbWU9IklNTV9IWURSQVVMS
+        UNfVEVNUEVSQVRVUkVfQ09OVFJPTCIgVmFsdWU9IjExMCIvPgogIDxvcGM6RW51bWVyYXRlZ
+        FZhbHVlIE5hbWU9IklNTV9DWUxJTkRFUl9URU1QRVJBVFVSRV9DT05UUk9MIiBWYWx1ZT0iM
+        TExIi8+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgTmFtZT0iSU1NX01PVUxEX1RFTVBFUkFUV
+        VJFX0NPTlRST0wiIFZhbHVlPSIxMTIiLz4KICA8b3BjOkVudW1lcmF0ZWRWYWx1ZSBOYW1lP
+        SJJTU1fSE9UX1JVTk5FUiIgVmFsdWU9IjExMyIvPgogIDxvcGM6RW51bWVyYXRlZFZhbHVlI
+        E5hbWU9IklNTV9JTlRFUkZBQ0VTIiBWYWx1ZT0iMTE0Ii8+CiAgPG9wYzpFbnVtZXJhdGVkV
+        mFsdWUgTmFtZT0iSU1NX01FQVNVUklOR19TWVNURU0iIFZhbHVlPSIxMTUiLz4KICA8b3BjO
+        kVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJJTU1fUk9CT1RJQ19TWVNURU1fSU5URVJGQUNFIiBWY
+        Wx1ZT0iMTE2Ii8+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgTmFtZT0iSU1NX1NQRUNJQUxfU
+        FVSUE9TRV9TSUdOQUxTIiBWYWx1ZT0iMTE3Ii8+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgT
+        mFtZT0iSU1NX1JFQUxfVElNRV9FVEhFUk5FVF9TWVNURU0iIFZhbHVlPSIxMTgiLz4KICA8b
+        3BjOkVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJJTU1fTUFDSElORV9DT05UUk9MTEVSIiBWYWx1Z
+        T0iMTE5Ii8+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgTmFtZT0iSU1NX1NPRlRXQVJFX01PT
+        klUT1JJTkciIFZhbHVlPSIxMjAiLz4KICA8b3BjOkVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJQR
+        VJJUEhFUkFMX0VYVEVSTkFMX0RFVklDRV9JTlRFUkZBQ0UiIFZhbHVlPSIyMDAiLz4KICA8b
+        3BjOkVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJQRVJJUEhFUkFMX1RFTVBFUkFUVVJFX0NPTlRST
+        0xfVU5JVCIgVmFsdWU9IjIwMSIvPgogIDxvcGM6RW51bWVyYXRlZFZhbHVlIE5hbWU9IlBFU
+        klQSEVSQUxfUk9CT1RJQ1NfU1lTVEVNIiBWYWx1ZT0iMjAyIi8+CiAgPG9wYzpFbnVtZXJhd
+        GVkVmFsdWUgTmFtZT0iUEVSSVBIRVJBTF9MU1IiIFZhbHVlPSIyMDMiLz4KICA8b3BjOkVud
+        W1lcmF0ZWRWYWx1ZSBOYW1lPSJQRVJJUEhFUkFMX1NUUklQUEVSX1VOSVQiIFZhbHVlPSIyM
+        DQiLz4KICA8b3BjOkVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJQRVJJUEhFUkFMX0RSWUVSIiBWY
+        Wx1ZT0iMjA1Ii8+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgTmFtZT0iUEVSSVBIRVJBTF9DT
+        05WRVlPUl9CRUxUIiBWYWx1ZT0iMjA2Ii8+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgTmFtZ
+        T0iUEVSSVBIRVJBTF9TT1JURVJfVU5JVCIgVmFsdWU9IjIwNyIvPgogIDxvcGM6RW51bWVyY
+        XRlZFZhbHVlIE5hbWU9IlBFUklQSEVSQUxfQ09MT1VSSU5HX1VOSVQiIFZhbHVlPSIyMDgiL
+        z4KICA8b3BjOkVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJQRVJJUEhFUkFMX0ZFRURJTkciIFZhb
+        HVlPSIyMDkiLz4KICA8b3BjOkVudW1lcmF0ZWRWYWx1ZSBOYW1lPSJQRVJJUEhFUkFMX0VYV
+        EVSTkFMX0FMQVJNUyIgVmFsdWU9IjIxMCIvPgogIDxvcGM6RW51bWVyYXRlZFZhbHVlIE5hb
+        WU9IlBFUklQSEVSQUxfVkFDVVVNX0NPTlRST0wiIFZhbHVlPSIyMTEiLz4KICA8b3BjOkVud
+        W1lcmF0ZWRWYWx1ZSBOYW1lPSJQRVJJUEhFUkFMX1BSSU5URVJfSU5URVJGQUNFIiBWYWx1Z
+        T0iMjEyIi8+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgTmFtZT0iT1BFUkFUSU9OX1FVQUxJV
+        FlfTU9OSVRPUklORyIgVmFsdWU9IjMwMCIvPgogIDxvcGM6RW51bWVyYXRlZFZhbHVlIE5hb
+        WU9Ik9QRVJBVElPTl9NQU5VQUxfT1BFUkFUSU9OIiBWYWx1ZT0iMzAxIi8+CiAgPG9wYzpFb
+        nVtZXJhdGVkVmFsdWUgTmFtZT0iT1BFUkFUSU9OX0VNRVJHRU5DWV9TVE9QIiBWYWx1ZT0iM
+        zAyIi8+CiAgPG9wYzpFbnVtZXJhdGVkVmFsdWUgTmFtZT0iT1BFUkFUSU9OX0pPQl9TVEFUV
+        VMiIFZhbHVlPSIzMDMiLz4KIDwvb3BjOkVudW1lcmF0ZWRUeXBlPgo8L29wYzpUeXBlRGljd
+        GlvbmFyeT4K</uax:ByteString>
         </Value>
     </UAVariable>
     <UAVariable DataType="String" ParentNodeId="ns=1;i=6012" NodeId="ns=1;i=6013" BrowseName="NamespaceUri">
@@ -738,81 +739,82 @@
             <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
         </References>
         <Value>
-            <uax:String>http://www.euromap.org/euromap77/</uax:String>
+            <uax:String>http://opcfoundation.org/UA/PlasticsRubber/IMM2MES/</uax:String>
         </Value>
     </UAVariable>
-    <UAVariable SymbolicName="Euromap77_XmlSchema" DataType="ByteString" NodeId="ns=1;i=6050" BrowseName="1:Euromap77">
-        <DisplayName>Euromap77</DisplayName>
-        <Description>Collects the data type descriptions of http://www.euromap.org/euromap77</Description>
+    <UAVariable SymbolicName="OPC40077_XmlSchema" DataType="ByteString" NodeId="ns=1;i=6050" BrowseName="1:OPC40077">
+        <DisplayName>OPC40077</DisplayName>
+        <Description>Collects the data type descriptions of http://opcfoundation.org/UA/PlasticsRubber/IMM2MES/</Description>
         <References>
             <Reference ReferenceType="HasTypeDefinition">i=72</Reference>
-            <Reference ReferenceType="HasComponent" IsForward="false">i=92</Reference>
             <Reference ReferenceType="HasProperty">ns=1;i=6051</Reference>
+            <Reference ReferenceType="HasComponent" IsForward="false">i=92</Reference>
         </References>
         <Value>
             <uax:ByteString>PHhzOnNjaGVtYSBlbGVtZW50Rm9ybURlZmF1bHQ9InF1YWxpZmllZCIgdGFyZ2V0TmFtZXNwYWNlPSJod
-        HRwOi8vd3d3LmV1cm9tYXAub3JnL2V1cm9tYXA3Ny9UeXBlcy54c2QiIHhtbG5zOnRucz0ia
-        HR0cDovL3d3dy5ldXJvbWFwLm9yZy9ldXJvbWFwNzcvVHlwZXMueHNkIiB4bWxuczp1YT0ia
-        HR0cDovL29wY2ZvdW5kYXRpb24ub3JnL1VBLzIwMDgvMDIvVHlwZXMueHNkIiB4bWxuczp4c
-        z0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiPgogPHhzOmltcG9ydCBuYW1lc
-        3BhY2U9Imh0dHA6Ly9vcGNmb3VuZGF0aW9uLm9yZy9VQS8yMDA4LzAyL1R5cGVzLnhzZCIvP
-        gogPHhzOnNpbXBsZVR5cGUgbmFtZT0iSU1NTWVzc2FnZUNsYXNzaWZpY2F0aW9uRW51bWVyY
-        XRpb24iPgogIDx4czphbm5vdGF0aW9uPgogICA8eHM6ZG9jdW1lbnRhdGlvbj5UaGlzIEVud
-        W1lcmF0aW9uIHNwZWNpZmllcyB0aGUgdmFsdWVzIHRvIGJlIHVzZWQgaW4gdGhlIENsYXNza
-        WZpY2F0aW9uIHByb3BlcnR5IGluIHRoZSBNZXNzYWdlQ29uZGl0aW9uVHlwZSBhbmQgcmVsY
-        XRlZCBsb2dib29rIGV2ZW50cyBvZiBFVVJPTUFQIDgzPC94czpkb2N1bWVudGF0aW9uPgogI
-        DwveHM6YW5ub3RhdGlvbj4KICA8eHM6cmVzdHJpY3Rpb24gYmFzZT0ieHM6c3RyaW5nIj4KI
-        CAgPHhzOmVudW1lcmF0aW9uIHZhbHVlPSJPVEhFUl8wIi8+CiAgIDx4czplbnVtZXJhdGlvb
-        iB2YWx1ZT0iSU1NX0lOSkVDVElPTl9VTklUXzEwMCIvPgogICA8eHM6ZW51bWVyYXRpb24gd
-        mFsdWU9IklNTV9DTEFNUElOR19VTklUXzEwMSIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsd
-        WU9IklNTV9IQVJEV0FSRV8xMDIiLz4KICAgPHhzOmVudW1lcmF0aW9uIHZhbHVlPSJJTU1fQ
-        09NUFJFU1NFRF9BSVJfQ09OVFJPTF8xMDMiLz4KICAgPHhzOmVudW1lcmF0aW9uIHZhbHVlP
-        SJJTU1fTUFDSElORV9NT05JVE9SSU5HXzEwNCIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsd
-        WU9IklNTV9NT1VMRF8xMDUiLz4KICAgPHhzOmVudW1lcmF0aW9uIHZhbHVlPSJJTU1fRUpFQ
-        1RPUl8xMDYiLz4KICAgPHhzOmVudW1lcmF0aW9uIHZhbHVlPSJJTU1fQ09SRV9QVUxMXzEwN
-        yIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9IklNTV9UQUJMRV8xMDgiLz4KICAgPHhzO
-        mVudW1lcmF0aW9uIHZhbHVlPSJJTU1fSU5KRUNUSU9OX1BST0dSQU1fMTA5Ii8+CiAgIDx4c
-        zplbnVtZXJhdGlvbiB2YWx1ZT0iSU1NX0hZRFJBVUxJQ19URU1QRVJBVFVSRV9DT05UUk9MX
-        zExMCIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9IklNTV9DWUxJTkRFUl9URU1QRVJBV
-        FVSRV9DT05UUk9MXzExMSIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9IklNTV9NT1VMR
-        F9URU1QRVJBVFVSRV9DT05UUk9MXzExMiIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9I
-        klNTV9IT1RfUlVOTkVSXzExMyIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9IklNTV9JT
-        lRFUkZBQ0VTXzExNCIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9IklNTV9NRUFTVVJJT
-        kdfU1lTVEVNXzExNSIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9IklNTV9ST0JPVElDX
-        1NZU1RFTV9JTlRFUkZBQ0VfMTE2Ii8+CiAgIDx4czplbnVtZXJhdGlvbiB2YWx1ZT0iSU1NX
-        1NQRUNJQUxfUFVSUE9TRV9TSUdOQUxTXzExNyIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsd
-        WU9IklNTV9SRUFMX1RJTUVfRVRIRVJORVRfU1lTVEVNXzExOCIvPgogICA8eHM6ZW51bWVyY
-        XRpb24gdmFsdWU9IklNTV9NQUNISU5FX0NPTlRST0xMRVJfMTE5Ii8+CiAgIDx4czplbnVtZ
-        XJhdGlvbiB2YWx1ZT0iSU1NX1NPRlRXQVJFX01PTklUT1JJTkdfMTIwIi8+CiAgIDx4czplb
-        nVtZXJhdGlvbiB2YWx1ZT0iUEVSSVBIRVJBTF9FWFRFUk5BTF9ERVZJQ0VfSU5URVJGQUNFX
-        zIwMCIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9IlBFUklQSEVSQUxfVEVNUEVSQVRVU
-        kVfQ09OVFJPTF9VTklUXzIwMSIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9IlBFUklQS
-        EVSQUxfUk9CT1RJQ1NfU1lTVEVNXzIwMiIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9I
-        lBFUklQSEVSQUxfTFNSXzIwMyIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9IlBFUklQS
-        EVSQUxfU1RSSVBQRVJfVU5JVF8yMDQiLz4KICAgPHhzOmVudW1lcmF0aW9uIHZhbHVlPSJQR
-        VJJUEhFUkFMX0RSWUVSXzIwNSIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9IlBFUklQS
-        EVSQUxfQ09OVkVZT1JfQkVMVF8yMDYiLz4KICAgPHhzOmVudW1lcmF0aW9uIHZhbHVlPSJQR
-        VJJUEhFUkFMX1NPUlRFUl9VTklUXzIwNyIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9I
-        lBFUklQSEVSQUxfQ09MT1VSSU5HX1VOSVRfMjA4Ii8+CiAgIDx4czplbnVtZXJhdGlvbiB2Y
-        Wx1ZT0iUEVSSVBIRVJBTF9GRUVESU5HXzIwOSIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsd
-        WU9IlBFUklQSEVSQUxfRVhURVJOQUxfQUxBUk1TXzIxMCIvPgogICA8eHM6ZW51bWVyYXRpb
-        24gdmFsdWU9IlBFUklQSEVSQUxfVkFDVVVNX0NPTlRST0xfMjExIi8+CiAgIDx4czplbnVtZ
-        XJhdGlvbiB2YWx1ZT0iUEVSSVBIRVJBTF9QUklOVEVSX0lOVEVSRkFDRV8yMTIiLz4KICAgP
-        HhzOmVudW1lcmF0aW9uIHZhbHVlPSJPUEVSQVRJT05fUVVBTElUWV9NT05JVE9SSU5HXzMwM
-        CIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9Ik9QRVJBVElPTl9NQU5VQUxfT1BFUkFUS
-        U9OXzMwMSIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9Ik9QRVJBVElPTl9FTUVSR0VOQ
-        1lfU1RPUF8zMDIiLz4KICAgPHhzOmVudW1lcmF0aW9uIHZhbHVlPSJPUEVSQVRJT05fSk9CX
-        1NUQVRVU18zMDMiLz4KICA8L3hzOnJlc3RyaWN0aW9uPgogPC94czpzaW1wbGVUeXBlPgogP
-        HhzOmVsZW1lbnQgdHlwZT0idG5zOklNTU1lc3NhZ2VDbGFzc2lmaWNhdGlvbkVudW1lcmF0a
-        W9uIiBuYW1lPSJJTU1NZXNzYWdlQ2xhc3NpZmljYXRpb25FbnVtZXJhdGlvbiIvPgogPHhzO
-        mNvbXBsZXhUeXBlIG5hbWU9Ikxpc3RPZklNTU1lc3NhZ2VDbGFzc2lmaWNhdGlvbkVudW1lc
-        mF0aW9uIj4KICA8eHM6c2VxdWVuY2U+CiAgIDx4czplbGVtZW50IG1pbk9jY3Vycz0iMCIgb
-        WF4T2NjdXJzPSJ1bmJvdW5kZWQiIHR5cGU9InRuczpJTU1NZXNzYWdlQ2xhc3NpZmljYXRpb
-        25FbnVtZXJhdGlvbiIgbmFtZT0iSU1NTWVzc2FnZUNsYXNzaWZpY2F0aW9uRW51bWVyYXRpb
-        24iIG5pbGxhYmxlPSJ0cnVlIi8+CiAgPC94czpzZXF1ZW5jZT4KIDwveHM6Y29tcGxleFR5c
-        GU+CiA8eHM6ZWxlbWVudCB0eXBlPSJ0bnM6TGlzdE9mSU1NTWVzc2FnZUNsYXNzaWZpY2F0a
-        W9uRW51bWVyYXRpb24iIG5hbWU9Ikxpc3RPZklNTU1lc3NhZ2VDbGFzc2lmaWNhdGlvbkVud
-        W1lcmF0aW9uIiBuaWxsYWJsZT0idHJ1ZSIvPgo8L3hzOnNjaGVtYT4K</uax:ByteString>
+        HRwOi8vb3BjZm91bmRhdGlvbi5vcmcvVUEvUGxhc3RpY3NSdWJiZXIvSU1NMk1FUy9UeXBlc
+        y54c2QiIHhtbG5zOnRucz0iaHR0cDovL29wY2ZvdW5kYXRpb24ub3JnL1VBL1BsYXN0aWNzU
+        nViYmVyL0lNTTJNRVMvVHlwZXMueHNkIiB4bWxuczp1YT0iaHR0cDovL29wY2ZvdW5kYXRpb
+        24ub3JnL1VBLzIwMDgvMDIvVHlwZXMueHNkIiB4bWxuczp4cz0iaHR0cDovL3d3dy53My5vc
+        mcvMjAwMS9YTUxTY2hlbWEiPgogPHhzOmltcG9ydCBuYW1lc3BhY2U9Imh0dHA6Ly9vcGNmb
+        3VuZGF0aW9uLm9yZy9VQS8yMDA4LzAyL1R5cGVzLnhzZCIvPgogPHhzOnNpbXBsZVR5cGUgb
+        mFtZT0iSU1NTWVzc2FnZUNsYXNzaWZpY2F0aW9uRW51bWVyYXRpb24iPgogIDx4czphbm5vd
+        GF0aW9uPgogICA8eHM6ZG9jdW1lbnRhdGlvbj5UaGlzIEVudW1lcmF0aW9uIHNwZWNpZmllc
+        yB0aGUgdmFsdWVzIHRvIGJlIHVzZWQgaW4gdGhlIENsYXNzaWZpY2F0aW9uIHByb3BlcnR5I
+        GluIHRoZSBNZXNzYWdlQ29uZGl0aW9uVHlwZSBhbmQgcmVsYXRlZCBsb2dib29rIGV2ZW50c
+        yBvZiBPUEMgNDAwODM8L3hzOmRvY3VtZW50YXRpb24+CiAgPC94czphbm5vdGF0aW9uPgogI
+        Dx4czpyZXN0cmljdGlvbiBiYXNlPSJ4czpzdHJpbmciPgogICA8eHM6ZW51bWVyYXRpb24gd
+        mFsdWU9Ik9USEVSXzAiLz4KICAgPHhzOmVudW1lcmF0aW9uIHZhbHVlPSJJTU1fSU5KRUNUS
+        U9OX1VOSVRfMTAwIi8+CiAgIDx4czplbnVtZXJhdGlvbiB2YWx1ZT0iSU1NX0NMQU1QSU5HX
+        1VOSVRfMTAxIi8+CiAgIDx4czplbnVtZXJhdGlvbiB2YWx1ZT0iSU1NX0hBUkRXQVJFXzEwM
+        iIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9IklNTV9DT01QUkVTU0VEX0FJUl9DT05UU
+        k9MXzEwMyIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9IklNTV9NQUNISU5FX01PTklUT
+        1JJTkdfMTA0Ii8+CiAgIDx4czplbnVtZXJhdGlvbiB2YWx1ZT0iSU1NX01PVUxEXzEwNSIvP
+        gogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9IklNTV9FSkVDVE9SXzEwNiIvPgogICA8eHM6Z
+        W51bWVyYXRpb24gdmFsdWU9IklNTV9DT1JFX1BVTExfMTA3Ii8+CiAgIDx4czplbnVtZXJhd
+        GlvbiB2YWx1ZT0iSU1NX1RBQkxFXzEwOCIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9I
+        klNTV9JTkpFQ1RJT05fUFJPR1JBTV8xMDkiLz4KICAgPHhzOmVudW1lcmF0aW9uIHZhbHVlP
+        SJJTU1fSFlEUkFVTElDX1RFTVBFUkFUVVJFX0NPTlRST0xfMTEwIi8+CiAgIDx4czplbnVtZ
+        XJhdGlvbiB2YWx1ZT0iSU1NX0NZTElOREVSX1RFTVBFUkFUVVJFX0NPTlRST0xfMTExIi8+C
+        iAgIDx4czplbnVtZXJhdGlvbiB2YWx1ZT0iSU1NX01PVUxEX1RFTVBFUkFUVVJFX0NPTlRST
+        0xfMTEyIi8+CiAgIDx4czplbnVtZXJhdGlvbiB2YWx1ZT0iSU1NX0hPVF9SVU5ORVJfMTEzI
+        i8+CiAgIDx4czplbnVtZXJhdGlvbiB2YWx1ZT0iSU1NX0lOVEVSRkFDRVNfMTE0Ii8+CiAgI
+        Dx4czplbnVtZXJhdGlvbiB2YWx1ZT0iSU1NX01FQVNVUklOR19TWVNURU1fMTE1Ii8+CiAgI
+        Dx4czplbnVtZXJhdGlvbiB2YWx1ZT0iSU1NX1JPQk9USUNfU1lTVEVNX0lOVEVSRkFDRV8xM
+        TYiLz4KICAgPHhzOmVudW1lcmF0aW9uIHZhbHVlPSJJTU1fU1BFQ0lBTF9QVVJQT1NFX1NJR
+        05BTFNfMTE3Ii8+CiAgIDx4czplbnVtZXJhdGlvbiB2YWx1ZT0iSU1NX1JFQUxfVElNRV9FV
+        EhFUk5FVF9TWVNURU1fMTE4Ii8+CiAgIDx4czplbnVtZXJhdGlvbiB2YWx1ZT0iSU1NX01BQ
+        0hJTkVfQ09OVFJPTExFUl8xMTkiLz4KICAgPHhzOmVudW1lcmF0aW9uIHZhbHVlPSJJTU1fU
+        09GVFdBUkVfTU9OSVRPUklOR18xMjAiLz4KICAgPHhzOmVudW1lcmF0aW9uIHZhbHVlPSJQR
+        VJJUEhFUkFMX0VYVEVSTkFMX0RFVklDRV9JTlRFUkZBQ0VfMjAwIi8+CiAgIDx4czplbnVtZ
+        XJhdGlvbiB2YWx1ZT0iUEVSSVBIRVJBTF9URU1QRVJBVFVSRV9DT05UUk9MX1VOSVRfMjAxI
+        i8+CiAgIDx4czplbnVtZXJhdGlvbiB2YWx1ZT0iUEVSSVBIRVJBTF9ST0JPVElDU19TWVNUR
+        U1fMjAyIi8+CiAgIDx4czplbnVtZXJhdGlvbiB2YWx1ZT0iUEVSSVBIRVJBTF9MU1JfMjAzI
+        i8+CiAgIDx4czplbnVtZXJhdGlvbiB2YWx1ZT0iUEVSSVBIRVJBTF9TVFJJUFBFUl9VTklUX
+        zIwNCIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9IlBFUklQSEVSQUxfRFJZRVJfMjA1I
+        i8+CiAgIDx4czplbnVtZXJhdGlvbiB2YWx1ZT0iUEVSSVBIRVJBTF9DT05WRVlPUl9CRUxUX
+        zIwNiIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsdWU9IlBFUklQSEVSQUxfU09SVEVSX1VOS
+        VRfMjA3Ii8+CiAgIDx4czplbnVtZXJhdGlvbiB2YWx1ZT0iUEVSSVBIRVJBTF9DT0xPVVJJT
+        kdfVU5JVF8yMDgiLz4KICAgPHhzOmVudW1lcmF0aW9uIHZhbHVlPSJQRVJJUEhFUkFMX0ZFR
+        URJTkdfMjA5Ii8+CiAgIDx4czplbnVtZXJhdGlvbiB2YWx1ZT0iUEVSSVBIRVJBTF9FWFRFU
+        k5BTF9BTEFSTVNfMjEwIi8+CiAgIDx4czplbnVtZXJhdGlvbiB2YWx1ZT0iUEVSSVBIRVJBT
+        F9WQUNVVU1fQ09OVFJPTF8yMTEiLz4KICAgPHhzOmVudW1lcmF0aW9uIHZhbHVlPSJQRVJJU
+        EhFUkFMX1BSSU5URVJfSU5URVJGQUNFXzIxMiIvPgogICA8eHM6ZW51bWVyYXRpb24gdmFsd
+        WU9Ik9QRVJBVElPTl9RVUFMSVRZX01PTklUT1JJTkdfMzAwIi8+CiAgIDx4czplbnVtZXJhd
+        GlvbiB2YWx1ZT0iT1BFUkFUSU9OX01BTlVBTF9PUEVSQVRJT05fMzAxIi8+CiAgIDx4czplb
+        nVtZXJhdGlvbiB2YWx1ZT0iT1BFUkFUSU9OX0VNRVJHRU5DWV9TVE9QXzMwMiIvPgogICA8e
+        HM6ZW51bWVyYXRpb24gdmFsdWU9Ik9QRVJBVElPTl9KT0JfU1RBVFVTXzMwMyIvPgogIDwve
+        HM6cmVzdHJpY3Rpb24+CiA8L3hzOnNpbXBsZVR5cGU+CiA8eHM6ZWxlbWVudCB0eXBlPSJ0b
+        nM6SU1NTWVzc2FnZUNsYXNzaWZpY2F0aW9uRW51bWVyYXRpb24iIG5hbWU9IklNTU1lc3NhZ
+        2VDbGFzc2lmaWNhdGlvbkVudW1lcmF0aW9uIi8+CiA8eHM6Y29tcGxleFR5cGUgbmFtZT0iT
+        GlzdE9mSU1NTWVzc2FnZUNsYXNzaWZpY2F0aW9uRW51bWVyYXRpb24iPgogIDx4czpzZXF1Z
+        W5jZT4KICAgPHhzOmVsZW1lbnQgbWluT2NjdXJzPSIwIiBtYXhPY2N1cnM9InVuYm91bmRlZ
+        CIgdHlwZT0idG5zOklNTU1lc3NhZ2VDbGFzc2lmaWNhdGlvbkVudW1lcmF0aW9uIiBuYW1lP
+        SJJTU1NZXNzYWdlQ2xhc3NpZmljYXRpb25FbnVtZXJhdGlvbiIgbmlsbGFibGU9InRydWUiL
+        z4KICA8L3hzOnNlcXVlbmNlPgogPC94czpjb21wbGV4VHlwZT4KIDx4czplbGVtZW50IHR5c
+        GU9InRuczpMaXN0T2ZJTU1NZXNzYWdlQ2xhc3NpZmljYXRpb25FbnVtZXJhdGlvbiIgbmFtZ
+        T0iTGlzdE9mSU1NTWVzc2FnZUNsYXNzaWZpY2F0aW9uRW51bWVyYXRpb24iIG5pbGxhYmxlP
+        SJ0cnVlIi8+CjwveHM6c2NoZW1hPgo=</uax:ByteString>
         </Value>
     </UAVariable>
     <UAVariable DataType="String" ParentNodeId="ns=1;i=6050" NodeId="ns=1;i=6051" BrowseName="NamespaceUri">
@@ -823,7 +825,7 @@
             <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
         </References>
         <Value>
-            <uax:String>http://www.euromap.org/euromap77/Types.xsd</uax:String>
+            <uax:String>http://opcfoundation.org/UA/PlasticsRubber/IMM2MES/Types.xsd</uax:String>
         </Value>
     </UAVariable>
     <UAObjectType NodeId="ns=1;i=1007" BrowseName="1:IMM_MES_InterfaceType">
@@ -849,8 +851,8 @@
         <DisplayName>InjectionUnits</DisplayName>
         <Description>Container for the injection units</Description>
         <References>
-            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1007</Reference>
             <Reference ReferenceType="HasTypeDefinition">ns=1;i=1016</Reference>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1007</Reference>
             <Reference ReferenceType="HasModellingRule">i=78</Reference>
             <Reference ReferenceType="HasProperty">ns=1;i=6056</Reference>
         </References>
@@ -897,11 +899,11 @@
             <Reference ReferenceType="HasProperty">ns=1;i=6087</Reference>
             <Reference ReferenceType="HasProperty">ns=1;i=6088</Reference>
             <Reference ReferenceType="GeneratesEvent">ns=2;i=1025</Reference>
-            <Reference ReferenceType="HasComponent">ns=1;i=7019</Reference>
             <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=5004</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;i=7019</Reference>
         </References>
     </UAObject>
-    <UAVariable DataType="Boolean" ParentNodeId="ns=1;i=5002" NodeId="ns=1;i=6035" BrowseName="2:ContinueAtJobEnd" UserAccessLevel="3" AccessLevel="3">
+    <UAVariable DataType="Boolean" ParentNodeId="ns=1;i=5002" NodeId="ns=1;i=6035" BrowseName="2:ContinueAtJobEnd" AccessLevel="3">
         <DisplayName>ContinueAtJobEnd</DisplayName>
         <Description>Indication if the machine continues the production even if the nominal output has been reached</Description>
         <References>
@@ -963,7 +965,7 @@
             </uax:ListOfString>
         </Value>
     </UAVariable>
-    <UAVariable DataType="UInt64" ParentNodeId="ns=1;i=5002" NodeId="ns=1;i=6003" BrowseName="2:NominalParts" UserAccessLevel="3" AccessLevel="3">
+    <UAVariable DataType="UInt64" ParentNodeId="ns=1;i=5002" NodeId="ns=1;i=6003" BrowseName="2:NominalParts" AccessLevel="3">
         <DisplayName>NominalParts</DisplayName>
         <Description>Total number (sum of all cavities) of parts that shall be produced by the job</Description>
         <References>
@@ -1296,7 +1298,7 @@
             <Reference ReferenceType="HasComponent">ns=1;i=7015</Reference>
         </References>
     </UAObject>
-    <UAVariable DataType="String" ParentNodeId="ns=1;i=5013" NodeId="ns=1;i=6135" BrowseName="2:BoxId" UserAccessLevel="3" AccessLevel="3">
+    <UAVariable DataType="String" ParentNodeId="ns=1;i=5013" NodeId="ns=1;i=6135" BrowseName="2:BoxId" AccessLevel="3">
         <DisplayName>BoxId</DisplayName>
         <Description>Id of the box in which the current production is put in</Description>
         <References>
@@ -1308,7 +1310,7 @@
             <uax:String></uax:String>
         </Value>
     </UAVariable>
-    <UAVariable DataType="String" ParentNodeId="ns=1;i=5013" NodeId="ns=1;i=6133" BrowseName="2:CurrentLotName" UserAccessLevel="3" AccessLevel="3">
+    <UAVariable DataType="String" ParentNodeId="ns=1;i=5013" NodeId="ns=1;i=6133" BrowseName="2:CurrentLotName" AccessLevel="3">
         <DisplayName>CurrentLotName</DisplayName>
         <Description>Name of the current production lot</Description>
         <References>
@@ -1465,7 +1467,7 @@
             <Reference ReferenceType="HasComponent">ns=1;i=7026</Reference>
         </References>
     </UAObject>
-    <UAVariable DataType="Boolean" ParentNodeId="ns=1;i=5019" NodeId="ns=1;i=6096" BrowseName="2:ContinueAtJobEnd" UserAccessLevel="3" AccessLevel="3">
+    <UAVariable DataType="Boolean" ParentNodeId="ns=1;i=5019" NodeId="ns=1;i=6096" BrowseName="2:ContinueAtJobEnd" AccessLevel="3">
         <DisplayName>ContinueAtJobEnd</DisplayName>
         <Description>Indication if the machine continues the production even if the nominal output has been reached</Description>
         <References>
@@ -1527,7 +1529,7 @@
             </uax:ListOfString>
         </Value>
     </UAVariable>
-    <UAVariable DataType="UInt64" ParentNodeId="ns=1;i=5019" NodeId="ns=1;i=6094" BrowseName="2:NominalParts" UserAccessLevel="3" AccessLevel="3">
+    <UAVariable DataType="UInt64" ParentNodeId="ns=1;i=5019" NodeId="ns=1;i=6094" BrowseName="2:NominalParts" AccessLevel="3">
         <DisplayName>NominalParts</DisplayName>
         <Description>Total number (sum of all cavities) of parts that shall be produced by the job</Description>
         <References>
@@ -2022,7 +2024,7 @@
             </uax:ListOfExtensionObject>
         </Value>
     </UAVariable>
-    <UAVariable DataType="String" ParentNodeId="ns=1;i=5005" NodeId="ns=1;i=6029" BrowseName="2:LocationName" UserAccessLevel="3" AccessLevel="3">
+    <UAVariable DataType="String" ParentNodeId="ns=1;i=5005" NodeId="ns=1;i=6029" BrowseName="2:LocationName" AccessLevel="3">
         <DisplayName>LocationName</DisplayName>
         <Description>Description of the location of the machine given by the machine operator or OPC client</Description>
         <References>
@@ -2042,19 +2044,6 @@
             <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=5005</Reference>
             <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
         </References>
-        <Value>
-            <uax:ExtensionObject>
-                <uax:TypeId>
-                    <uax:Identifier>ns=2;i=5025</uax:Identifier>
-                </uax:TypeId>
-                <uax:Body>
-                    <PageEntryDataType xmlns="http://www.euromap.org/euromap83/Types.xsd">
-                        <Id></Id>
-                        <Title/>
-                    </PageEntryDataType>
-                </uax:Body>
-            </uax:ExtensionObject>
-        </Value>
     </UAVariable>
     <UAMethod ParentNodeId="ns=1;i=5005" NodeId="ns=1;i=7005" BrowseName="2:SetMachineTime" MethodDeclarationId="ns=2;i=7019">
         <DisplayName>SetMachineTime</DisplayName>
@@ -2109,7 +2098,7 @@
             </uax:ListOfExtensionObject>
         </Value>
     </UAVariable>
-    <UAVariable DataType="TimeZoneDataType" ParentNodeId="ns=1;i=5005" NodeId="ns=1;i=6033" BrowseName="2:TimeZoneOffset" UserAccessLevel="3" AccessLevel="3">
+    <UAVariable DataType="TimeZoneDataType" ParentNodeId="ns=1;i=5005" NodeId="ns=1;i=6033" BrowseName="2:TimeZoneOffset" AccessLevel="3">
         <DisplayName>TimeZoneOffset</DisplayName>
         <Description>Difference of the local time to Coordinated Universal Time (UTC) given by the machine operator or OPC client</Description>
         <References>
@@ -2131,7 +2120,7 @@
             </uax:ExtensionObject>
         </Value>
     </UAVariable>
-    <UAVariable DataType="String" ParentNodeId="ns=1;i=5005" NodeId="ns=1;i=6034" BrowseName="2:UserMachineName" UserAccessLevel="3" AccessLevel="3">
+    <UAVariable DataType="String" ParentNodeId="ns=1;i=5005" NodeId="ns=1;i=6034" BrowseName="2:UserMachineName" AccessLevel="3">
         <DisplayName>UserMachineName</DisplayName>
         <Description>Description of the machine given by the machine operator or OPC client</Description>
         <References>
@@ -2151,7 +2140,6 @@
             <Reference ReferenceType="HasProperty">ns=1;i=6084</Reference>
             <Reference ReferenceType="HasProperty">ns=1;i=6004</Reference>
             <Reference ReferenceType="HasProperty">ns=1;i=6005</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6204</Reference>
             <Reference ReferenceType="HasProperty">ns=1;i=6017</Reference>
             <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1007</Reference>
             <Reference ReferenceType="HasTypeDefinition">ns=2;i=1009</Reference>
@@ -2202,18 +2190,6 @@
             <Reference ReferenceType="HasModellingRule">i=78</Reference>
             <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
         </References>
-    </UAVariable>
-    <UAVariable DataType="String" ParentNodeId="ns=1;i=5001" NodeId="ns=1;i=6204" BrowseName="2:EuromapSizeIndication">
-        <DisplayName>EuromapSizeIndication</DisplayName>
-        <Description>Size indication of the machine in accordance with a EUROMAP recommendation</Description>
-        <References>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=5001</Reference>
-            <Reference ReferenceType="HasModellingRule">i=80</Reference>
-            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
-        </References>
-        <Value>
-            <uax:String></uax:String>
-        </Value>
     </UAVariable>
     <UAVariable DataType="String" ParentNodeId="ns=1;i=5001" NodeId="ns=1;i=6017" BrowseName="3:HardwareRevision">
         <DisplayName>HardwareRevision</DisplayName>
@@ -2290,7 +2266,7 @@
             <Reference ReferenceType="HasProperty">ns=1;i=6044</Reference>
         </References>
     </UAObject>
-    <UAVariable DataType="String" ParentNodeId="ns=1;i=5009" NodeId="ns=1;i=6085" BrowseName="2:MESUrl" UserAccessLevel="3" AccessLevel="3">
+    <UAVariable DataType="String" ParentNodeId="ns=1;i=5009" NodeId="ns=1;i=6085" BrowseName="2:MESUrl" AccessLevel="3">
         <DisplayName>MESUrl</DisplayName>
         <Description>URL to display a webpage generated by the MES in a web browser integrated in the machine</Description>
         <References>
@@ -2302,7 +2278,7 @@
             <uax:String>0</uax:String>
         </Value>
     </UAVariable>
-    <UAVariable DataType="StandstillReasonType" ParentNodeId="ns=1;i=5009" ValueRank="1" NodeId="ns=1;i=6043" BrowseName="2:StandstillReasons" UserAccessLevel="3" AccessLevel="3">
+    <UAVariable DataType="StandstillReasonType" ParentNodeId="ns=1;i=5009" ValueRank="1" NodeId="ns=1;i=6043" BrowseName="2:StandstillReasons" AccessLevel="3">
         <DisplayName>StandstillReasons</DisplayName>
         <Description>List of the standstill reasons from which one is selected by the operator in the case of a standstill</Description>
         <References>
@@ -2311,7 +2287,7 @@
             <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=5009</Reference>
         </References>
     </UAVariable>
-    <UAVariable DataType="Boolean" ParentNodeId="ns=1;i=5009" NodeId="ns=1;i=6044" BrowseName="2:StandstillReasonsLockedByMES" UserAccessLevel="3" AccessLevel="3">
+    <UAVariable DataType="Boolean" ParentNodeId="ns=1;i=5009" NodeId="ns=1;i=6044" BrowseName="2:StandstillReasonsLockedByMES" AccessLevel="3">
         <DisplayName>StandstillReasonsLockedByMES</DisplayName>
         <Description>Indication if the list StandstillReasons has been modified by the MES and may not be changed by the machine</Description>
         <References>
@@ -2439,7 +2415,7 @@
             <Reference ReferenceType="HasModellingRule">i=78</Reference>
         </References>
     </UAMethod>
-    <UAVariable DataType="Boolean" ParentNodeId="ns=1;i=5015" NodeId="ns=1;i=6046" BrowseName="2:ProductionReleasedByMES" UserAccessLevel="3" AccessLevel="3">
+    <UAVariable DataType="Boolean" ParentNodeId="ns=1;i=5015" NodeId="ns=1;i=6046" BrowseName="2:ProductionReleasedByMES" AccessLevel="3">
         <DisplayName>ProductionReleasedByMES</DisplayName>
         <Description>Indication if ProductionStatus may have the value PRODUCTION_4</Description>
         <References>
@@ -2759,7 +2735,7 @@
                     <uax:Identifier>ns=2;i=5009</uax:Identifier>
                 </uax:TypeId>
                 <uax:Body>
-                    <ProductionDatasetInformationType xmlns="http://www.euromap.org/euromap83/Types.xsd">
+                    <ProductionDatasetInformationType xmlns="http://opcfoundation.org/UA/PlasticsRubber/GeneralTypes/Types.xsd">
                         <Name></Name>
                         <Description></Description>
                         <MESId></MESId>
@@ -2774,11 +2750,9 @@
                         <ControllerType></ControllerType>
                         <UserMachineName></UserMachineName>
                         <LocationName></LocationName>
-                        <ProductName>
-                            <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd"></String>
-                        </ProductName>
+                        <ProductName/>
                         <MouldId></MouldId>
-                        <NumCavities></NumCavities>
+                        <NumCavities>0</NumCavities>
                     </ProductionDatasetInformationType>
                 </uax:Body>
             </uax:ExtensionObject>
@@ -2874,7 +2848,7 @@
                     <uax:Identifier>ns=2;i=5009</uax:Identifier>
                 </uax:TypeId>
                 <uax:Body>
-                    <ProductionDatasetInformationType xmlns="http://www.euromap.org/euromap83/Types.xsd">
+                    <ProductionDatasetInformationType xmlns="http://opcfoundation.org/UA/PlasticsRubber/GeneralTypes/Types.xsd">
                         <Name></Name>
                         <Description></Description>
                         <MESId></MESId>
@@ -2889,11 +2863,9 @@
                         <ControllerType></ControllerType>
                         <UserMachineName></UserMachineName>
                         <LocationName></LocationName>
-                        <ProductName>
-                            <String xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd"></String>
-                        </ProductName>
+                        <ProductName/>
                         <MouldId></MouldId>
-                        <NumCavities></NumCavities>
+                        <NumCavities>0</NumCavities>
                     </ProductionDatasetInformationType>
                 </uax:Body>
             </uax:ExtensionObject>
@@ -4666,10 +4638,10 @@
     <UAObject SymbolicName="InjectionUnit__Nr_" ParentNodeId="ns=1;i=1016" NodeId="ns=1;i=5027" BrowseName="1:InjectionUnit_&lt;Nr>">
         <DisplayName>InjectionUnit_&lt;Nr></DisplayName>
         <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1028</Reference>
             <Reference ReferenceType="HasProperty">ns=1;i=6018</Reference>
             <Reference ReferenceType="HasProperty">ns=1;i=6157</Reference>
             <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1016</Reference>
-            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1028</Reference>
             <Reference ReferenceType="HasProperty">ns=1;i=6178</Reference>
             <Reference ReferenceType="HasProperty">ns=1;i=6179</Reference>
             <Reference ReferenceType="HasComponent">ns=1;i=6180</Reference>
@@ -5109,92 +5081,79 @@
             <uax:String></uax:String>
         </Value>
     </UAVariable>
-    <UAObject NodeId="ns=1;i=5022" BrowseName="1:Euromap77_NamespaceMetadata">
-        <DisplayName>Euromap77_NamespaceMetadata</DisplayName>
-        <Description>Provides the metadata for a namespace used by the server.</Description>
+    <UAObject SymbolicName="http___opcfoundation_org_UA_PlasticsRubber_IMM2MES_" NodeId="ns=1;i=5021" BrowseName="1:http://opcfoundation.org/UA/PlasticsRubber/IMM2MES/">
+        <DisplayName>http://opcfoundation.org/UA/PlasticsRubber/IMM2MES/</DisplayName>
         <References>
-            <Reference ReferenceType="HasProperty">ns=1;i=6200</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6141</Reference>
             <Reference ReferenceType="HasTypeDefinition">i=11616</Reference>
             <Reference ReferenceType="HasComponent" IsForward="false">i=11715</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6201</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6205</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6218</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6219</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6220</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6221</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6142</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6143</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6154</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6155</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6158</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6159</Reference>
         </References>
     </UAObject>
-    <UAVariable DataType="Boolean" ParentNodeId="ns=1;i=5022" NodeId="ns=1;i=6200" BrowseName="IsNamespaceSubset">
+    <UAVariable DataType="Boolean" ParentNodeId="ns=1;i=5021" NodeId="ns=1;i=6141" BrowseName="IsNamespaceSubset">
         <DisplayName>IsNamespaceSubset</DisplayName>
-        <Description>If TRUE then the server only supports a subset of the namespace.</Description>
         <References>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=5022</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=5021</Reference>
             <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
         </References>
         <Value>
             <uax:Boolean>false</uax:Boolean>
         </Value>
     </UAVariable>
-    <UAVariable DataType="DateTime" ParentNodeId="ns=1;i=5022" NodeId="ns=1;i=6201" BrowseName="NamespacePublicationDate">
+    <UAVariable DataType="DateTime" ParentNodeId="ns=1;i=5021" NodeId="ns=1;i=6142" BrowseName="NamespacePublicationDate">
         <DisplayName>NamespacePublicationDate</DisplayName>
-        <Description>The publication date for the namespace.</Description>
         <References>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=5022</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=5021</Reference>
             <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
         </References>
         <Value>
-            <uax:DateTime>2018-05-04T06:00:00Z</uax:DateTime>
+            <uax:DateTime>2019-08-26T12:00:00Z</uax:DateTime>
         </Value>
     </UAVariable>
-    <UAVariable DataType="String" ParentNodeId="ns=1;i=5022" NodeId="ns=1;i=6205" BrowseName="NamespaceUri">
+    <UAVariable DataType="String" ParentNodeId="ns=1;i=5021" NodeId="ns=1;i=6143" BrowseName="NamespaceUri">
         <DisplayName>NamespaceUri</DisplayName>
-        <Description>The URI of the namespace.</Description>
         <References>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=5022</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=5021</Reference>
             <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
         </References>
         <Value>
-            <uax:String>http://www.euromap.org/euromap77/</uax:String>
+            <uax:String>http://opcfoundation.org/UA/PlasticsRubber/IMM2MES/</uax:String>
         </Value>
     </UAVariable>
-    <UAVariable DataType="String" ParentNodeId="ns=1;i=5022" NodeId="ns=1;i=6218" BrowseName="NamespaceVersion">
+    <UAVariable DataType="String" ParentNodeId="ns=1;i=5021" NodeId="ns=1;i=6154" BrowseName="NamespaceVersion">
         <DisplayName>NamespaceVersion</DisplayName>
-        <Description>The human readable string representing version of the namespace.</Description>
         <References>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=5022</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=5021</Reference>
             <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
         </References>
         <Value>
-            <uax:String>1.00</uax:String>
+            <uax:String>RC 1.01.01</uax:String>
         </Value>
     </UAVariable>
-    <UAVariable DataType="IdType" ParentNodeId="ns=1;i=5022" ValueRank="1" NodeId="ns=1;i=6219" BrowseName="StaticNodeIdTypes">
+    <UAVariable DataType="IdType" ParentNodeId="ns=1;i=5021" ValueRank="1" NodeId="ns=1;i=6155" ArrayDimensions="0" BrowseName="StaticNodeIdTypes">
         <DisplayName>StaticNodeIdTypes</DisplayName>
-        <Description>A list of IdTypes for nodes which are the same in every server that exposes them.</Description>
         <References>
             <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=5022</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=5021</Reference>
         </References>
-        <Value>
-            <uax:ListOfInt32>
-                <uax:Int32>0</uax:Int32>
-            </uax:ListOfInt32>
-        </Value>
     </UAVariable>
-    <UAVariable DataType="NumericRange" ParentNodeId="ns=1;i=5022" ValueRank="1" NodeId="ns=1;i=6220" BrowseName="StaticNumericNodeIdRange">
+    <UAVariable DataType="NumericRange" ParentNodeId="ns=1;i=5021" ValueRank="1" NodeId="ns=1;i=6158" ArrayDimensions="0" BrowseName="StaticNumericNodeIdRange">
         <DisplayName>StaticNumericNodeIdRange</DisplayName>
-        <Description>A list of ranges for numeric node ids which are the same in every server that exposes them.</Description>
         <References>
             <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=5022</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=5021</Reference>
         </References>
     </UAVariable>
-    <UAVariable DataType="String" ParentNodeId="ns=1;i=5022" NodeId="ns=1;i=6221" BrowseName="StaticStringNodeIdPattern">
+    <UAVariable DataType="String" ParentNodeId="ns=1;i=5021" NodeId="ns=1;i=6159" BrowseName="StaticStringNodeIdPattern">
         <DisplayName>StaticStringNodeIdPattern</DisplayName>
-        <Description>A regular expression which matches string node ids are the same in every server that exposes them.</Description>
         <References>
             <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=5022</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=5021</Reference>
         </References>
     </UAVariable>
 </UANodeSet>

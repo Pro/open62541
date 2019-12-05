@@ -1,4 +1,4 @@
-<xs:schema elementFormDefault="qualified" targetNamespace="http://www.euromap.org/files/EUROMAP83_Types.xsd" xmlns:tns="http://www.euromap.org/files/EUROMAP83_Types.xsd" xmlns:ua="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema elementFormDefault="qualified" targetNamespace="http://opcfoundation.org/UA/PlasticsRubber/GeneralTypes/Types.xsd" xmlns:tns="http://opcfoundation.org/UA/PlasticsRubber/GeneralTypes/Types.xsd" xmlns:ua="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:import namespace="http://opcfoundation.org/UA/2008/02/Types.xsd"/>
     <xs:simpleType name="CavityCycleQualityEnumeration">
         <xs:annotation>
@@ -57,6 +57,22 @@
         </xs:sequence>
     </xs:complexType>
     <xs:element type="tns:ListOfCycleQualityEnumeration" name="ListOfCycleQualityEnumeration" nillable="true"/>
+    <xs:simpleType name="DiagnosticsStatusEnumeration">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OFF_0"/>
+            <xs:enumeration value="ACTIVE_OK_1"/>
+            <xs:enumeration value="ACTIVE_ERROR_DETECTED_2"/>
+            <xs:enumeration value="COMPLETE_3"/>
+            <xs:enumeration value="COMPLETE_ERROR_4"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element type="tns:DiagnosticsStatusEnumeration" name="DiagnosticsStatusEnumeration"/>
+    <xs:complexType name="ListOfDiagnosticsStatusEnumeration">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" type="tns:DiagnosticsStatusEnumeration" name="DiagnosticsStatusEnumeration" nillable="true"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element type="tns:ListOfDiagnosticsStatusEnumeration" name="ListOfDiagnosticsStatusEnumeration" nillable="true"/>
     <xs:simpleType name="EventOriginatorEnumeration">
         <xs:annotation>
             <xs:documentation>Originator of an event</xs:documentation>
@@ -240,10 +256,11 @@
     <xs:simpleType name="StartEnumeration">
         <xs:restriction base="xs:string">
             <xs:enumeration value="NOT_READY_TO_START_0"/>
-            <xs:enumeration value="READY_TO_START_1"/>
-            <xs:enumeration value="START_REQUESTED_2"/>
-            <xs:enumeration value="STARTED_3"/>
-            <xs:enumeration value="STOP_REQUESTED_4"/>
+            <xs:enumeration value="START_BLOCKED_BY_CLIENT_1"/>
+            <xs:enumeration value="READY_TO_START_2"/>
+            <xs:enumeration value="START_REQUESTED_3"/>
+            <xs:enumeration value="STARTED_4"/>
+            <xs:enumeration value="STOP_REQUESTED_5"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:element type="tns:StartEnumeration" name="StartEnumeration"/>
@@ -323,6 +340,21 @@
         </xs:sequence>
     </xs:complexType>
     <xs:element type="tns:ListOfActiveErrorDataType" name="ListOfActiveErrorDataType" nillable="true"/>
+    <xs:complexType name="ConfigurationParameterType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" type="xs:unsignedInt" name="Id"/>
+            <xs:element minOccurs="0" maxOccurs="1" type="ua:LocalizedText" name="Name"/>
+            <xs:element minOccurs="0" maxOccurs="1" type="ua:Variant" name="DefaultValue"/>
+            <xs:element minOccurs="0" maxOccurs="1" type="ua:EUInformation" name="Unit"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element type="tns:ConfigurationParameterType" name="ConfigurationParameterType"/>
+    <xs:complexType name="ListOfConfigurationParameterType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" type="tns:ConfigurationParameterType" name="ConfigurationParameterType" nillable="true"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element type="tns:ListOfConfigurationParameterType" name="ListOfConfigurationParameterType" nillable="true"/>
     <xs:complexType name="JobListElementType">
         <xs:annotation>
             <xs:documentation>Description of a job in a job list</xs:documentation>
@@ -389,6 +421,19 @@
         </xs:sequence>
     </xs:complexType>
     <xs:element type="tns:ListOfPageEntryDataType" name="ListOfPageEntryDataType" nillable="true"/>
+    <xs:complexType name="ParameterSettingType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" type="xs:unsignedInt" name="Id"/>
+            <xs:element minOccurs="0" maxOccurs="1" type="ua:Variant" name="Value"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element type="tns:ParameterSettingType" name="ParameterSettingType"/>
+    <xs:complexType name="ListOfParameterSettingType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" type="tns:ParameterSettingType" name="ParameterSettingType" nillable="true"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element type="tns:ListOfParameterSettingType" name="ListOfParameterSettingType" nillable="true"/>
     <xs:complexType name="PIDParametersDataType">
         <xs:annotation>
             <xs:documentation>Structure for storing the parameters of a PID controller</xs:documentation>
@@ -488,4 +533,3 @@
     </xs:complexType>
     <xs:element type="tns:ListOfStandstillReasonType" name="ListOfStandstillReasonType" nillable="true"/>
 </xs:schema>
-

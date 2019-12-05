@@ -1,8 +1,8 @@
-<xs:schema elementFormDefault="qualified" targetNamespace="http://www.euromap.org/files/EUROMAP77_Types.xsd" xmlns:tns="http://www.euromap.org/files/EUROMAP77_Types.xsd" xmlns:ua="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema elementFormDefault="qualified" targetNamespace="http://opcfoundation.org/UA/PlasticsRubber/IMM2MES/Types.xsd" xmlns:tns="http://opcfoundation.org/UA/PlasticsRubber/IMM2MES/Types.xsd" xmlns:ua="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:import namespace="http://opcfoundation.org/UA/2008/02/Types.xsd"/>
     <xs:simpleType name="IMMMessageClassificationEnumeration">
         <xs:annotation>
-            <xs:documentation>This Enumeration specifies the values to be used in the Classification property in the MessageConditionType and related logbook events of EUROMAP 83</xs:documentation>
+            <xs:documentation>This Enumeration specifies the values to be used in the Classification property in the MessageConditionType and related logbook events of OPC 40083</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="OTHER_0"/>
