@@ -103,7 +103,44 @@ if(UA_NAMESPACE_ZERO STREQUAL "FULL")
                 ${UA_TYPES_DI_SOURCES}
                 ${UA_TYPES_PLC_SOURCES})
     add_dependencies(server_nodeset_plcopen open62541-generator-ns-plc)
-    
+
+
+    ####################
+    # Euromap Examples #
+    ####################
+
+
+    # generate euromap83 namespace which is using DI
+    ua_generate_nodeset_and_datatypes(
+        NAME "euromap83"
+        FILE_CSV "${PROJECT_SOURCE_DIR}/nodeset/euromap/Opc_Ua.EUROMAP83.RC1_01.NodeId.csv"
+        FILE_BSD "${PROJECT_SOURCE_DIR}/nodeset/euromap/Opc_Ua.EUROMAP83.1_01.NodeSet2.bsd"
+        NAMESPACE_IDX 3
+        FILE_NS "${PROJECT_SOURCE_DIR}/nodeset/euromap/Opc_Ua.EUROMAP83.1_01.NodeSet2.xml"
+        DEPENDS "di"
+        INTERNAL
+    )
+
+    # generate euromap77 namespace which is using euromap83
+    ua_generate_nodeset_and_datatypes(
+        NAME "euromap77"
+        FILE_CSV "${PROJECT_SOURCE_DIR}/nodeset/euromap/Opc_Ua.EUROMAP77.1_00.NodeId.csv"
+        FILE_BSD "${PROJECT_SOURCE_DIR}/nodeset/euromap/Opc_Ua.EUROMAP77.1_00.NodeSet2.bsd"
+        NAMESPACE_IDX 4
+        FILE_NS "${PROJECT_SOURCE_DIR}/nodeset/euromap/Opc_Ua.EUROMAP77.1_00.NodeSet2.xml"
+        DEPENDS "euromap83"
+        INTERNAL
+    )
+
+    add_example(server_nodeset_euromap euromap/server_nodeset_euromap.c
+                ${UA_NODESET_DI_SOURCES}
+                ${UA_NODESET_EUROMAP83_SOURCES}
+                ${UA_NODESET_EUROMAP77_SOURCES}
+                ${UA_TYPES_DI_SOURCES}
+                ${UA_TYPES_EUROMAP83_SOURCES}
+                ${UA_TYPES_EUROMAP77_SOURCES}
+                )
+    add_dependencies(server_nodeset_euromap open62541-generator-ns-euromap77)
 
 endif()
 
