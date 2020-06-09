@@ -117,6 +117,23 @@ try {
     & cmake --build . --config Debug
     if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) {
         Write-Host -ForegroundColor Red "`n`n*** Make failed. Exiting ... ***"
+
+        function transfer.sh ($filename)
+        {
+            $file = Get-Item $filename;
+            (Invoke-WebRequest -Method PUT -InFile $file.FullName -Uri https://transfer.sh/$($file.Name)).Content
+        }
+
+        Get-ChildItem -Path C:\Users\VSSADM~1\AppData\Local\Temp\*.sh, C:\Users\VSSADM~1\AppData\Local\Temp\*.c |
+            Compress-Archive -DestinationPath C:\Users\VSSADM~1\AppData\Local\Temp\PipelineFiles.zip
+        $url = (transfer.sh C:\Users\VSSADM~1\AppData\Local\Temp\PipelineFiles.zip)
+        Write-Host -ForegroundColor Red "`n`n*** Transferred pipeline files: $url ***"
+
+        Compress-Archive -Path D:/a/1/s -DestinationPath C:\Users\VSSADM~1\AppData\Local\Temp\repo.zip
+        $url = (transfer.sh C:\Users\VSSADM~1\AppData\Local\Temp\repo.zip)
+        Write-Host -ForegroundColor Red "`n`n*** Transferred repo files: $url ***"
+
+
         exit $LASTEXITCODE
     }
     cd ..
